@@ -26,21 +26,21 @@ const { category, title, dek, author, date, readTime, cover } = Astro.props;
   <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
     <Media src={cover ?? undefined} data-reveal="media" tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
-  <dl class="relative flex flex-wrap items-end justify-between gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 lg:pb-16">
+  <div class="relative flex flex-wrap items-end justify-between gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 lg:pb-16">
     <div class="flex items-center gap-4">
       <Media src="/images/lib/avatar-orange.webp" sizes="64px" class="size-10 rounded-full" alt={`Photo of ${author}`} />
       <div class="flex flex-col gap-1">
-        <dt class="t-label text-ink-2">Author</dt>
-        <dd class="t-h6">{author}</dd>
+        <p class="t-label text-ink-2">Author</p>
+        <p class="t-h6">{author}</p>
       </div>
     </div>
     <div class="flex flex-col gap-1">
-      <dt class="t-label text-ink-2">Date</dt>
-      <dd class="t-h6">{date}</dd>
+      <p class="t-label text-ink-2">Date</p>
+      <p class="t-h6">{date}</p>
     </div>
     <div class="flex flex-col gap-1">
-      <dt class="t-label text-ink-2">Time to read</dt>
-      <dd class="t-h6">{readTime}</dd>
+      <p class="t-label text-ink-2">Time to read</p>
+      <p class="t-h6">{readTime}</p>
     </div>
-  </dl>
+  </div>
 </section>

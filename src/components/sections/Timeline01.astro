@@ -11,14 +11,14 @@ const active = 1;
       milestones.map((m, i) => {
         const on = i === active;
         return (
-          <article class="group relative flex w-[280px] cursor-pointer shrink-0 snap-start flex-col items-end gap-6 lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-accordion-item data-open={on ? '' : undefined}>
+          <article class="group relative flex w-[280px] cursor-pointer shrink-0 snap-start flex-col items-end gap-6 lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-accordion-item data-accordion-click data-open={on ? '' : undefined}>
             <div class="flex h-[98px] w-full flex-col gap-[22px] text-right font-heading">
               <p class={`text-[24px] leading-[1.2] text-transparent group-data-open:text-ink-2 transition-colors duration-500`}>{m.date}</p>
               <p class={`t-h1 text-zinc-200 group-data-open:text-black transition-colors duration-500`}>{m.year}</p>
             </div>
             <div class="flex w-full items-start gap-4">
-              <div class={`flex flex-1 flex-col gap-6 pt-[83px] text-ink-5 group-data-open:text-black transition-colors duration-500`}>
-                <h3 class={`t-h5 group-data-open:text-black transition-colors duration-500`}>{m.title}</h3>
+              <div class={`flex flex-1 flex-col gap-6 pt-[83px] text-ink-3 group-data-open:text-black transition-colors duration-500`}>
+                <h3 class={`t-h5 group-data-open:text-black transition-colors duration-500`}><button type="button" class="text-left" data-accordion-trigger>{m.title}</button></h3>
                 <p class={`t-b3 group-data-open:text-ink-2 transition-colors duration-500`}>{m.text}</p>
               </div>
               <div class="relative w-[47px] shrink-0">

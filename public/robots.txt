@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /template/sections/
+Disallow: /thank-you/
+
+Sitemap: https://clarity.example.com/sitemap-index.xml

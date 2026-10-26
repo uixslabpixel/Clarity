@@ -78,6 +78,23 @@ The demo, contact and newsletter forms work with **Netlify Forms** out of the bo
 **Site Settings → Form endpoint** to its URL (Formspree, Basin, a serverless function…);
 the forms then post there instead.
 
+## Images & logos
+
+- Photos live in `public/images/lib/` as WebP in three widths (`name.webp` 1600px,
+  `name-1200.webp`, `name-800.webp`); `Media` builds the `srcset` automatically.
+- Static sections take their images from one slot map, `src/data/images.ts` — swap a
+  path there to rebrand a section. CMS entries (posts, case studies, services, team,
+  testimonials) have their own image fields; uploads land in `public/images/<type>/`.
+- Client logos are SVGs in `src/assets/logos/<name>.svg`, rendered as a CSS mask so they
+  take the surrounding text colour. Any client without a file falls back to a wordmark.
+
+## SEO
+
+Per-page titles and descriptions, canonical URLs, Open Graph / Twitter cards
+(`public/og.jpg` by default, the cover image on articles, case studies and services),
+`sitemap-index.xml` via `@astrojs/sitemap` and `public/robots.txt`. Set your domain in
+`astro.config.mjs` (`site`) and `robots.txt`.
+
 ## Design system
 
 - Tokens (colors, fonts) — `src/styles/global.css` `@theme` block, mirrored from the Figma variables.

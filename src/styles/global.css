@@ -26,7 +26,7 @@
   /* text tiers on light (Text/Dark/*) and on dark (Text/Light/*) */
   --color-ink: #000;
   --color-ink-2: rgb(0 0 0 / 0.72);
-  --color-ink-3: rgb(0 0 0 / 0.5);
+  --color-ink-3: rgb(0 0 0 / 0.55); /* Figma 50%, raised to meet WCAG AA 4.5:1 on white */
   --color-ink-4: rgb(0 0 0 / 0.36);
   --color-ink-5: rgb(0 0 0 / 0.2);
   --color-paper: #fff;
@@ -314,7 +314,7 @@
   line-height: 1.3;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-ink-3);
+  color: var(--color-ink-2);
 }
 .prose-clarity ul {
   display: flex;

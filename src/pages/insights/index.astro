@@ -6,7 +6,7 @@ import Newsletter from '../../components/sections/Newsletter.astro';
 import { allPosts } from '../../data/posts';
 const featured = allPosts.find((p) => p.featured)!;
 ---
-<BaseLayout title="Insights" nav={{ active: '/insights' }}>
+<BaseLayout description="Governance briefings on regulation, leadership transitions, capital structure and operational resilience from Clarity’s partners." title="Insights" nav={{ active: '/insights' }}>
   <FeaturedPostHero post={featured} />
   <BlogGrid />
   <Newsletter />

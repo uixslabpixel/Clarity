@@ -34,8 +34,11 @@ function fade(root: HTMLElement) {
   let busy = false;
 
   slides.forEach((s, i) => {
-    s.setAttribute('role', 'group');
-    s.setAttribute('aria-roledescription', 'slide');
+    // article/figure keep their native roles; only generic containers become slide groups.
+    if (s.tagName === 'DIV') {
+      s.setAttribute('role', 'group');
+      s.setAttribute('aria-roledescription', 'slide');
+    }
     s.setAttribute('aria-label', `${i + 1} of ${slides.length}`);
   });
   dots.forEach((d, i) => {

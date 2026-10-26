@@ -20,13 +20,13 @@ const Ticks = (_on: boolean) => Array.from({ length: 15 });
       items.map((m, i) => {
         const on = i === active;
         return (
-          <article class="group flex w-[280px] cursor-pointer shrink-0 snap-start flex-col lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-accordion-item data-open={on ? '' : undefined}>
+          <article class="group flex w-[280px] cursor-pointer shrink-0 snap-start flex-col lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-accordion-item data-accordion-click data-open={on ? '' : undefined}>
             <div class="flex items-start gap-6">
               <span class={`h-[216px] w-px shrink-0 bg-line group-data-open:bg-black transition-colors duration-500`} />
               <div class="flex h-[216px] min-w-0 flex-1 flex-col justify-between">
                 <div class="flex flex-col gap-[22px] font-heading">
                   <p class={`t-h1 text-zinc-200 group-data-open:text-black transition-colors duration-500`}>{m.year}</p>
-                  <h3 class={`t-h5 text-ink-5 group-data-open:text-black transition-colors duration-500`}>{m.title}</h3>
+                  <h3 class={`t-h5 text-ink-3 group-data-open:text-black transition-colors duration-500`}><button type="button" class="text-left" data-accordion-trigger>{m.title}</button></h3>
                 </div>
                 <div class="flex items-center justify-between">
                   {Ticks(on).map(() => (

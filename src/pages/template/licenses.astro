@@ -9,7 +9,7 @@ const groups = [
   { id: 'font', title: 'Font', intro: 'All fonts in this template are licensed for personal and commercial use under the SIL Open Font License (OFL). They come from Google Fonts.', items: [{ name: 'Google Fonts', url: 'https://fonts.google.com/specimen/Inter+Tight', note: 'Inter Tight' }, { name: 'Google Fonts', url: 'https://fonts.google.com/specimen/Geist', note: 'Geist' }, { name: 'Google Fonts', url: 'https://fonts.google.com/specimen/Geist+Mono', note: 'Geist Mono' }] },
 ];
 ---
-<BaseLayout title="Asset License">
+<BaseLayout description="Licenses for the fonts, images and libraries used in the Clarity website template." title="Asset License">
   <SimpleHero title="Asset License" text="All graphical assets in this template are licensed for personal and commercial use. If you'd like to use a specific asset, please check the source licenses below." />
   <DocsLayout toc={groups.map((g) => ({ id: g.id, label: g.title }))}>
     {

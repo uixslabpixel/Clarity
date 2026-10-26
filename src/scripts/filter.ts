@@ -38,7 +38,7 @@ export function initFilters() {
           const on = t === tab;
           t.setAttribute('aria-selected', String(on));
           t.classList.toggle('text-black', on);
-          t.classList.toggle('text-ink-4', !on);
+          t.classList.toggle('text-ink-3', !on);
         });
         apply();
       }),

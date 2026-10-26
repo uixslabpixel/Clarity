@@ -42,7 +42,7 @@ const slides = caseHighlights.map((center, k) => ({
       <div class="grid w-full justify-items-center lg:w-auto">
         {slides.map((slide, k) => (
         <div class="col-start-1 row-start-1 flex w-full items-start justify-center gap-16 lg:w-auto" data-slide aria-hidden={k === active ? undefined : 'true'} style={k === active ? undefined : 'visibility:hidden;opacity:0'}>
-        <div class="hidden items-center gap-16 lg:flex" data-slide-part>
+        <div class="hidden items-center gap-16 lg:flex" data-slide-part aria-hidden="true" inert>
           {slide.left.map((c) => <SideCard {...c} />)}
         </div>
         <div class="flex w-full max-w-[480px] flex-col gap-6 lg:w-[480px] lg:shrink-0 lg:gap-8" data-slide-part>
@@ -68,7 +68,7 @@ const slides = caseHighlights.map((center, k) => ({
             </div>
           </div>
         </div>
-        <div class="hidden items-center gap-16 lg:flex" data-slide-part>
+        <div class="hidden items-center gap-16 lg:flex" data-slide-part aria-hidden="true" inert>
           {slide.right.map((c) => <SideCard {...c} />)}
         </div>
         </div>

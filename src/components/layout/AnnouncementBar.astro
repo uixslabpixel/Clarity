@@ -4,6 +4,7 @@ import GradientWash from '../ui/GradientWash.astro';
 import { site } from '../../data/site';
 const { text, cta, href } = site.announcement;
 ---
+<aside aria-label="Announcement">
 <a href={href} data-announcement class="group relative flex w-full items-center justify-center gap-2 overflow-hidden bg-white px-6 py-3 lg:py-3.5">
   <GradientWash class="inset-[-462px_0_-200px_0]" />
   <span class="t-b4 relative text-black">{text}</span>
@@ -12,3 +13,4 @@ const { text, cta, href } = site.announcement;
     <span class="grid size-4 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
   </span>
 </a>
+</aside>

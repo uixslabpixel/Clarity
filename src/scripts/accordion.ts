@@ -32,20 +32,10 @@ function setup(root: HTMLElement) {
     const trigger = triggerOf(item);
     const panel = panelOf(item);
     if (panel && !panel.id) panel.id = `acc-${Math.random().toString(36).slice(2, 8)}`;
-    if (trigger !== item || trigger.tagName === 'BUTTON') {
-      trigger.setAttribute('aria-expanded', String(i === index));
-      if (panel) trigger.setAttribute('aria-controls', panel.id);
-    } else {
-      item.setAttribute('role', 'button');
-      item.tabIndex = 0;
-      item.setAttribute('aria-pressed', String(i === index));
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          select(i, true);
-        }
-      });
-    }
+    trigger.setAttribute('aria-expanded', String(i === index));
+    if (panel) trigger.setAttribute('aria-controls', panel.id);
+    // Items marked data-accordion-click are also clickable anywhere (keyboard uses the trigger).
+    if (item.hasAttribute('data-accordion-click') && trigger !== item) item.addEventListener('click', (e) => !trigger.contains(e.target as Node) && select(i, true));
     if (panel && i !== index) panel.inert = true;
     trigger.addEventListener('click', () => select(i, true));
   });
@@ -65,7 +55,6 @@ function setup(root: HTMLElement) {
       it.toggleAttribute('data-open', on);
       const trigger = triggerOf(it);
       if (trigger.hasAttribute('aria-expanded')) trigger.setAttribute('aria-expanded', String(on));
-      if (it.hasAttribute('aria-pressed')) it.setAttribute('aria-pressed', String(on));
     });
     media.forEach((m, i) => m.toggleAttribute('data-open', i === next));
     animatePanel(panelOf(prev), false);

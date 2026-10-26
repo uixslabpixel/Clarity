@@ -6,15 +6,28 @@ import Icon from '../ui/Icon.astro';
 import Media from '../ui/Media.astro';
 import BlogCard from '../cards/BlogCard.astro';
 import { allPosts, categories } from '../../data/posts';
+interface Props {
+  /** 1-based page; page 1 uses the featured layout, later pages a plain grid. */
+  page?: number;
+}
+const { page = 1 } = Astro.props;
+const PER_PAGE = 9;
 const list = allPosts.filter((p) => !p.featured);
-const [lead, side1, side2, ...rest] = list;
+const totalPages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+const pageItems = list.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+const first = page === 1;
+const [lead, side1, side2, ...rest] = first ? pageItems : [];
+const grid = first ? rest : pageItems;
+const pageHref = (n: number) => (n === 1 ? '/insights/' : `/insights/page/${n}/`);
 const tabs = ['All', ...categories.filter((c) => c !== 'Corporate Governance Hub')];
 ---
 <section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-24 lg:pb-[94px] lg:pt-[120px]" data-section="BLOG-03">
   <Hatch class="absolute inset-x-0 top-0" />
   <div class="mx-auto flex max-w-[1132px] flex-col gap-10">
+    <h2 class="sr-only">All briefings</h2>
     <FilterTabs items={tabs} />
     <div class="flex flex-col gap-6">
+      {first && lead && (
       <div class="flex flex-col items-stretch gap-6 lg:flex-row lg:items-start" data-filter-group>
         <a href={`/insights/${lead.slug}`} data-reveal class="group flex w-full shrink-0 flex-col gap-6 lg:w-[752px] overflow-hidden border border-line" data-filter-item={lead.category}>
           <div class="relative h-[240px] overflow-hidden md:h-[360px] lg:h-[444px]">
@@ -44,21 +57,32 @@ const tabs = ['All', ...categories.filter((c) => c !== 'Corporate Governance Hub
           ))}
         </div>
       </div>
+      )}
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" data-filter-group>
-        {rest.slice(0, 6).map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} radius="sm" data-filter-item={p.category} />)}
+        {grid.map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} radius="sm" data-filter-item={p.category} />)}
       </div>
     </div>
     <p class="t-b3 py-10 text-center text-ink-3" data-filter-empty hidden>No briefings in this category yet.</p>
-    <nav aria-label="Pagination" class="flex items-center justify-between">
-      <a href="#" aria-label="Previous page" class="grid size-6 place-items-center rounded-full bg-black/5"><Icon name="chevron-left" size={10} /></a>
-      <ol class="t-b4 flex items-center gap-4 text-ink-3">
-        <li><a href="/insights" aria-current="page" class="text-black">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li aria-hidden="true">…</li>
-      </ol>
-      <a href="#" aria-label="Next page" class="grid size-6 place-items-center rounded-full bg-black text-white"><Icon name="chevron-right" size={10} /></a>
-    </nav>
+    {
+      totalPages > 1 && (
+        <nav aria-label="Pagination" class="flex items-center justify-between">
+          {page > 1 ? (
+            <a href={pageHref(page - 1)} aria-label="Previous page" class="grid size-6 place-items-center rounded-full bg-black text-white"><Icon name="chevron-left" size={10} /></a>
+          ) : (
+            <span aria-hidden="true" class="grid size-6 place-items-center rounded-full bg-black/5 text-ink-4"><Icon name="chevron-left" size={10} /></span>
+          )}
+          <ol class="t-b4 flex items-center gap-4 text-ink-3">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+              <li><a href={pageHref(n)} aria-current={n === page ? 'page' : undefined} class={n === page ? 'text-black' : 'hover:text-black'}>{n}</a></li>
+            ))}
+          </ol>
+          {page < totalPages ? (
+            <a href={pageHref(page + 1)} aria-label="Next page" class="grid size-6 place-items-center rounded-full bg-black text-white"><Icon name="chevron-right" size={10} /></a>
+          ) : (
+            <span aria-hidden="true" class="grid size-6 place-items-center rounded-full bg-black/5 text-ink-4"><Icon name="chevron-right" size={10} /></span>
+          )}
+        </nav>
+      )
+    }
   </div>
 </section>

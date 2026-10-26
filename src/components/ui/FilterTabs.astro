@@ -12,7 +12,7 @@ const { items, active = 0, class: cls = '' } = Astro.props;
     <div class="-mx-4 flex min-w-0 items-center gap-4 overflow-x-auto px-4 font-heading text-[20px] leading-[1.2] [scrollbar-width:none] md:mx-0 md:gap-6 md:px-0 md:text-[24px]" role="tablist">
       {
         items.map((t, i) => (
-          <button type="button" role="tab" aria-selected={i === active ? 'true' : 'false'} data-filter-value={t} class={`whitespace-nowrap transition-colors ${i === active ? 'text-black' : 'text-ink-4 hover:text-black'}`}>
+          <button type="button" role="tab" aria-selected={i === active ? 'true' : 'false'} data-filter-value={t} class={`whitespace-nowrap transition-colors ${i === active ? 'text-black' : 'text-ink-3 hover:text-black'}`}>
             {t}
           </button>
         ))

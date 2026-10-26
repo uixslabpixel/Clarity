@@ -6,7 +6,7 @@ import DocPanel from '../../components/ui/DocPanel.astro';
 import { changelog } from '../../data/changelog';
 const toc = changelog.map((c) => ({ id: `v${c.version.replaceAll('.', '-')}`, label: `V ${c.version}` }));
 ---
-<BaseLayout title="Changelog">
+<BaseLayout description="Release notes for the Clarity website template." title="Changelog">
   <SimpleHero title="Changelog" text="Every release of the Clarity template — what changed, when, and why." />
   <DocsLayout toc={toc}>
     {

@@ -2,7 +2,8 @@
 /**
  * Client logo. Known names render the vector logo from src/assets/logos
  * (drop in `<name>.svg` to add one); anything else falls back to a wordmark.
- * Logos inherit `currentColor`. `height` is the visual glyph height.
+ * Logos are drawn as a CSS mask so they inherit `currentColor` and the SVG
+ * file is fetched once and cached. `height` is the visual glyph height.
  */
 interface Props {
   name: string;
@@ -10,16 +11,27 @@ interface Props {
   class?: string;
 }
 const { name, height = 20, class: cls = '' } = Astro.props;
-const files = import.meta.glob<string>('../../assets/logos/*.svg', { query: '?raw', import: 'default', eager: true });
+const urls = import.meta.glob<string>('../../assets/logos/*.svg', { query: '?url', import: 'default', eager: true });
+const raws = import.meta.glob<string>('../../assets/logos/*.svg', { query: '?raw', import: 'default', eager: true });
 const key = name.toLowerCase().replace(/[^a-z0-9]+/g, '');
-const svg = Object.entries(files).find(([path]) => path.endsWith(`/${key}.svg`))?.[1];
+const path = Object.keys(urls).find((p) => p.endsWith(`/${key}.svg`));
 // Exported frames are 28px tall with ~21px of glyph, so scale the frame to the requested glyph height.
 const frame = Math.round(height * (28 / 21));
-const markup = svg?.replace('<svg', `<svg role="img" aria-label="${name}" style="height:${frame}px;width:auto;display:block"`);
+let width = 0;
+if (path) {
+  const [, , w, h] = (raws[path].match(/viewBox="([^"]+)"/)?.[1] ?? '0 0 100 28').split(/\s+/).map(Number);
+  width = Math.round((frame * w) / h);
+}
 ---
 {
-  markup ? (
-    <span class={`inline-flex shrink-0 items-center ${cls}`} style={`height:${height}px`} data-logo={name} set:html={markup} />
+  path ? (
+    <span
+      role="img"
+      aria-label={name}
+      class={`inline-block shrink-0 bg-current ${cls}`}
+      style={`width:${width}px;height:${frame}px;margin-block:${(height - frame) / 2}px;-webkit-mask:url(${urls[path]}) center/contain no-repeat;mask:url(${urls[path]}) center/contain no-repeat`}
+      data-logo={name}
+    />
   ) : (
     <span class={`inline-flex shrink-0 items-center gap-1.5 font-heading leading-none ${cls}`} style={`font-size:${Math.round(height * 0.9)}px;height:${height}px`} data-logo={name}>
       <span class="inline-block rounded-full bg-current opacity-80" style={`width:${height}px;height:${height}px`}></span>

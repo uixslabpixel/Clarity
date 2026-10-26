@@ -17,7 +17,7 @@ const { Content, headings } = await render(entry);
 const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, label: h.text }));
 const related = allPosts.filter((p) => p.slug !== post.slug && !p.featured).slice(0, 3);
 ---
-<BaseLayout title={post.title} description={post.excerpt} nav={{ active: '/insights' }}>
+<BaseLayout title={post.title} description={post.excerpt} image={post.cover ?? undefined} ogType="article" nav={{ active: '/insights' }}>
   <PostHero
     category={post.category}
     title={post.title}

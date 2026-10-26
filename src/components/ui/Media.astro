@@ -16,7 +16,7 @@ interface Props {
   [key: `data-${string}`]: string | boolean | undefined;
 }
 const { src, alt = '', class: cls = '', tone = 'light', label, loading = 'lazy', style, sizes = '100vw', ...rest } = Astro.props;
-const srcset = src && /^\/images\/lib\/.+\.webp$/.test(src) ? `${src.replace(/\.webp$/, '-800.webp')} 800w, ${src} 2000w` : undefined;
+const srcset = src && /^\/images\/lib\/.+\.webp$/.test(src) ? `${src.replace(/\.webp$/, '-800.webp')} 800w, ${src.replace(/\.webp$/, '-1200.webp')} 1200w, ${src} 1600w` : undefined;
 const tones = {
   light: 'bg-zinc-200',
   dark: 'bg-zinc-600',
@@ -25,7 +25,7 @@ const tones = {
 ---
 {
   src ? (
-    <img src={src} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} loading={loading} decoding="async" class={`object-cover ${cls}`} style={style} {...rest} />
+    <img src={src} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} loading={loading} fetchpriority={loading === "eager" ? "high" : undefined} decoding={loading === "eager" ? "sync" : "async"} class={`object-cover ${cls}`} style={style} {...rest} />
   ) : (
     <div style={style} {...rest} class={`media-ph overflow-hidden ${tones[tone]} ${cls}`} role={alt ? 'img' : undefined} aria-label={alt || undefined}>
       {label && <span class="t-b5 absolute bottom-2 left-2 text-black/40">{label}</span>}

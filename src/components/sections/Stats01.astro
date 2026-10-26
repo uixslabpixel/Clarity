@@ -18,11 +18,9 @@ const { eyebrow = 'Number', title = 'Institutional Progress Delivered', items = 
     <dl class="flex w-full flex-1 flex-col gap-6 lg:gap-10">
       {
         items.map((s) => (
-          <div data-reveal class="flex flex-col gap-8 border-t border-white/20 pt-6 lg:pt-8">
-            <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-              <dt class="t-h1" data-count>{s.value}</dt>
-              <dd class="t-b4 text-paper-2 md:w-[292px] lg:text-[16px] lg:leading-[1.3]">{s.label}</dd>
-            </div>
+          <div data-reveal class="flex flex-col gap-2 border-t border-white/20 pt-6 md:flex-row md:items-center md:justify-between lg:pt-8">
+            <dt class="t-h1" data-count>{s.value}</dt>
+            <dd class="t-b4 text-paper-2 md:w-[292px] lg:text-[16px] lg:leading-[1.3]">{s.label}</dd>
           </div>
         ))
       }

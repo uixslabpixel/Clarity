@@ -14,7 +14,7 @@ const cs = entry.data;
 const { Content, headings } = await render(entry);
 const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, label: h.text }));
 ---
-<BaseLayout title={cs.shortTitle} description={cs.title} nav={{ active: '/case-studies' }}>
+<BaseLayout title={cs.shortTitle} description={cs.title} image={cs.cover ?? undefined} ogType="article" nav={{ active: '/case-studies' }}>
   <CaseHero
     cover={cs.cover}
     area={cs.area}

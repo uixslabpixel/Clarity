@@ -20,7 +20,7 @@ const control =
   {
     type === 'select' ? (
       <div class="relative">
-        <select id={id} name={name} required={required} class={`${control} h-10 appearance-none pr-10 text-ink-4 [&:has(option:checked:not([value='']))]:text-black`}>
+        <select id={id} name={name} required={required} class={`${control} h-10 appearance-none pr-10 text-ink-3 [&:has(option:checked:not([value='']))]:text-black`}>
           <option value="">{placeholder}</option>
           {options.map((o) => <option value={o}>{o}</option>)}
         </select>

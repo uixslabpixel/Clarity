@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SimpleHero from '../../../components/sections/SimpleHero.astro';
+import BlogGrid from '../../../components/sections/BlogGrid.astro';
+import Newsletter from '../../../components/sections/Newsletter.astro';
+import { allPosts } from '../../../data/posts';
+
+/** Matches the 9-per-page split in BlogGrid; page 1 lives at /insights. */
+export function getStaticPaths() {
+  const total = Math.ceil(allPosts.filter((p) => !p.featured).length / 9);
+  return Array.from({ length: Math.max(0, total - 1) }, (_, i) => ({ params: { page: String(i + 2) } }));
+}
+const page = Number(Astro.params.page);
+---
+<BaseLayout description="Archive of Clarity governance briefings on regulation, leadership, capital and operations." title={`Insights — Page ${page}`} nav={{ active: '/insights' }}>
+  <SimpleHero title="Governance Briefings" text={`Page ${page} of the Clarity briefing archive.`} />
+  <BlogGrid page={page} />
+  <Newsletter />
+</BaseLayout>
