@@ -14,8 +14,8 @@ const { area, title, metric, metricLabel, meta } = Astro.props;
 ---
 <section class="relative overflow-hidden bg-white pt-[61px]" data-section="HERO-07">
   <GradientWash class="inset-[-419px_0_675px_0]" />
-  <div class="relative flex items-end justify-between px-[154px] py-16">
-    <div class="flex max-w-[680px] flex-1 flex-col gap-4">
+  <div class="relative flex flex-col items-start gap-8 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] py-12 lg:flex-row lg:items-end lg:justify-between lg:py-16">
+    <div class="flex w-full min-w-0 max-w-[680px] flex-col gap-4 lg:w-auto lg:flex-1">
       <Breadcrumb items={[{ label: 'Case Studies', href: '/case-studies' }, { label: area }]} />
       <h1 class="t-h2">{title}</h1>
     </div>
@@ -24,10 +24,10 @@ const { area, title, metric, metricLabel, meta } = Astro.props;
       <p class="t-b3 text-ink-2">{metricLabel}</p>
     </div>
   </div>
-  <div class="relative px-[154px]">
-    <Media tone="duotone" class="h-[480px] w-full bg-black" loading="eager" />
+  <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
+    <Media tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
-  <dl class="relative flex items-end justify-between px-[154px] pb-16 pt-8">
+  <dl class="relative grid grid-cols-2 gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 md:flex md:items-end md:justify-between lg:pb-16">
     {
       meta.map((m) => (
         <div class="flex flex-col gap-1">

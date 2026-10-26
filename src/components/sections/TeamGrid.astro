@@ -5,13 +5,13 @@ import Button from '../ui/Button.astro';
 import TeamCard from '../cards/TeamCard.astro';
 import { team } from '../../data/content';
 ---
-<section class="bg-white px-10 py-20" data-section="TEAM-02b">
-  <div class="mx-auto flex max-w-[1360px] flex-col gap-16">
+<section class="bg-white px-4 py-12 md:px-10 md:py-20" data-section="TEAM-02b">
+  <div class="mx-auto flex max-w-[1360px] flex-col gap-10 lg:gap-16">
     <SectionHeader eyebrow="Our team" title="Led by Experienced Practitioners">
       <Button href="/team" variant="soft">View Full Leadership Team</Button>
     </SectionHeader>
-    <div class="flex items-center gap-4">
-      {team.slice(0, 3).map((m) => <TeamCard name={m.name} role={m.role} />)}
+    <div class="-mx-4 flex snap-x snap-mandatory items-center gap-4 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:px-0">
+      {team.slice(0, 3).map((m) => <TeamCard name={m.name} role={m.role} class="w-[300px] shrink-0 snap-start md:w-auto md:shrink" />)}
     </div>
   </div>
 </section>

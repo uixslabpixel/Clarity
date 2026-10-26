@@ -6,14 +6,14 @@ interface Props {
   title: string;
   class?: string;
 }
-const { eyebrow, title, class: cls = 'px-[218px] py-14' } = Astro.props;
+const { eyebrow, title, class: cls = 'px-4 py-12 md:px-10 lg:py-14' } = Astro.props;
 ---
 <section class={`bg-white ${cls}`} data-section="CALLOUT-01">
-  <div class="mx-auto flex max-w-[1004px] items-end gap-12 overflow-hidden rounded bg-black/5 px-12 py-14">
+  <div class="mx-auto flex max-w-[1004px] flex-col items-start gap-8 overflow-hidden rounded bg-black/5 px-6 py-10 md:flex-row md:items-end md:gap-12 md:px-12 md:py-14">
     <div class="flex min-w-0 flex-1 flex-col gap-2">
       <Eyebrow>{eyebrow}</Eyebrow>
       <p class="t-b1 text-black" set:html={title} />
     </div>
-    <div class="flex shrink-0 items-start gap-2"><slot /></div>
+    <div class="flex shrink-0 flex-wrap items-start gap-2"><slot /></div>
   </div>
 </section>

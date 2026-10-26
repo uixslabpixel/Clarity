@@ -5,20 +5,20 @@ import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { services } from '../../data/services';
 ---
-<section class="relative bg-white px-[154px] pb-[104px] pt-[120px]" data-section="SERVICE-01">
+<section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-24 lg:pb-[104px] lg:pt-[120px]" data-section="SERVICE-01">
   <Hatch class="absolute inset-x-0 top-0" />
-  <div class="mx-auto flex w-[946px] flex-col gap-4">
+  <div class="mx-auto flex w-full max-w-[946px] flex-col gap-4">
     {
       services.map((s) => (
-        <article class="flex items-start gap-10 bg-black/5 py-4 pl-6 pr-4">
-          <div class="flex h-[224px] min-w-0 flex-1 flex-col justify-between py-4">
+        <article class="flex flex-col-reverse items-stretch gap-6 bg-black/5 p-4 md:flex-row md:items-start md:gap-10 md:py-4 md:pl-6 md:pr-4">
+          <div class="flex min-w-0 flex-1 flex-col justify-between gap-6 md:h-[224px] md:py-4">
             <h2 class="t-h5 max-w-[300px]">{s.lines.map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h2>
-            <div class="flex items-end gap-8">
+            <div class="flex flex-col items-start gap-6 md:flex-row md:items-end md:gap-8">
               <p class="t-b3 max-w-[600px] flex-1 text-ink-2">{s.text}</p>
               <Button href={`/services/${s.slug}`} variant="soft" class="!h-9">{s.cta}</Button>
             </div>
           </div>
-          <Media tone="duotone" class="size-[224px] shrink-0 bg-black" />
+          <Media tone="duotone" class="h-[200px] w-full shrink-0 bg-black md:size-[224px]" />
         </article>
       ))
     }

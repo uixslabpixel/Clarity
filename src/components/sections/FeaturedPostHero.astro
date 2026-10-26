@@ -8,17 +8,17 @@ interface Props {
 }
 const { post } = Astro.props;
 ---
-<section class="relative overflow-hidden bg-white pb-[72px] pt-[133px]" data-section="HERO-08">
+<section class="relative overflow-hidden bg-white pb-10 pt-[100px] lg:pb-[72px] lg:pt-[133px]" data-section="HERO-08">
   <GradientWash class="inset-[-419px_0_467px_0]" />
-  <a href={`/insights/${post.slug}`} class="group relative flex items-stretch gap-14 px-[148px] py-14">
-    <div class="flex max-w-[576px] flex-[400] flex-col justify-between">
+  <a href={`/insights/${post.slug}`} class="group relative flex flex-col-reverse items-stretch gap-8 px-4 py-6 md:px-10 lg:flex-row lg:gap-14 lg:px-[max(40px,calc((100%-1144px)/2))] lg:py-14">
+    <div class="flex flex-col justify-between gap-6 lg:max-w-[576px] lg:flex-[400]">
       <div class="flex flex-col gap-6">
         <h1 class="t-h2">{post.title}</h1>
         <p class="t-label flex items-center gap-2 text-ink-3"><span>{post.date}</span><span class="h-3.5 w-px bg-black/20"></span><span>{post.author}</span></p>
       </div>
       <p class="t-b3 text-ink-2">{post.excerpt}</p>
     </div>
-    <div class="relative h-[444px] w-[736px] shrink-0 overflow-hidden bg-black/20">
+    <div class="relative h-[260px] w-full shrink-0 md:h-[400px] lg:h-[444px] lg:w-[736px] overflow-hidden bg-black/20">
       <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" loading="eager" />
       <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{post.category}</span>
     </div>

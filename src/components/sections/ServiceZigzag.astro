@@ -4,12 +4,12 @@ import Button from '../ui/Button.astro';
 import Media from '../ui/Media.astro';
 import { services } from '../../data/services';
 ---
-<div class="flex flex-col gap-16" data-section="SERVICE-02">
+<div class="flex flex-col gap-12 lg:gap-16" data-section="SERVICE-02">
   {
     services.map((s, i) => (
-      <article class={`flex items-start gap-8 ${i % 2 ? 'flex-row-reverse justify-between' : ''}`}>
-        <Media tone="duotone" class="size-[512px] shrink-0" />
-        <div class={`flex flex-col gap-8 pt-0 ${i % 2 ? 'w-[512px]' : 'w-[492px]'}`}>
+      <article class={`flex flex-col items-start gap-6 md:flex-row md:gap-8 ${i % 2 ? 'md:flex-row-reverse md:justify-between' : ''}`}>
+        <Media tone="duotone" class="aspect-square w-full shrink-0 md:w-[45%] xl:size-[512px]" />
+        <div class={`flex w-full flex-col gap-6 pt-0 md:flex-1 md:gap-8 xl:flex-none ${i % 2 ? 'xl:w-[512px]' : 'xl:w-[492px]'}`}>
           <h2 class="t-h5">{s.title}</h2>
           <div class="flex flex-col items-start gap-4">
             <p class="t-b3 text-ink-2">{s.text}</p>

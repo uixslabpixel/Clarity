@@ -5,7 +5,7 @@ import FilterTabs from '../ui/FilterTabs.astro';
 import CaseRow from '../cards/CaseRow.astro';
 import { caseStudies, industries } from '../../data/cases';
 ---
-<section class="relative bg-white px-[154px] pb-[104px] pt-[120px]" data-section="CASE-04">
+<section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-24 lg:pb-[104px] lg:pt-[120px]" data-section="CASE-04">
   <Hatch class="absolute inset-x-0 top-0" />
   <div class="mx-auto flex max-w-[1132px] flex-col gap-10">
     <FilterTabs items={industries} />

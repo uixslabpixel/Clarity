@@ -56,7 +56,7 @@ const toc = [
           type.map((t) => (
             <div class="flex flex-col gap-2 border-b border-zinc-200 py-6 first:pt-0 last:border-0 last:pb-0">
               <p class={t.cls}>{t.label}</p>
-              <dl class="t-b4 flex justify-between text-[#2a2a28]">
+              <dl class="t-b4 flex flex-wrap justify-between gap-x-4 gap-y-1 text-[#2a2a28]">
                 <div><dt class="inline">Name:</dt> <dd class="inline">{t.font}</dd></div>
                 <div><dt class="inline">Size:</dt> <dd class="inline">{t.size}px</dd></div>
                 <div><dt class="inline">Weight:</dt> <dd class="inline">{t.weight ?? 'Regular'}</dd></div>
@@ -68,10 +68,10 @@ const toc = [
       </div>
     </DocPanel>
     <DocPanel id="color" title="Color">
-      <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+      <div class="grid grid-cols-1 gap-x-8 gap-y-5 md:grid-cols-2">
         {
           colors.map((c) => (
-            <div class={c.items.length > 4 ? 'col-span-2' : ''}>
+            <div class={c.items.length > 4 ? 'md:col-span-2' : ''}>
               <p class="t-label mb-2 text-black">{c.group}</p>
               <div class="flex flex-wrap gap-x-4 gap-y-[9px]">
                 {c.items.map(([hex, a]) => (
@@ -95,7 +95,7 @@ const toc = [
       </div>
     </DocPanel>
     <DocPanel id="form" title="Form Input">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Field label="Label" name="sg-text" placeholder="Text" required />
         <Field label="Label" name="sg-select" type="select" placeholder="Select..." options={['Option A', 'Option B']} required />
         <Field label="Label" name="sg-area" type="textarea" placeholder="Text" required />

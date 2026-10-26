@@ -4,15 +4,15 @@ import Eyebrow from '../ui/Eyebrow.astro';
 import BlogCard from '../cards/BlogCard.astro';
 import { posts } from '../../data/content';
 ---
-<section class="bg-white px-[120px] py-20" data-section="BLOG-01b">
-  <div class="mx-auto flex max-w-[1200px] flex-col gap-16">
+<section class="bg-white px-4 py-12 md:px-10 md:py-20 lg:px-[max(40px,calc((100%-1200px)/2))]" data-section="BLOG-01b">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-10 lg:gap-16">
     <div class="flex flex-col gap-4">
       <Eyebrow>Blog</Eyebrow>
       <span class="h-px w-full bg-line"></span>
       <h2 class="t-h2">Governance Briefings</h2>
     </div>
-    <div class="flex gap-8">
-      {posts.slice(0, 3).map((p) => <BlogCard {...p} category="Corporate Strategy Hub" href={`/insights/${p.slug}`} imageHeight={360} radius="sm" class="flex-1" />)}
+    <div class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:px-0 lg:gap-8 lg:overflow-visible">
+      {posts.slice(0, 3).map((p) => <BlogCard {...p} category="Corporate Strategy Hub" href={`/insights/${p.slug}`} imageHeight={360} radius="sm" class="w-[300px] shrink-0 snap-start md:w-[340px] lg:w-auto lg:flex-1" />)}
     </div>
   </div>
 </section>

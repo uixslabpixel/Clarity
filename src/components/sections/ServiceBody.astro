@@ -17,10 +17,10 @@ const {
   },
 } = Astro.props;
 ---
-<section class="relative bg-white px-[135px] pb-20 pt-[120px]" data-section="SERVICE-03">
+<section class="relative bg-white px-4 pb-12 pt-24 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] lg:pb-20 lg:pt-[120px]" data-section="SERVICE-03">
   <Hatch class="absolute inset-x-0 top-0" />
-  <div class="mx-auto flex max-w-[1170px] items-start gap-12">
-    <div class="flex w-[781px] shrink-0 flex-col">
+  <div class="mx-auto flex max-w-[1170px] flex-col items-stretch gap-10 lg:flex-row lg:items-start lg:gap-12">
+    <div class="flex w-full min-w-0 flex-col lg:flex-1 xl:w-[781px] xl:flex-none">
       {
         blocks.map((b, i) => (
           <div class={`flex flex-col gap-4 py-6 ${i < blocks.length - 1 ? 'border-b border-line' : ''}`}>
@@ -30,7 +30,7 @@ const {
         ))
       }
     </div>
-    <aside class="sticky top-24 flex min-w-0 flex-1 flex-col gap-6 border border-line">
+    <aside class="flex min-w-0 lg:sticky lg:top-24 lg:w-[320px] xl:w-auto xl:flex-1 flex-col gap-6 border border-line">
       <Media tone="duotone" class="h-[128px] w-full bg-black/20" />
       <div class="flex flex-col gap-8 px-6 pb-6">
         <div class="flex flex-col gap-4">

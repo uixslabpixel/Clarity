@@ -19,13 +19,13 @@ const left = caseHighlights.slice(0, active);
 const center = caseHighlights[active];
 const right = caseHighlights.slice(active + 1);
 ---
-<section class="overflow-hidden bg-black p-20 text-white" data-section="CASE-01" data-carousel="coverflow">
-  <div class="mx-auto flex max-w-[1280px] flex-col items-center gap-14">
-    <div class="flex w-[710px] flex-col items-center gap-3.5 text-center">
+<section class="overflow-hidden bg-black px-4 py-12 text-white md:px-10 lg:p-20" data-section="CASE-01" data-carousel="coverflow">
+  <div class="mx-auto flex max-w-[1280px] flex-col items-center gap-8 lg:gap-14">
+    <div class="flex w-full max-w-[710px] flex-col items-center gap-2 text-center lg:gap-3.5">
       <Eyebrow tone="light">{eyebrow}</Eyebrow>
       <h2 class="t-h2">{title}</h2>
     </div>
-    <div class="flex w-full flex-col items-center gap-10">
+    <div class="flex w-full flex-col items-center gap-6 lg:gap-10">
       <div class="flex w-full items-center justify-between">
         <button type="button" data-prev aria-label="Previous case" class="grid size-6 place-items-center rounded-full bg-white/10"><Icon name="chevron-left" size={12} /></button>
         <div class="flex w-20 gap-1" data-dots>
@@ -33,12 +33,12 @@ const right = caseHighlights.slice(active + 1);
         </div>
         <button type="button" data-next aria-label="Next case" class="grid size-6 place-items-center rounded-full bg-white text-black"><Icon name="chevron-right" size={12} /></button>
       </div>
-      <div class="flex items-start justify-center gap-16" data-track>
-        <div class="flex items-center gap-16">
+      <div class="flex w-full items-start justify-center gap-16 lg:w-auto" data-track>
+        <div class="hidden items-center gap-16 lg:flex">
           {left.map((c) => <SideCard {...c} />)}
         </div>
-        <div class="flex flex-col gap-8">
-          <article class="relative flex h-[520px] w-[480px] flex-col justify-between overflow-hidden rounded bg-white p-8 text-black">
+        <div class="flex w-full max-w-[480px] flex-col gap-6 lg:w-[480px] lg:shrink-0 lg:gap-8">
+          <article class="relative flex h-[520px] w-full flex-col justify-between overflow-hidden rounded bg-white p-8 text-black">
             <div class="absolute inset-x-0 bottom-0 h-[315px] overflow-hidden">
               <GradientWash from="bottom" class="inset-[0_-131px_-51px_-131px]" />
             </div>
@@ -52,7 +52,7 @@ const right = caseHighlights.slice(active + 1);
               <ClientLogo name={center.client} height={32} />
             </div>
           </article>
-          <div class="flex w-[480px] flex-col gap-8">
+          <div class="flex w-full flex-col gap-6 lg:gap-8">
             <h3 class="t-h5">{center.title}</h3>
             <div class="flex flex-col items-start gap-4">
               <p class="t-b3 text-paper-2">{center.text}</p>
@@ -60,7 +60,7 @@ const right = caseHighlights.slice(active + 1);
             </div>
           </div>
         </div>
-        <div class="flex items-center gap-16">
+        <div class="hidden items-center gap-16 lg:flex">
           {right.map((c) => <SideCard {...c} />)}
         </div>
       </div>

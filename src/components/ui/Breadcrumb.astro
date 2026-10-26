@@ -8,7 +8,7 @@ const { items, class: cls = '', tone = 'dark' } = Astro.props;
 const muted = tone === 'light' ? 'text-paper-2' : 'text-ink-2';
 const strong = tone === 'light' ? 'text-white' : 'text-black';
 ---
-<nav aria-label="Breadcrumb" class={`t-label flex items-center gap-2 whitespace-nowrap ${cls}`}>
+<nav aria-label="Breadcrumb" class={`t-label flex flex-wrap items-center gap-x-2 gap-y-1 lg:flex-nowrap lg:whitespace-nowrap ${cls}`}>
   {
     items.map((item, i) =>
       i < items.length - 1 ? (

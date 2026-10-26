@@ -6,9 +6,9 @@ interface Props {
 }
 const { toc } = Astro.props;
 ---
-<section class="bg-white px-[135px] pb-20 pt-4" data-section="DOCS">
-  <div class="mx-auto flex max-w-[1170px] items-start gap-6">
-    <Toc items={toc} class="sticky top-24 max-w-[268px] flex-1" />
+<section class="bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] pb-12 pt-4 lg:pb-20" data-section="DOCS">
+  <div class="mx-auto flex max-w-[1170px] flex-col items-stretch gap-6 lg:flex-row lg:items-start">
+    <Toc items={toc} class="lg:sticky lg:top-24 lg:max-w-[268px] lg:flex-1" />
     <div class="flex min-w-0 flex-[3.27] flex-col gap-6"><slot /></div>
   </div>
 </section>

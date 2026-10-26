@@ -6,19 +6,19 @@ import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { pillars } from '../../data/content';
 ---
-<section class="bg-white px-[120px] pb-[60px] pt-[98px]" data-section="PILLAR-02">
+<section class="bg-white px-4 py-12 md:px-10 md:py-20 lg:px-[max(40px,calc((100%-1200px)/2))] lg:pb-[60px] lg:pt-[98px]" data-section="PILLAR-02">
   <div class="mx-auto max-w-[1200px]">
-    <div class="flex items-stretch gap-20 overflow-hidden rounded bg-black/5">
-      <div class="flex flex-1 flex-col justify-between py-10 pl-10">
+    <div class="flex flex-col items-stretch gap-10 overflow-hidden rounded bg-black/5 lg:flex-row lg:gap-20">
+      <div class="flex flex-1 flex-col justify-between gap-10 px-4 pt-6 md:px-10 md:pt-10 lg:py-10 lg:pl-10 lg:pr-0">
         <div class="flex flex-col gap-4">
           <Eyebrow>Core pillars</Eyebrow>
           <span class="h-px w-full bg-line"></span>
           <h2 class="t-h2">Core Pillars of Clarity</h2>
         </div>
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2">
           {
             pillars.map((p, i) => (
-              <div class={`flex flex-col gap-8 border-line p-6 ${['border-b border-r', 'border-b border-l', 'border-r border-t', 'border-l border-t'][i]}`}>
+              <div class={`flex flex-col gap-4 border-line px-0 py-6 md:gap-8 md:p-6 ${i > 0 ? 'border-t' : ''} ${['md:border-b md:border-r', 'md:border-b md:border-l md:border-t-0', 'md:border-r md:border-t', 'md:border-l md:border-t'][i]}`}>
                 <div class="flex items-center gap-4">
                   <span class="grid size-8 shrink-0 place-items-center rounded-full bg-black/5">
                     <Icon name={p.icon as any} size={16} />
@@ -31,7 +31,7 @@ import { pillars } from '../../data/content';
           }
         </div>
       </div>
-      <Media tone="dark" class="h-[713px] w-[410px] shrink-0" />
+      <Media tone="dark" class="h-[420px] w-full shrink-0 md:h-[560px] lg:h-[713px] lg:w-[410px]" />
     </div>
     <Hatch />
   </div>

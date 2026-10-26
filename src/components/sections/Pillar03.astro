@@ -5,19 +5,19 @@ import Icon from '../ui/Icon.astro';
 import Hatch from '../ui/Hatch.astro';
 import { pillars } from '../../data/content';
 ---
-<section class="bg-white px-10 pb-[60px] pt-20" data-section="PILLAR-03">
-  <div class="mx-auto flex max-w-[1360px] flex-col gap-12">
+<section class="bg-white px-4 pb-12 pt-12 md:px-10 md:pb-[60px] md:pt-20" data-section="PILLAR-03">
+  <div class="mx-auto flex max-w-[1360px] flex-col gap-10 md:gap-12">
     <SectionHeader eyebrow="Core pillars" title="Core Pillars of Architecture" width={1360} />
-    <div class="grid grid-cols-2 items-start gap-6">
+    <div class="grid grid-cols-1 items-start gap-4 md:gap-6 xl:grid-cols-2">
       {
         pillars.map((p) => (
           <article class="flex flex-col overflow-hidden rounded-lg border border-line">
-            <div class="flex items-start gap-8 border-b border-black/[.11] p-8">
-              <h3 class="t-h5 w-[244px] shrink-0">{p.card ?? p.short}</h3>
+            <div class="flex flex-col items-start gap-2 border-b border-black/[.11] p-6 md:flex-row md:gap-8 md:p-8">
+              <h3 class="t-h5 shrink-0 md:w-[244px]">{p.card ?? p.short}</h3>
               <p class="t-b3 line-clamp-2 text-ink-2">{p.summary}</p>
             </div>
-            <div class="flex items-start gap-8 p-8">
-              <div class="grid size-[244px] shrink-0 place-items-center text-zinc-300">
+            <div class="flex flex-col items-stretch gap-6 p-6 md:flex-row md:items-start md:gap-8 md:p-8">
+              <div class="grid h-[160px] shrink-0 place-items-center text-zinc-300 md:size-[244px]">
                 <Icon name={p.icon as any} size={80} />
               </div>
               <ul class="flex min-w-0 flex-1 flex-col">
@@ -31,5 +31,5 @@ import { pillars } from '../../data/content';
       }
     </div>
   </div>
-  <Hatch class="relative left-1/2 mt-12 w-screen max-w-[1440px] -translate-x-1/2" />
+  <Hatch class="-mx-4 w-auto md:-mx-10 mt-12" />
 </section>

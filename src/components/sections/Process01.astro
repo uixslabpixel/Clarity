@@ -11,8 +11,8 @@ interface Props {
 }
 const { eyebrow = 'How it works', title = 'Our 4-Step Engagement Model', cta = 'Access Domain Strategy', items = process } = Astro.props;
 ---
-<section class="bg-white px-[154px] pb-[104px] pt-20" data-section="PROCESS-01">
-  <div class="mx-auto flex max-w-[1132px] flex-col gap-20">
+<section class="bg-white px-4 py-12 md:px-10 lg:pb-[104px] lg:pt-20" data-section="PROCESS-01">
+  <div class="mx-auto flex max-w-[1132px] flex-col gap-10 lg:gap-20">
     <SectionHeader eyebrow={eyebrow} title={title}>
       <Button href="/services" variant="soft">{cta}</Button>
     </SectionHeader>
@@ -22,16 +22,17 @@ const { eyebrow = 'How it works', title = 'Our 4-Step Engagement Model', cta = '
           const active = i === 0;
           return (
             <li
-              class={`relative flex flex-col gap-8 border-t border-line ${active ? 'w-[380px] shrink-0 bg-gradient-to-b from-transparent to-black/5' : 'h-[262px] min-w-0 flex-1'}`}
+              class={`relative flex flex-col gap-8 border-t border-line ${active ? 'w-[52%] shrink-0 bg-gradient-to-b from-transparent to-black/5 lg:w-[380px]' : 'h-[200px] min-w-0 flex-1 lg:h-[262px]'}`}
               data-tab-item
             >
               <span class={`absolute -top-px left-0 h-px ${active ? 'w-1/2 bg-black' : 'w-0'}`} data-progress />
-              <div class="flex flex-1 flex-col gap-12 px-8 pb-8">
+              <div class={`flex flex-1 flex-col gap-12 pb-6 lg:px-8 lg:pb-8 ${active ? 'px-4' : 'px-1 lg:px-8'}`}>
                 <div class="flex flex-col gap-2">
                   <span class="t-label text-ink-3">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 class={`t-h5 ${active ? 'max-w-[160px]' : ''}`}>{step.title}</h3>
+                  <h3 class={`t-h5 max-lg:text-[14px] max-lg:leading-[1.4] ${active ? 'max-w-[160px]' : 'max-lg:hidden'}`}>{step.title}</h3>
+                  {!active && <span aria-hidden="true" class="t-label text-ink-3 lg:hidden">…</span>}
                 </div>
-                <p class={`t-b3 ${active ? 'text-ink-2' : 'h-[72px] overflow-hidden text-ink-3 opacity-0'}`}>{step.text}</p>
+                <p class={`t-b4 lg:text-[16px] lg:leading-[1.3] ${active ? 'text-ink-2' : 'h-[72px] overflow-hidden text-ink-3 opacity-0 max-lg:hidden'}`}>{step.text}</p>
               </div>
             </li>
           );

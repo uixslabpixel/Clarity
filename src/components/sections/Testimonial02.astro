@@ -6,7 +6,7 @@ import Hatch from '../ui/Hatch.astro';
 import { testimonials } from '../../data/content';
 const t = testimonials[0];
 ---
-<section class="bg-white px-10 pb-[60px] pt-20" data-section="TESTI-02">
+<section class="bg-white px-4 pb-12 pt-12 md:px-10 md:pb-[60px] md:pt-20" data-section="TESTI-02">
   <div class="mx-auto flex max-w-[900px] flex-col items-center gap-10 text-center" data-slider>
     <Eyebrow>Customer spotlight</Eyebrow>
     <figure class="flex flex-col items-center gap-4">
@@ -21,5 +21,5 @@ const t = testimonials[0];
       {Array.from({ length: 5 }).map((_, i) => <span class={`h-[3px] flex-1 rounded-full ${i === 0 ? 'bg-black' : 'bg-black/20'}`} />)}
     </div>
   </div>
-  <Hatch class="relative left-1/2 mt-28 w-screen max-w-[1440px] -translate-x-1/2" />
+  <Hatch class="-mx-4 w-auto md:-mx-10 mt-16 md:mt-28" />
 </section>

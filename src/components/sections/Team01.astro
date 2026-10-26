@@ -11,24 +11,24 @@ interface Props {
 }
 const { eyebrow = 'Teams', title = 'Led by Experienced Practitioners' } = Astro.props;
 ---
-<section class="relative overflow-hidden bg-white px-[135px] pb-24 pt-36" data-section="TEAM-01">
+<section class="relative overflow-hidden bg-white px-4 pb-12 pt-24 md:px-10 lg:pb-24 lg:pt-36" data-section="TEAM-01">
   <Hatch class="absolute inset-x-0 top-0" />
-  <div class="mx-auto flex max-w-[1170px] flex-col gap-12">
+  <div class="mx-auto flex max-w-[1170px] flex-col gap-10 lg:gap-12">
     <SectionHeader eyebrow={eyebrow} title={title}>
       <Button href="/team" variant="soft">View Full Leadership Team</Button>
     </SectionHeader>
-    <div class="flex gap-14" data-slider>
+    <div class="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-0 lg:gap-14 lg:overflow-visible lg:px-0" data-slider>
       {
         team.map((m) => (
-          <article class="relative h-[600px] w-[480px] shrink-0 overflow-hidden">
+          <article class="relative h-[520px] w-[calc(100vw-32px)] max-w-[480px] shrink-0 snap-start overflow-hidden lg:h-[600px] lg:w-[480px]">
             <Media
-              class="absolute left-[50px] top-[169px] size-[430px] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+              class="absolute left-1/2 top-[130px] size-[min(430px,100%)] -translate-x-1/2 lg:left-[50px] lg:top-[169px] lg:size-[430px] lg:translate-x-0 [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
               alt={`Portrait of ${m.name}`}
             />
-            <div class="absolute left-0 top-[41px] flex items-center gap-6">
-              <span class="h-[52px] w-px bg-black/20" />
+            <div class="absolute left-4 top-[41px] flex items-center gap-6 lg:left-0">
+              <span class="hidden h-[52px] w-px bg-black/20 lg:block" />
               <div class="flex w-[275px] flex-col gap-2">
-                <h3 class="t-h5">{m.name}</h3>
+                <h3 class="t-h5 max-md:text-[24px]">{m.name}</h3>
                 <p class="t-b3 text-ink-2">{m.role}</p>
               </div>
             </div>

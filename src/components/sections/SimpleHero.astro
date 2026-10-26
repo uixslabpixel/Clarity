@@ -8,7 +8,7 @@ interface Props {
 }
 const { title, text, maxWidth = 560 } = Astro.props;
 ---
-<section class="relative overflow-hidden bg-white pb-[104px] pt-[165px]" data-section="HERO-12">
+<section class="relative overflow-hidden bg-white px-4 pb-16 pt-[120px] md:px-10 lg:pb-[104px] lg:pt-[165px]" data-section="HERO-12">
   <GradientWash class="inset-[-419px_0_120px_0]" />
   <div class="relative mx-auto flex flex-col items-center gap-6 text-center" style={`max-width:${maxWidth}px`}>
     <h1 class="t-h2">{title}</h1>

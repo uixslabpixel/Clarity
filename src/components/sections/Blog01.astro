@@ -10,13 +10,13 @@ interface Props {
   headerWidth?: number;
   class?: string;
 }
-const { eyebrow = 'Blog', title = 'Governance Briefings', posts = allPosts, headerWidth = 480, class: cls = 'px-[135px] py-20' } = Astro.props;
+const { eyebrow = 'Blog', title = 'Governance Briefings', posts = allPosts, headerWidth = 480, class: cls = 'px-4 py-12 md:px-10 lg:py-20' } = Astro.props;
 ---
 <section class={`bg-white ${cls}`} data-section="BLOG-01">
-  <div class="mx-auto flex max-w-[1170px] flex-col gap-12">
+  <div class="mx-auto flex max-w-[1170px] flex-col gap-8 lg:gap-12">
     {title && <SectionHeader eyebrow={eyebrow} title={title} width={headerWidth} />}
-    <div class="flex gap-8">
-      {posts.slice(0, 3).map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} class="flex-1" />)}
+    <div class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-0 lg:gap-8 lg:overflow-visible lg:px-0">
+      {posts.slice(0, 3).map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} class="w-[85%] max-w-[368px] shrink-0 snap-start lg:w-auto lg:max-w-none lg:flex-1 lg:shrink" />)}
     </div>
   </div>
 </section>

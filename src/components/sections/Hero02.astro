@@ -8,27 +8,27 @@ import { clients } from '../../data/content';
 import { site } from '../../data/site';
 const marquee = [...clients, ...clients];
 ---
-<section class="relative h-[900px] overflow-hidden bg-black text-white" data-section="HERO-02">
+<section class="relative flex min-h-[760px] flex-col justify-end overflow-hidden bg-black px-4 pb-24 pt-40 text-white md:min-h-[860px] md:px-10 lg:block lg:h-[900px] lg:min-h-0 lg:p-0" data-section="HERO-02">
   <Media tone="dark" class="absolute inset-0 size-full" loading="eager" />
   <div class="absolute inset-0 bg-[linear-gradient(236.58deg,transparent_10.7%,rgb(0_0_0/.4)_63.67%)]"></div>
-  <div class="absolute left-1/2 top-[438px] flex w-[1360px] -translate-x-1/2 items-end justify-between">
-    <div class="flex w-[710px] flex-col gap-8">
+  <div class="relative flex flex-col gap-10 lg:absolute lg:left-1/2 lg:top-[438px] lg:w-[min(1360px,calc(100%-80px))] lg:-translate-x-1/2 lg:flex-row lg:items-end lg:justify-between">
+    <div class="flex flex-col gap-8 lg:w-[710px]">
       <div class="flex flex-col gap-4">
-        <a href={site.announcement.href} class="group flex items-center gap-4">
+        <a href={site.announcement.href} class="group flex flex-wrap items-center gap-x-4 gap-y-1">
           <span class="t-b4">{site.announcement.text}</span>
           <span class="flex items-center gap-1">
             <span class="t-b4 opacity-60 transition-opacity group-hover:opacity-100">{site.announcement.cta}</span>
             <span class="grid size-4 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
           </span>
         </a>
-        <h1 class="t-h1">Engineering Enterprise Alpha governance.</h1>
+        <h1 class="t-hero">Engineering Enterprise Alpha governance.</h1>
       </div>
       <div class="flex gap-4">
         <Button href="/contact" variant="light">Book a Call</Button>
         <Button href="/contact" variant="ghost" chevron={false}>Talk to Sales</Button>
       </div>
     </div>
-    <button type="button" data-video-card class="group relative h-[164px] w-[254px] overflow-hidden rounded border border-white/10 bg-white/10 text-left backdrop-blur-[20px]">
+    <button type="button" data-video-card class="group relative h-[164px] w-[254px] shrink-0 overflow-hidden rounded border border-white/10 bg-white/10 text-left backdrop-blur-[20px]">
       <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-105" />
       <span class="absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-black/20 p-4">
         <span class="t-b4">Enterprise Alpha governance.</span>
@@ -39,7 +39,7 @@ const marquee = [...clients, ...clients];
       </span>
     </button>
   </div>
-  <div class="absolute inset-x-0 top-[856px] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_30%,black_70%,transparent)]" data-marquee>
+  <div class="absolute inset-x-0 bottom-6 overflow-hidden lg:bottom-auto lg:top-[856px] [mask-image:linear-gradient(to_right,transparent,black_30%,black_70%,transparent)]" data-marquee>
     <div class="flex w-max items-center gap-[17px] text-white/80">
       {marquee.map((c) => <ClientLogo name={c} height={22} class="px-[11px]" />)}
     </div>

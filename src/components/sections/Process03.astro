@@ -7,13 +7,13 @@ import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { process } from '../../data/content';
 ---
-<section class="bg-white px-10 pb-[60px] pt-20" data-section="PROCESS-03">
-  <div class="mx-auto flex max-w-[1360px] flex-col gap-16">
+<section class="bg-white px-4 pb-12 pt-12 md:px-10 md:pb-[60px] md:pt-20" data-section="PROCESS-03">
+  <div class="mx-auto flex max-w-[1360px] flex-col gap-10 lg:gap-16">
     <SectionHeader eyebrow="How it works" title="Our 4-Step Engagement Model">
       <Button href="/services" variant="soft">Access Domain Strategy</Button>
     </SectionHeader>
-    <div class="flex items-start justify-between" data-scrollspy>
-      <ol class="sticky top-24 flex w-[316px] flex-col gap-3.5">
+    <div class="flex items-start justify-between gap-10" data-scrollspy>
+      <ol class="sticky top-24 hidden w-[316px] shrink-0 flex-col gap-3.5 lg:flex">
         {
           process.map((step, i) => (
             <>
@@ -33,20 +33,20 @@ import { process } from '../../data/content';
           ))
         }
       </ol>
-      <div class="flex w-[900px] flex-col gap-4">
+      <div class="flex w-full flex-col gap-4 lg:w-[900px]">
         {
           process.map((step, i) => (
-            <article id={`step-${i + 1}`} class="flex items-stretch gap-8 overflow-hidden rounded border border-line p-8">
-              <div class="flex flex-1 flex-col justify-between">
+            <article id={`step-${i + 1}`} class="flex flex-col-reverse items-stretch gap-6 overflow-hidden rounded border border-line p-5 md:flex-row md:gap-8 md:p-8">
+              <div class="flex flex-1 flex-col justify-between gap-4">
                 <h3 class="t-h5">{step.title}</h3>
                 <p class="t-b3 text-ink-2">{step.text}</p>
               </div>
-              <Media class="size-[260px] shrink-0" />
+              <Media class="h-[220px] w-full shrink-0 md:size-[260px]" />
             </article>
           ))
         }
       </div>
     </div>
   </div>
-  <Hatch class="relative left-1/2 mt-16 w-screen max-w-[1440px] -translate-x-1/2" />
+  <Hatch class="-mx-4 w-auto md:-mx-10 mt-16" />
 </section>

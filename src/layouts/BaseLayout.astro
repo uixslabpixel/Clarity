@@ -50,5 +50,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     {footer && <Footer variant={footer} />}
+    <script>
+      import { initMenu } from '../scripts/menu';
+      initMenu();
+    </script>
   </body>
 </html>

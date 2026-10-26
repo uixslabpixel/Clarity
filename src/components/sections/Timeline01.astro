@@ -4,14 +4,14 @@ import Icon from '../ui/Icon.astro';
 import { milestones } from '../../data/about';
 const active = 1;
 ---
-<section class="relative overflow-hidden bg-white px-[135px] py-24" data-section="TIMELINE-01" data-tabs data-active={active}>
-  <div class="relative mx-auto flex max-w-[1170px] items-start gap-10">
-    <span aria-hidden="true" class="absolute -left-[135px] top-[156px] h-0 w-[1367px] border-t-[1.5px] border-dashed border-black/20"></span>
+<section class="relative overflow-hidden bg-white px-4 py-12 md:px-10 md:py-24 lg:px-[max(40px,calc((100%-1170px)/2))]" data-section="TIMELINE-01" data-tabs data-active={active}>
+  <div class="relative -mx-4 flex snap-x snap-mandatory items-start gap-8 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-auto lg:max-w-[1170px] lg:gap-10 lg:overflow-visible lg:px-0">
+    <span aria-hidden="true" class="absolute left-0 top-[156px] h-0 w-[1400px] lg:-left-[135px] lg:w-[1367px] border-t-[1.5px] border-dashed border-black/20"></span>
     {
       milestones.map((m, i) => {
         const on = i === active;
         return (
-          <article class="relative flex min-w-0 flex-1 flex-col items-end gap-6" data-tab-item>
+          <article class="relative flex w-[280px] shrink-0 snap-start flex-col items-end gap-6 lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-tab-item>
             <div class="flex h-[98px] w-full flex-col gap-[22px] text-right font-heading">
               <p class={`text-[24px] leading-[1.2] ${on ? 'text-ink-2' : 'text-transparent'}`}>{m.date}</p>
               <p class={`t-h1 ${on ? 'text-black' : 'text-zinc-200'}`}>{m.year}</p>

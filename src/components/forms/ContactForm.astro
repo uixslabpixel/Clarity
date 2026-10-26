@@ -5,23 +5,23 @@ import Icon from '../ui/Icon.astro';
 const products = ['System Strategy', 'Restructuring Execution', 'Logistical Operations', 'Quartr API'];
 const revenue = ['Under $50M', '$50M – $250M', '$250M – $1B', '$1B – $5B', 'Over $5B'];
 ---
-<form class="flex w-[565px] shrink-0 flex-col gap-10 overflow-hidden rounded border border-line bg-white p-4 backdrop-blur-[5px]" data-form="contact" method="post" name="discovery">
+<form class="flex w-full shrink-0 flex-col gap-10 lg:w-[520px] xl:w-[565px] overflow-hidden rounded border border-line bg-white p-4 backdrop-blur-[5px]" data-form="contact" method="post" name="discovery">
   <div class="t-label flex flex-col gap-1">
     <span class="text-ink-2">Phase 01:</span>
     <span class="text-black">Client Operational Categorization Intent</span>
   </div>
   <div class="flex flex-col gap-4">
-    <div class="flex gap-4">
+    <div class="flex flex-col gap-4 md:flex-row">
       <Field label="Corporate Legal Entity Name" name="company" placeholder="e.g. Acme Holdings Ltd." />
       <Field label="Point of Contact Representative Name" name="name" placeholder="e.g. Sarah Mitchell" />
     </div>
-    <div class="flex gap-4">
+    <div class="flex flex-col gap-4 md:flex-row">
       <Field label="Secure Executive Email Address" name="email" type="email" placeholder="e.g. sarah@acme.com" required />
       <Field label="Current Annual Revenue Band Bracket" name="revenue" type="select" placeholder="Select revenue range..." options={revenue} />
     </div>
     <fieldset class="flex flex-col gap-3">
       <legend class="t-b4 mb-3 text-ink-2">Which product(s) are you interested in?*</legend>
-      <div class="grid w-fit grid-cols-[repeat(3,auto)] gap-x-6 gap-y-2">
+      <div class="grid w-fit grid-cols-2 gap-x-6 md:grid-cols-[repeat(3,auto)] gap-y-2">
         {products.map((p) => <Checkbox name="products" value={p} label={p} />)}
       </div>
     </fieldset>

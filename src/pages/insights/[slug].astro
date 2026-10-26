@@ -57,13 +57,13 @@ const tags = ['AI Governance', 'Fiduciary Duty', 'Board of Directors', 'Risk Man
     <h2 id="what-boards-do">What Boards Should Do Now</h2>
     <p>Companies don't need to wait for final regulation to start fixing this. Three steps can be taken within a single upcoming quarter without a major organizational overhaul: mapping every decision point that currently involves an AI recommendation, assigning a named human owner of accountability for each of those points, and writing an algorithmic review clause into the audit committee's charter.</p>
     <p>The boardroom isn't being replaced by an algorithm. But a boardroom that doesn't adjust the way it asks questions will struggle to tell the difference between a recommendation that sounds convincing and one that is actually correct.</p>
-    <div class="!mt-12 flex items-center justify-between border-t border-line pt-4">
+    <div class="!mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
       <span class="t-label text-ink-2">Tag</span>
-      <div class="t-label flex gap-4 text-black">
+      <div class="t-label flex flex-wrap gap-4 text-black">
         {tags.map((t) => <a href="/insights" class="hover:underline">/{t}</a>)}
       </div>
     </div>
   </ArticleBody>
-  <Blog01 title="" posts={related as any} class="px-[154px] pb-20" />
+  <Blog01 title="" posts={related as any} class="px-4 pb-12 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] lg:pb-20" />
   <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />
 </BaseLayout>

@@ -4,7 +4,7 @@ import Eyebrow from '../ui/Eyebrow.astro';
 import { reachStats } from '../../data/about';
 const spokes = [15, -177.5, -152.5, 170, -140, 157.26, -127.26, 144, -114, 131, -101, 118, -88, 105];
 ---
-<section class="relative h-[688px] overflow-hidden bg-white" data-section="REACH-01">
+<section class="relative h-[880px] overflow-hidden md:h-[688px] bg-white" data-section="REACH-01">
   <div aria-hidden="true" class="absolute left-1/2 top-[722px] size-[1339px] -translate-x-1/2 -translate-y-1/2 rotate-[36.86deg]" data-parallax-rotate>
     {
       spokes.map((deg, i) => (
@@ -15,17 +15,17 @@ const spokes = [15, -177.5, -152.5, 170, -140, 157.26, -127.26, 144, -114, 131, 
       ))
     }
   </div>
-  <div class="absolute left-1/2 top-[325px] flex -translate-x-1/2 flex-col items-center gap-[72px]">
-    <div class="flex w-[710px] flex-col items-center gap-3.5 text-center">
+  <div class="absolute inset-x-4 top-[220px] flex flex-col items-center gap-12 md:left-1/2 md:right-auto md:top-[325px] md:-translate-x-1/2 md:gap-[72px]">
+    <div class="flex w-full max-w-[710px] flex-col items-center gap-3.5 text-center md:w-[710px]">
       <Eyebrow>Global reach</Eyebrow>
       <h2 class="t-h2">Global Jurisdictional Reach</h2>
     </div>
-    <div class="flex items-center gap-14">
+    <div class="flex flex-col items-center gap-6 rounded bg-white/80 px-6 py-6 backdrop-blur md:flex-row md:gap-14 md:bg-transparent md:p-0 md:backdrop-blur-none">
       {
         reachStats.map((s, i) => (
           <>
-            {i > 0 && <span class="h-[97px] w-px bg-line" />}
-            <div class="flex flex-col gap-[22px] text-center font-heading">
+            {i > 0 && <span class="h-px w-24 bg-line md:h-[97px] md:w-px" />}
+            <div class="flex flex-col gap-2 text-center font-heading md:gap-[22px]">
               <p class="t-h1" data-count>{s.value}</p>
               <p class="t-h6 text-ink-2">{s.label}</p>
             </div>

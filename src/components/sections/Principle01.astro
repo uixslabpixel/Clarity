@@ -6,10 +6,10 @@ import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { principles } from '../../data/about';
 ---
-<section class="relative bg-white px-[135px] pb-[98px] pt-[138px]" data-section="PRINCIPLE-01">
+<section class="relative bg-white px-4 pb-12 pt-24 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] lg:pb-[98px] lg:pt-[138px]" data-section="PRINCIPLE-01">
   <Hatch class="absolute inset-x-0 top-0" />
-  <div class="mx-auto flex max-w-[1170px] items-start gap-16" data-accordion data-active="0">
-    <div class="flex max-w-[600px] flex-1 flex-col gap-[152px]">
+  <div class="mx-auto flex max-w-[1170px] flex-col items-stretch gap-10 lg:flex-row lg:items-start lg:gap-16" data-accordion data-active="0">
+    <div class="flex flex-1 flex-col gap-10 lg:max-w-[600px] lg:gap-[152px]">
       <div class="flex flex-col gap-3.5">
         <Eyebrow>Core principles</Eyebrow>
         <h2 class="t-h2 max-w-[480px]">Our Practice's Core Principles</h2>
@@ -34,10 +34,10 @@ import { principles } from '../../data/about';
         }
       </ul>
     </div>
-    <div class="flex w-[575px] shrink-0 flex-col gap-4 self-stretch">
-      <Media class="h-[350px] w-full" />
-      <Media tone="dark" class="min-h-0 w-full flex-1 opacity-80" />
-      <Media tone="dark" class="min-h-0 w-full flex-1 opacity-80" />
+    <div class="flex w-full shrink-0 flex-col gap-4 self-stretch lg:w-[575px]">
+      <Media class="h-[240px] w-full md:h-[350px]" />
+      <Media tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:flex-1" />
+      <Media tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:flex-1" />
     </div>
   </div>
 </section>

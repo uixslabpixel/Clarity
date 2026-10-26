@@ -8,16 +8,16 @@ import { clients } from '../../data/content';
 ---
 <section class="relative h-[900px] overflow-hidden bg-black text-white" data-section="HERO-01">
   <Media tone="duotone" class="absolute inset-0 size-full" loading="eager" />
-  <div class="absolute left-1/2 top-[220px] flex w-[636px] -translate-x-1/2 flex-col items-center gap-8 text-center">
-    <h1 class="t-h1">Engineering Enterprise <br />Alpha governance.</h1>
+  <div class="absolute inset-x-4 top-[200px] flex flex-col items-center gap-8 text-center md:inset-x-auto md:left-1/2 md:top-[220px] md:w-[636px] md:-translate-x-1/2">
+    <h1 class="t-hero">Engineering Enterprise <br />Alpha governance.</h1>
     <div class="flex gap-4">
       <Button href="/contact" variant="light">Book a Call</Button>
       <Button href="/contact" variant="ghost" chevron={false}>Talk to Sales</Button>
     </div>
   </div>
-  <VideoCard class="absolute left-1/2 top-[697px] -translate-x-1/2" />
+  <VideoCard class="absolute left-1/2 top-[719px] -translate-x-1/2 md:top-[697px]" />
   <div
-    class="absolute left-1/2 top-[838px] flex w-[1080px] -translate-x-1/2 items-start justify-center gap-4 text-white/60 [mask-image:linear-gradient(to_right,transparent_8%,black_40%,black_60%,transparent_92%)]"
+    class="absolute left-1/2 top-[846px] flex w-[1080px] md:top-[838px] -translate-x-1/2 items-start justify-center gap-4 text-white/60 [mask-image:linear-gradient(to_right,transparent_8%,black_40%,black_60%,transparent_92%)]"
   >
     {clients.map((c) => <ClientLogo name={c} height={21} />)}
   </div>

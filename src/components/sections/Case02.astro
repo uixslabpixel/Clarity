@@ -11,14 +11,14 @@ const cards = [
   { value: '42%', label: 'Reduced friction in automated workflows.', client: 'Owlearn' },
 ];
 ---
-<section class="bg-white px-[120px] py-20" data-section="CASE-02">
-  <div class="mx-auto flex max-w-[1200px] flex-col items-center gap-16">
+<section class="bg-white px-4 py-12 md:px-10 md:py-20 lg:px-[max(40px,calc((100%-1200px)/2))]" data-section="CASE-02">
+  <div class="mx-auto flex max-w-[1200px] flex-col items-center gap-10 lg:gap-16">
     <div class="flex w-full flex-col gap-4 text-center">
       <Eyebrow class="!text-ink-3">Case study</Eyebrow>
       <span class="h-px w-full bg-line"></span>
       <h2 class="t-h2">Featured Proof of Concept</h2>
     </div>
-    <div class="grid w-full grid-cols-[minmax(0,1fr)_573px] gap-6">
+    <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-[minmax(0,1fr)_573px]">
       {cards.map((c) => <CaseMetricCard {...c} />)}
     </div>
     <LogoStrip />

@@ -6,7 +6,7 @@ interface Props {
 const { tone = 'light' } = Astro.props;
 const dark = tone === 'dark';
 ---
-<div class={`t-b4 flex w-[456px] items-start justify-between ${dark ? 'text-paper-2' : 'text-ink-2'}`}>
+<div class={`t-b4 flex w-full items-start justify-between gap-4 lg:w-[456px] ${dark ? 'text-paper-2' : 'text-ink-2'}`}>
   {
     footerColumns.map((col) => (
       <div class="flex flex-1 flex-col gap-4">

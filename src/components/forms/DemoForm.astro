@@ -6,7 +6,7 @@ interface Props {
 }
 const { class: cls = '' } = Astro.props;
 ---
-<form class={`flex w-[461px] shrink-0 flex-col gap-12 overflow-hidden rounded border border-line bg-white p-4 ${cls}`} data-form="demo" method="post" name="demo-request">
+<form class={`flex shrink-0 flex-col gap-12 overflow-hidden rounded border border-line bg-white p-4 ${cls}`} data-form="demo" method="post" name="demo-request">
   <div class="flex flex-col gap-4">
     <Field label="Corporate Legal Entity Name" name="company" placeholder="e.g. Acme Holdings Ltd." required />
     <Field label="Authorized Representative Name" name="name" placeholder="e.g. Sarah Mitchell" required />

@@ -15,7 +15,7 @@ const groups = [
     {
       groups.map((g) => (
         <DocPanel id={g.id} title={g.title} intro={g.intro}>
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
             {g.items.map((it) => (
               <a href={it.url} target="_blank" rel="noopener" class="flex items-center gap-4 bg-black/5 p-4 transition-colors hover:bg-black/10">
                 <span class="grid size-[84px] place-items-center rounded bg-white font-heading text-2xl">{it.name[0]}</span>

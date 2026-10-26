@@ -13,13 +13,13 @@ interface Props {
 const { items, active = 1 } = Astro.props;
 const Ticks = (_on: boolean) => Array.from({ length: 15 });
 ---
-<section class="bg-white px-10 py-24" data-section="TIMELINE-02" data-tabs data-active={active}>
-  <div class="mx-auto flex max-w-[1360px] items-start gap-6">
+<section class="bg-white px-4 py-12 md:px-10 md:py-24" data-section="TIMELINE-02" data-tabs data-active={active}>
+  <div class="-mx-4 flex snap-x snap-mandatory items-start gap-6 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-auto lg:max-w-[1360px] lg:overflow-visible lg:px-0">
     {
       items.map((m, i) => {
         const on = i === active;
         return (
-          <article class="flex min-w-0 flex-1 flex-col" data-tab-item>
+          <article class="flex w-[280px] shrink-0 snap-start flex-col lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-tab-item>
             <div class="flex items-start gap-6">
               <span class={`h-[216px] w-px shrink-0 ${on ? 'bg-black' : 'bg-line'}`} />
               <div class="flex h-[216px] min-w-0 flex-1 flex-col justify-between">

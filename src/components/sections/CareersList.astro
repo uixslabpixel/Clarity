@@ -7,27 +7,27 @@ import Media from '../ui/Media.astro';
 import { jobs, departments } from '../../data/careers';
 import { site } from '../../data/site';
 ---
-<section class="relative bg-white px-[135px] pb-20 pt-[120px]" data-section="CAREERS-01">
+<section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] pb-12 pt-24 lg:pb-20 lg:pt-[120px]" data-section="CAREERS-01">
   <Hatch class="absolute inset-x-0 top-0" />
   <div class="mx-auto flex max-w-[1170px] flex-col gap-10">
     <FilterTabs items={['All', ...departments]} />
-    <div class="flex items-start gap-8">
+    <div class="flex flex-col items-stretch gap-8 lg:flex-row lg:items-start">
       <div class="flex min-w-0 flex-1 flex-col gap-4">
         {
           jobs.map((j) => (
-            <article class="flex h-[351px] items-stretch overflow-hidden border border-line" data-filter-item={j.department}>
-              <span aria-hidden="true" class="hatch w-12 shrink-0" />
-              <div class="flex min-w-0 flex-1 flex-col justify-between bg-white px-12 py-10">
+            <article class="flex items-stretch overflow-hidden border lg:h-[351px] border-line" data-filter-item={j.department}>
+              <span aria-hidden="true" class="hatch hidden w-12 shrink-0 md:block" />
+              <div class="flex min-w-0 flex-1 flex-col justify-between gap-8 bg-white p-5 md:px-12 md:py-10">
                 <div class="flex flex-col gap-2">
                   <p class="t-label text-ink-2">{j.practice}</p>
                   <h2 class="t-h3">{j.title}</h2>
-                  <p class="t-label flex items-center gap-4">
+                  <p class="t-label flex flex-wrap items-center gap-x-4 gap-y-1">
                     <span><span class="text-ink-2">Location</span> {j.location}</span>
                     <span class="h-3.5 w-px bg-black/20" />
                     <span><span class="text-ink-2">Focus</span> {j.focus}</span>
                   </p>
                 </div>
-                <div class="flex items-end gap-8">
+                <div class="flex flex-col items-start gap-6 md:flex-row md:items-end md:gap-8">
                   <p class="t-b3 flex-1 text-ink-2">{j.text}</p>
                   <Button href={`mailto:${site.talentEmail}?subject=${encodeURIComponent(j.title)}`} variant="soft" class="!h-9">Submit Portfolio</Button>
                 </div>
@@ -36,7 +36,7 @@ import { site } from '../../data/site';
           ))
         }
       </div>
-      <aside class="sticky top-24 flex w-[341px] shrink-0 flex-col gap-6 border border-line">
+      <aside class="flex w-full shrink-0 lg:sticky lg:top-24 lg:w-[341px] flex-col gap-6 border border-line">
         <Media class="h-[128px] w-full bg-black/20" />
         <div class="flex flex-col gap-8 px-6 pb-6">
           <div class="flex flex-col gap-4">

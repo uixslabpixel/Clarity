@@ -1,0 +1,42 @@
+---
+/** Full-screen mobile navigation drawer (Figma "nav" frame, 390×900). */
+import Wordmark from '../ui/Wordmark.astro';
+import Icon from '../ui/Icon.astro';
+import { nav } from '../../data/site';
+interface Props {
+  active?: string;
+}
+const { active } = Astro.props;
+---
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site menu"
+  hidden
+  class="fixed inset-0 z-[60] flex flex-col bg-black/60 text-white backdrop-blur-[24px] lg:hidden"
+  data-mobile-menu
+>
+  <div class="flex h-[60px] items-center justify-between px-4 pt-[env(safe-area-inset-top)] md:px-10">
+    <a href="/" aria-label="Clarity home"><Wordmark size={24} /></a>
+    <button type="button" class="grid size-8 place-items-center rounded-full bg-white/20" aria-label="Close menu" data-menu-close>
+      <Icon name="close" size={14} />
+    </button>
+  </div>
+  <nav aria-label="Mobile" class="flex flex-1 flex-col items-center justify-center gap-6">
+    {
+      nav.map((l) => (
+        <a href={l.href} data-menu-link class={`font-heading text-[32px] leading-[1.2] transition-opacity ${active === l.href ? 'opacity-100' : 'opacity-90 hover:opacity-100'}`}>
+          {l.label}
+        </a>
+      ))
+    }
+  </nav>
+  <div class="flex flex-col gap-3 px-4 pb-[max(16px,env(safe-area-inset-bottom))] md:px-10">
+    <a href="/password" class="t-b3 flex h-12 items-center justify-center rounded-full bg-white/20" data-menu-link>Log In</a>
+    <a href="/contact" class="t-b3 flex h-12 items-center justify-center gap-2 rounded-full bg-white text-black" data-menu-link>
+      Book a Call
+      <span class="grid size-4 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
+    </a>
+  </div>
+</div>

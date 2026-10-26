@@ -11,17 +11,17 @@ interface Props {
 }
 const { crumb, meta, title, text } = Astro.props;
 ---
-<section class="relative overflow-hidden bg-white px-10 pb-10 pt-[60px]" data-section="HERO-05">
+<section class="relative overflow-hidden bg-white px-4 pb-4 pt-[60px] md:px-10 md:pb-10" data-section="HERO-05">
   <GradientWash class="inset-[-419px_0_652px_0]" />
-  <div class="relative mx-auto flex max-w-[1360px] items-start justify-between px-4 pb-[60px] pt-10">
-    <div class="flex w-[93px] flex-col justify-between self-stretch">
+  <div class="relative mx-auto flex max-w-[1360px] flex-col items-start gap-6 pb-10 pt-12 md:px-4 lg:flex-row lg:justify-between lg:gap-0 lg:pb-[60px] lg:pt-10">
+    <div class="flex flex-col justify-between gap-4 self-stretch lg:w-[93px]">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: crumb }]} />
       {meta && <p class="t-label text-black">{meta}</p>}
     </div>
-    <div class="flex max-w-[672px] flex-1 flex-col gap-10">
+    <div class="flex max-w-[672px] flex-1 flex-col gap-6 md:gap-10">
       <h1 class="t-h1" set:html={title} />
       <p class="t-b3 text-ink-2">{text}</p>
     </div>
   </div>
-  <Media tone="duotone" class="relative mx-auto h-[480px] w-full max-w-[1360px]" loading="eager" />
+  <Media tone="duotone" class="relative mx-auto h-[280px] w-full max-w-[1360px] md:h-[400px] lg:h-[480px]" loading="eager" />
 </section>

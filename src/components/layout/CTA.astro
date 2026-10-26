@@ -11,8 +11,8 @@ interface Props {
 }
 const { eyebrow = 'Get a demo', title, cta, href = '/contact' } = Astro.props;
 ---
-<section class="relative overflow-hidden bg-white px-10 py-[184px]">
-  <GradientWash from="bottom" class="inset-[291px_0_-411px_0]" />
+<section class="relative overflow-hidden bg-white px-4 py-24 md:px-10 lg:py-[184px]">
+  <GradientWash from="bottom" class="inset-[45%_0_-60%_0]" />
   <div class="relative mx-auto flex max-w-[648px] flex-col items-center gap-8 text-center">
     <div class="flex w-full flex-col gap-2">
       <Eyebrow>{eyebrow}</Eyebrow>
