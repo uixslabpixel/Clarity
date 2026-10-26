@@ -16,11 +16,11 @@ const {
 ---
 <section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-24 pt-12 md:pt-20 lg:pb-40" data-section="FAQ-01">
   <div class="mx-auto flex max-w-[800px] flex-col gap-8">
-    <h2 class="t-h2 text-center">{title}</h2>
-    <div class="flex flex-col" data-accordion>
+    <h2 data-reveal class="t-h2 text-center">{title}</h2>
+    <div class="flex flex-col" data-details>
       {
         items.map((it) => (
-          <details class="group border-b border-line" data-accordion-item>
+          <details class="group border-b border-line" data-reveal>
             <summary class="t-b3 flex cursor-pointer list-none items-center justify-between gap-6 pb-[25px] pt-6 [&::-webkit-details-marker]:hidden">
               {it.q}
               <Icon name="chevron-down" size={16} class="transition-transform duration-300 group-open:rotate-180" />

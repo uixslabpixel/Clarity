@@ -70,8 +70,22 @@ export const stats = [
 ];
 
 export const caseHighlights = [
-  { value: '89%', label: 'Retention rate of critical supply chain assets during sudden macroeconomic market disruptions.', client: 'Owlearn' },
-  { value: '2.5×', label: 'Faster transition turnaround secured by deploying Fractional Executive Leadership.', client: 'Wellnex' },
+  {
+    value: '89%',
+    label: 'Retention rate of critical supply chain assets during sudden macroeconomic market disruptions.',
+    client: 'Owlearn',
+    title: 'Holding a supply network together through a market shock.',
+    text: 'Securing critical suppliers and buffer capacity so an education platform kept delivering while competitors stalled.',
+    href: '/case-studies/stabilizing-cross-border-fulfilment',
+  },
+  {
+    value: '2.5×',
+    label: 'Faster transition turnaround secured by deploying Fractional Executive Leadership.',
+    client: 'Wellnex',
+    title: 'Stabilizing a leadership transition in record time.',
+    text: 'An interim COO and a daily operating cadence closed a leadership gap two and a half times faster than the board planned.',
+    href: '/case-studies/stabilizing-cross-border-fulfilment',
+  },
   {
     value: '34%',
     label: 'Average operational efficiency gain across client portfolio organizations.',
@@ -80,8 +94,22 @@ export const caseHighlights = [
     text: 'Ensuring stability of a multinational distribution system by implementing strategies to prevent failures and maintain supply chain performance.',
     href: '/case-studies/saving-a-multinational-distribution-system',
   },
-  { value: '34%', label: 'Average operational efficiency gain across client portfolio organizations.', client: 'Botanic' },
-  { value: '42%', label: 'Average reduction in operational friction across automated enterprise workflows.', client: 'Deepstack' },
+  {
+    value: '34%',
+    label: 'Average operational efficiency gain across client portfolio organizations.',
+    client: 'Botanic',
+    title: 'Rebuilding an operating model around real cost data.',
+    text: 'A blind diagnostic replaced managerial reporting with ledger data and removed three layers of redundant approvals.',
+    href: '/case-studies/overhauling-legacy-compliance',
+  },
+  {
+    value: '42%',
+    label: 'Average reduction in operational friction across automated enterprise workflows.',
+    client: 'Deepstack',
+    title: 'Automating the approvals that slowed a scale-up down.',
+    text: 'Workflow automation and clear decision rights cut operational friction by 42% across finance and procurement.',
+    href: '/case-studies/overhauling-legacy-compliance',
+  },
 ];
 
 export const process = [
@@ -96,7 +124,10 @@ export const team = (await getCollection('team')).sort((a, b) => a.data.order - 
 /** Latest three briefings (the featured one is reserved for the Insights hero). */
 export const posts = allPosts.filter((p) => !p.featured).slice(0, 3);
 
-export const testimonials = (await getCollection('testimonials')).map(({ data }) => data);
+const testimonialOrder = ['vicky-vick'];
+export const testimonials = (await getCollection('testimonials'))
+  .sort((a, b) => (testimonialOrder.indexOf(b.id) - testimonialOrder.indexOf(a.id)) || a.id.localeCompare(b.id))
+  .map(({ data }) => data);
 
 export const frictionPoints = [
   'Supply chain fragility',

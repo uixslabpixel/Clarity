@@ -10,29 +10,26 @@ import { methodSteps } from '../../data/services';
     <SectionHeader eyebrow="How it works" title="Delivering Alpha via Quantitative Methods" width={704}>
       <Button href="/services/management-consulting" variant="soft">Access Domain Strategy</Button>
     </SectionHeader>
-    <ol class="flex flex-col items-stretch gap-4 lg:flex-row lg:items-start lg:gap-6" data-tabs data-active="0">
+    <ol class="flex flex-col items-stretch gap-4 lg:flex-row lg:items-start lg:gap-6" data-accordion>
       {
-        methodSteps.map((s, i) =>
-          i === 0 ? (
-            <li class="flex w-full shrink-0 items-stretch border-l lg:w-[476px] border-line" data-tab-item>
-              <div class="flex min-h-[260px] flex-1 flex-col justify-between gap-8 bg-gradient-to-b from-[#f4f1ec]/0 to-[#f4f1ec] px-6 py-8">
-                <div class="flex items-start justify-between">
-                  <Icon name={s.icon as any} size={56} class="text-zinc-300" />
-                  <span class="t-label text-ink-2">{s.label}</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                  <h3 class="t-h5">{s.title}</h3>
-                  <p class="t-b3 line-clamp-3 text-ink-2">{s.text}</p>
-                </div>
-              </div>
-            </li>
-          ) : (
-            <li class="flex min-w-0 flex-1 flex-col justify-between gap-4 border-l border-line px-6 py-6 lg:h-[300px] lg:py-8" data-tab-item>
+        methodSteps.map((s, i) => (
+          <li
+            class="group flex min-w-0 cursor-pointer flex-col justify-between gap-4 border-l border-line px-6 py-6 transition-[flex-basis,flex-grow,background-color] duration-500 ease-[cubic-bezier(.65,0,.35,1)] hover:bg-black/[.02] data-open:min-h-[260px] data-open:gap-8 data-open:bg-gradient-to-b data-open:from-[#f4f1ec]/0 data-open:to-[#f4f1ec] data-open:py-8 lg:h-[300px] lg:basis-0 lg:grow lg:py-8 lg:data-open:shrink-0 lg:data-open:grow-0 lg:data-open:basis-[476px]"
+            data-accordion-item
+            data-open={i === 0 ? '' : undefined}
+          >
+            <div class="flex items-start justify-between">
+              <Icon name={s.icon as any} size={56} class="hidden text-zinc-300 group-data-open:block" />
               <span class="t-label text-ink-2">{s.label}</span>
+            </div>
+            <div class="flex flex-col gap-2">
               <h3 class="t-h5">{s.title}</h3>
-            </li>
-          ),
-        )
+              <div class="hidden group-data-open:block" data-accordion-panel="fade">
+                <p class="t-b3 line-clamp-3 text-ink-2">{s.text}</p>
+              </div>
+            </div>
+          </li>
+        ))
       }
     </ol>
   </div>

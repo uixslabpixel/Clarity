@@ -15,23 +15,23 @@ const tabs = ['All', ...categories.filter((c) => c !== 'Corporate Governance Hub
   <div class="mx-auto flex max-w-[1132px] flex-col gap-10">
     <FilterTabs items={tabs} />
     <div class="flex flex-col gap-6">
-      <div class="flex flex-col items-stretch gap-6 lg:flex-row lg:items-start">
-        <a href={`/insights/${lead.slug}`} class="group flex w-full shrink-0 flex-col gap-6 lg:w-[752px] overflow-hidden border border-line" data-filter-item={lead.category}>
+      <div class="flex flex-col items-stretch gap-6 lg:flex-row lg:items-start" data-filter-group>
+        <a href={`/insights/${lead.slug}`} data-reveal class="group flex w-full shrink-0 flex-col gap-6 lg:w-[752px] overflow-hidden border border-line" data-filter-item={lead.category}>
           <div class="relative h-[240px] overflow-hidden md:h-[360px] lg:h-[444px]">
             <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" />
             <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{lead.category}</span>
           </div>
           <div class="flex flex-col gap-8 px-6 pb-6">
             <div class="flex flex-col gap-2">
-              <h2 class="t-h4">{lead.title}</h2>
+              <h2 data-reveal class="t-h4">{lead.title}</h2>
               <p class="t-label flex items-center gap-2 text-ink-3"><span>{lead.date}</span><span class="h-3.5 w-px bg-black/20"></span><span>{lead.author}</span></p>
             </div>
             <p class="t-b3 text-ink-2">{lead.excerpt}</p>
           </div>
         </a>
-        <div class="flex min-w-0 flex-1 flex-col gap-6 md:flex-row lg:flex-col">
+        <div class="flex min-w-0 flex-1 flex-col gap-6 md:flex-row lg:flex-col" data-filter-group>
           {[side1, side2].map((p) => (
-            <a href={`/insights/${p.slug}`} class="group flex flex-col gap-6 overflow-hidden border border-line md:flex-1" data-filter-item={p.category}>
+            <a href={`/insights/${p.slug}`} data-reveal class="group flex flex-col gap-6 overflow-hidden border border-line md:flex-1" data-filter-item={p.category}>
               <div class="relative h-[220px] overflow-hidden lg:h-[280px]">
                 <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" />
                 <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{p.category}</span>
@@ -44,10 +44,11 @@ const tabs = ['All', ...categories.filter((c) => c !== 'Corporate Governance Hub
           ))}
         </div>
       </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" data-filter-group>
         {rest.slice(0, 6).map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} radius="sm" data-filter-item={p.category} />)}
       </div>
     </div>
+    <p class="t-b3 py-10 text-center text-ink-3" data-filter-empty hidden>No briefings in this category yet.</p>
     <nav aria-label="Pagination" class="flex items-center justify-between">
       <a href="#" aria-label="Previous page" class="grid size-6 place-items-center rounded-full bg-black/5"><Icon name="chevron-left" size={10} /></a>
       <ol class="t-b4 flex items-center gap-4 text-ink-3">

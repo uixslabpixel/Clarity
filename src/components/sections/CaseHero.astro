@@ -18,7 +18,7 @@ const { area, title, metric, metricLabel, meta, cover } = Astro.props;
   <div class="relative flex flex-col items-start gap-8 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] py-12 lg:flex-row lg:items-end lg:justify-between lg:py-16">
     <div class="flex w-full min-w-0 max-w-[680px] flex-col gap-4 lg:w-auto lg:flex-1">
       <Breadcrumb items={[{ label: 'Case Studies', href: '/case-studies' }, { label: area }]} />
-      <h1 class="t-h2">{title}</h1>
+      <h1 data-reveal class="t-h2">{title}</h1>
     </div>
     <div class="flex flex-col gap-4">
       <p class="t-h2">{metric}</p>
@@ -26,7 +26,7 @@ const { area, title, metric, metricLabel, meta, cover } = Astro.props;
     </div>
   </div>
   <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
-    <Media src={cover ?? undefined} tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
+    <Media src={cover ?? undefined} data-reveal="media" tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
   <dl class="relative grid grid-cols-2 gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 md:flex md:items-end md:justify-between lg:pb-16">
     {

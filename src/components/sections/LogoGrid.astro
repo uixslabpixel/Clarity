@@ -8,7 +8,7 @@ import { clients } from '../../data/content';
   <div class="mx-auto grid max-w-[1360px] grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
     {
       clients.slice(0, 6).map((c) => (
-        <div class="grid h-[120px] place-items-center md:h-[180px] lg:h-[240px] border border-line text-black/80">
+        <div data-reveal class="grid h-[120px] place-items-center md:h-[180px] lg:h-[240px] border border-line text-black/80">
           <ClientLogo name={c} height={44} class="scale-[.45] md:scale-75 lg:scale-100" />
         </div>
       ))

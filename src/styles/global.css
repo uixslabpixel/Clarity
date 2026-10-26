@@ -217,6 +217,32 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Motion: hide reveal targets until GSAP animates them in (JS only, motion allowed). */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    visibility: hidden;
+  }
+}
+
+/* Sticky header state toggled by scripts/motion.ts */
+[data-site-header][data-stuck] {
+  position: fixed;
+}
+[data-site-header][data-stuck] [data-announcement] {
+  display: none;
+}
+[data-site-header][data-stuck] [data-navbar] {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+[data-site-header][data-stuck] [data-navbar][data-theme='dark'] {
+  background: rgb(0 0 0 / 0.72);
+}
+[data-site-header][data-stuck] [data-navbar][data-theme='light'] {
+  background: rgb(255 255 255 / 0.86);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06);
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;

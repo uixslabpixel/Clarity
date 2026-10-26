@@ -8,16 +8,16 @@ import { site } from '../../data/site';
 ---
 <section class="relative overflow-hidden bg-[linear-gradient(180deg,rgb(244_241_236/0)_0%,#f4f1ec_100%)] px-4 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] pb-12 pt-24 lg:pb-24 lg:pt-32" data-section="TEAM-03">
   <Hatch class="absolute inset-x-0 top-0" />
-  <div class="-mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-0 lg:gap-14 lg:overflow-visible lg:px-0" data-slider>
+  <div class="-mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-0 lg:gap-14 lg:overflow-visible lg:px-0" data-slider="track">
     {
       team.map((m) => (
-        <article class="flex w-[300px] shrink-0 snap-start flex-col gap-6 md:w-[480px] md:gap-10">
+        <article data-reveal class="flex w-[300px] shrink-0 snap-start flex-col gap-6 md:w-[480px] md:gap-10">
           <div class="relative h-[400px] w-full overflow-hidden md:h-[600px]">
             <Media class="absolute left-[20px] top-[120px] size-[280px] md:left-[50px] md:top-[169px] md:size-[430px] [mask-image:radial-gradient(closest-side,black_55%,transparent)]" alt={`Portrait of ${m.name}`} />
             <div class="absolute left-0 top-[41px] flex items-center gap-6">
               <span class="h-[52px] w-px bg-black/20" />
               <div class="flex max-w-[275px] flex-col gap-2">
-                <h2 class="t-h5">{m.name}</h2>
+                <h2 data-reveal class="t-h5">{m.name}</h2>
                 <p class="t-b3 text-ink-2">{m.role}</p>
               </div>
             </div>

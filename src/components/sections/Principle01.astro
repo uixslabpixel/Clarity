@@ -8,34 +8,30 @@ import { principles } from '../../data/about';
 ---
 <section class="relative bg-white px-4 pb-12 pt-24 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] lg:pb-[98px] lg:pt-[138px]" data-section="PRINCIPLE-01">
   <Hatch class="absolute inset-x-0 top-0" />
-  <div class="mx-auto flex max-w-[1170px] flex-col items-stretch gap-10 lg:flex-row lg:items-start lg:gap-16" data-accordion data-active="0">
+  <div class="mx-auto flex max-w-[1170px] flex-col items-stretch gap-10 lg:flex-row lg:items-start lg:gap-16" data-accordion>
     <div class="flex flex-1 flex-col gap-10 lg:max-w-[600px] lg:gap-[152px]">
       <div class="flex flex-col gap-3.5">
         <Eyebrow>Core principles</Eyebrow>
-        <h2 class="t-h2 max-w-[480px]">Our Practice's Core Principles</h2>
+        <h2 data-reveal class="t-h2 max-w-[480px]">Our Practice's Core Principles</h2>
       </div>
       <ul class="flex flex-col">
         {
           principles.map((p, i) => (
-            <li class="border-b border-line py-6" data-accordion-item>
-              {i === 0 ? (
-                <div class="flex flex-col gap-4">
-                  <button type="button" class="flex w-full items-center gap-4 text-left" aria-expanded="true">
-                    <span class="grid size-4 shrink-0 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
-                    <span class="t-h5 flex-1">{p.title}</span>
-                  </button>
-                  <p class="t-b3 pl-8 text-ink-2" data-accordion-panel>{p.text}</p>
-                </div>
-              ) : (
-                <button type="button" class="t-h6 w-full text-left" aria-expanded="false">{p.title}</button>
-              )}
+            <li class="group border-b border-line py-6" data-accordion-item data-open={i === 0 ? '' : undefined}>
+              <button type="button" class="flex w-full items-center gap-4 text-left" data-accordion-trigger>
+                <span class="hidden size-4 shrink-0 place-items-center rounded-full bg-black/10 group-data-open:grid"><Icon name="chevron-right" size={8} /></span>
+                <span class="t-h6 flex-1 transition-colors hover:text-ink-2 group-data-open:t-h5">{p.title}</span>
+              </button>
+              <div class={`overflow-hidden ${i === 0 ? '' : 'h-0'}`} data-accordion-panel>
+                <p class="t-b3 pl-8 pt-4 text-ink-2">{p.text}</p>
+              </div>
             </li>
           ))
         }
       </ul>
     </div>
     <div class="flex w-full shrink-0 flex-col gap-4 self-stretch lg:w-[575px]">
-      <Media class="h-[240px] w-full md:h-[350px]" />
+      <Media data-reveal="media" class="h-[240px] w-full md:h-[350px]" />
       <Media tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:flex-1" />
       <Media tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:flex-1" />
     </div>

@@ -9,14 +9,14 @@ import { methodSteps } from '../../data/services';
   <div class="flex flex-col gap-6 lg:w-[420px] lg:gap-12">
     <div class="flex flex-col gap-3.5">
       <Eyebrow>How it works</Eyebrow>
-      <h2 class="t-h2">Delivering Alpha with Quantitative Methods</h2>
+      <h2 data-reveal class="t-h2">Delivering Alpha with Quantitative Methods</h2>
     </div>
     <Button href="/services/management-consulting" variant="soft" size="sm" class="self-start">Access Domain Strategy</Button>
   </div>
   <div class="grid w-full grid-cols-1 gap-x-[26px] gap-y-8 md:grid-cols-2 md:gap-y-6 lg:w-[618px]">
     {
       methodSteps.map((s) => (
-        <article class="flex flex-col gap-4">
+        <article data-reveal class="flex flex-col gap-4">
           <div class="flex h-[200px] flex-col md:h-[296px] justify-between border border-line p-8">
             <span class="t-label text-ink-2">{s.label}</span>
             <Icon name={s.icon as any} size={48} class="text-zinc-300" />

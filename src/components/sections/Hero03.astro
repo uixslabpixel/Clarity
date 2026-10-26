@@ -8,7 +8,7 @@ import { site } from '../../data/site';
 ---
 <section class="bg-white px-4 pb-4 pt-[60px] md:px-10 md:pb-10" data-section="HERO-03">
   <div class="relative flex min-h-[640px] flex-col justify-end overflow-hidden rounded bg-black p-4 pb-8 text-white md:min-h-[720px] md:p-10 lg:block lg:h-[804px] lg:min-h-0 lg:p-0">
-    <Media tone="duotone" class="absolute inset-0 size-full" loading="eager" />
+    <Media tone="duotone" class="absolute inset-0 size-full scale-110" loading="eager" data-parallax="50" />
     <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black/60"></div>
     <div class="relative flex flex-col gap-10 lg:absolute lg:inset-x-10 lg:top-1/2 lg:-translate-y-1/2 lg:flex-row lg:items-end lg:justify-between">
       <div class="flex flex-col gap-8 lg:w-[710px]">
@@ -22,9 +22,9 @@ import { site } from '../../data/site';
             </span>
           </a>
 )}
-          <h1 class="t-hero">Engineering Enterprise Alpha governance.</h1>
+          <h1 data-reveal class="t-hero">Engineering Enterprise Alpha governance.</h1>
         </div>
-        <div class="flex gap-4">
+        <div data-reveal class="flex gap-4">
           <Button href="/contact" variant="light">Book a Call</Button>
           <Button href="/contact" variant="ghost-light" chevron={false}>Talk to Sales</Button>
         </div>

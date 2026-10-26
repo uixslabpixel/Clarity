@@ -7,10 +7,10 @@ import ClientLogo from '../ui/ClientLogo.astro';
 import { clients } from '../../data/content';
 ---
 <section class="relative h-[900px] overflow-hidden bg-black text-white" data-section="HERO-01">
-  <Media tone="duotone" class="absolute inset-0 size-full" loading="eager" />
+  <Media tone="duotone" class="absolute inset-0 size-full scale-110" loading="eager" data-parallax="60" />
   <div class="absolute inset-x-4 top-[200px] flex flex-col items-center gap-8 text-center md:inset-x-auto md:left-1/2 md:top-[220px] md:w-[636px] md:-translate-x-1/2">
-    <h1 class="t-hero">Engineering Enterprise <br />Alpha governance.</h1>
-    <div class="flex gap-4">
+    <h1 data-reveal class="t-hero">Engineering Enterprise <br />Alpha governance.</h1>
+    <div data-reveal class="flex gap-4">
       <Button href="/contact" variant="light">Book a Call</Button>
       <Button href="/contact" variant="ghost" chevron={false}>Talk to Sales</Button>
     </div>

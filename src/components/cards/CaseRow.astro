@@ -12,7 +12,7 @@ interface Props {
 }
 const { slug, client, area, title, metric, metricLabel, industry } = Astro.props;
 ---
-<article class="group flex flex-col items-stretch overflow-hidden border md:flex-row md:items-center border-black/[.11]" data-filter-item={industry}>
+<article data-reveal class="group flex flex-col items-stretch overflow-hidden border md:flex-row md:items-center border-black/[.11]" data-filter-item={industry}>
   <div class="relative h-[240px] min-w-0 overflow-hidden md:h-[435px] md:flex-1">
     <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" />
   </div>

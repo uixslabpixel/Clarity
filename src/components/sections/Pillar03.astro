@@ -11,7 +11,7 @@ import { pillars } from '../../data/content';
     <div class="grid grid-cols-1 items-start gap-4 md:gap-6 xl:grid-cols-2">
       {
         pillars.map((p) => (
-          <article class="flex flex-col overflow-hidden rounded-lg border border-line">
+          <article data-reveal class="flex flex-col overflow-hidden rounded-lg border border-line">
             <div class="flex flex-col items-start gap-2 border-b border-black/[.11] p-6 md:flex-row md:gap-8 md:p-8">
               <h3 class="t-h5 shrink-0 md:w-[244px]">{p.card ?? p.short}</h3>
               <p class="t-b3 line-clamp-2 text-ink-2">{p.summary}</p>

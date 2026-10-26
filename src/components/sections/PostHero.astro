@@ -19,12 +19,12 @@ const { category, title, dek, author, date, readTime, cover } = Astro.props;
   <div class="relative flex flex-col items-start gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] py-12 lg:flex-row lg:items-end lg:gap-8 lg:py-[68px]">
     <div class="flex w-full min-w-0 max-w-[800px] flex-col gap-4 lg:w-auto lg:flex-1">
       <Breadcrumb items={[{ label: 'Blog', href: '/insights' }, { label: category }]} />
-      <h1 class="t-h2 max-w-[672px]">{title}</h1>
+      <h1 data-reveal class="t-h2 max-w-[672px]">{title}</h1>
     </div>
     <p class="t-b3 max-w-[500px] text-ink-2 lg:flex-1">{dek}</p>
   </div>
   <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
-    <Media src={cover ?? undefined} tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
+    <Media src={cover ?? undefined} data-reveal="media" tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
   <dl class="relative flex flex-wrap items-end justify-between gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 lg:pb-16">
     <div class="flex items-center gap-4">

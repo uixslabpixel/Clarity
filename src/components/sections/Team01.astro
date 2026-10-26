@@ -17,10 +17,10 @@ const { eyebrow = 'Teams', title = 'Led by Experienced Practitioners' } = Astro.
     <SectionHeader eyebrow={eyebrow} title={title}>
       <Button href="/team" variant="soft">View Full Leadership Team</Button>
     </SectionHeader>
-    <div class="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-0 lg:gap-14 lg:overflow-visible lg:px-0" data-slider>
+    <div class="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-0 lg:gap-14 lg:overflow-visible lg:px-0" data-slider="track">
       {
         team.map((m) => (
-          <article class="relative h-[520px] w-[calc(100vw-32px)] max-w-[480px] shrink-0 snap-start overflow-hidden lg:h-[600px] lg:w-[480px]">
+          <article data-reveal class="relative h-[520px] w-[calc(100vw-32px)] max-w-[480px] shrink-0 snap-start overflow-hidden lg:h-[600px] lg:w-[480px]">
             <Media
               class="absolute left-1/2 top-[130px] size-[min(430px,100%)] -translate-x-1/2 lg:left-[50px] lg:top-[169px] lg:size-[430px] lg:translate-x-0 [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
               alt={`Portrait of ${m.name}`}

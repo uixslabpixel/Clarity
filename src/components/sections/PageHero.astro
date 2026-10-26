@@ -18,7 +18,7 @@ const hasMedia = Astro.slots.has('default');
   <div class="relative mx-auto flex flex-col items-center gap-10 text-center" style={`max-width:${maxWidth}px`}>
     <div class="flex w-full flex-col items-center gap-3.5">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: crumb }]} />
-      <h1 class="t-h2" set:html={title} />
+      <h1 data-reveal class="t-h2" set:html={title} />
     </div>
     {text && <p class="t-b3 text-ink-2">{text}</p>}
   </div>

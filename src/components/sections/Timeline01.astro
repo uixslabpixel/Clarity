@@ -4,26 +4,26 @@ import Icon from '../ui/Icon.astro';
 import { milestones } from '../../data/about';
 const active = 1;
 ---
-<section class="relative overflow-hidden bg-white px-4 py-12 md:px-10 md:py-24 lg:px-[max(40px,calc((100%-1170px)/2))]" data-section="TIMELINE-01" data-tabs data-active={active}>
+<section class="relative overflow-hidden bg-white px-4 py-12 md:px-10 md:py-24 lg:px-[max(40px,calc((100%-1170px)/2))]" data-section="TIMELINE-01" data-accordion data-autoplay="6">
   <div class="relative -mx-4 flex snap-x snap-mandatory items-start gap-8 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-auto lg:max-w-[1170px] lg:gap-10 lg:overflow-visible lg:px-0">
     <span aria-hidden="true" class="absolute left-0 top-[156px] h-0 w-[1400px] lg:-left-[135px] lg:w-[1367px] border-t-[1.5px] border-dashed border-black/20"></span>
     {
       milestones.map((m, i) => {
         const on = i === active;
         return (
-          <article class="relative flex w-[280px] shrink-0 snap-start flex-col items-end gap-6 lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-tab-item>
+          <article class="group relative flex w-[280px] cursor-pointer shrink-0 snap-start flex-col items-end gap-6 lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-accordion-item data-open={on ? '' : undefined}>
             <div class="flex h-[98px] w-full flex-col gap-[22px] text-right font-heading">
-              <p class={`text-[24px] leading-[1.2] ${on ? 'text-ink-2' : 'text-transparent'}`}>{m.date}</p>
-              <p class={`t-h1 ${on ? 'text-black' : 'text-zinc-200'}`}>{m.year}</p>
+              <p class={`text-[24px] leading-[1.2] text-transparent group-data-open:text-ink-2 transition-colors duration-500`}>{m.date}</p>
+              <p class={`t-h1 text-zinc-200 group-data-open:text-black transition-colors duration-500`}>{m.year}</p>
             </div>
             <div class="flex w-full items-start gap-4">
-              <div class={`flex flex-1 flex-col gap-6 pt-[83px] ${on ? '' : 'text-ink-5'}`}>
-                <h3 class={`t-h5 ${on ? 'text-black' : ''}`}>{m.title}</h3>
-                <p class={`t-b3 ${on ? 'text-ink-2' : ''}`}>{m.text}</p>
+              <div class={`flex flex-1 flex-col gap-6 pt-[83px] text-ink-5 group-data-open:text-black transition-colors duration-500`}>
+                <h3 class={`t-h5 group-data-open:text-black transition-colors duration-500`}>{m.title}</h3>
+                <p class={`t-b3 group-data-open:text-ink-2 transition-colors duration-500`}>{m.text}</p>
               </div>
               <div class="relative w-[47px] shrink-0">
-                <span class={`absolute left-6 top-0 h-[106px] w-px ${on ? 'bg-black/40' : 'bg-black/10'}`} />
-                <span class={`relative mt-[83px] grid size-[47px] place-items-center rounded-full ${on ? 'bg-black/[.04] text-black' : 'bg-white text-black/10'}`}>
+                <span class={`absolute left-6 top-0 h-[106px] w-px bg-black/10 group-data-open:bg-black/40 transition-colors duration-500`} />
+                <span class={`relative mt-[83px] grid size-[47px] place-items-center rounded-full bg-white text-black/10 group-data-open:bg-black/[.04] group-data-open:text-black transition-colors duration-500`}>
                   <Icon name={m.icon as any} size={22} />
                 </span>
               </div>

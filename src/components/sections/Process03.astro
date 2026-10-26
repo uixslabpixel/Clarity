@@ -18,15 +18,13 @@ import { process } from '../../data/content';
           process.map((step, i) => (
             <>
               {i > 0 && <li aria-hidden="true" class="h-px w-full bg-line" />}
-              <li class="flex items-center gap-4" data-spy-link>
-                {i === 0 && (
-                  <span class="grid size-4 place-items-center rounded-full bg-black/10">
-                    <Icon name="chevron-right" size={8} />
-                  </span>
-                )}
+              <li class="group flex items-center gap-4" data-spy-link data-open={i === 0 ? '' : undefined}>
+                <span class="hidden size-4 place-items-center rounded-full bg-black/10 group-data-open:grid">
+                  <Icon name="chevron-right" size={8} />
+                </span>
                 <a href={`#step-${i + 1}`} class="flex flex-1 items-center gap-2">
                   <span class="t-label text-ink-2">{String(i + 1).padStart(2, '0')}</span>
-                  <span class="t-h6">{step.title}</span>
+                  <span class="t-h6 text-ink-3 transition-colors group-data-open:text-black hover:text-black">{step.title}</span>
                 </a>
               </li>
             </>
@@ -36,7 +34,7 @@ import { process } from '../../data/content';
       <div class="flex w-full flex-col gap-4 lg:w-[900px]">
         {
           process.map((step, i) => (
-            <article id={`step-${i + 1}`} class="flex flex-col-reverse items-stretch gap-6 overflow-hidden rounded border border-line p-5 md:flex-row md:gap-8 md:p-8">
+            <article data-reveal id={`step-${i + 1}`} class="flex flex-col-reverse items-stretch gap-6 overflow-hidden rounded border border-line p-5 md:flex-row md:gap-8 md:p-8">
               <div class="flex flex-1 flex-col justify-between gap-4">
                 <h3 class="t-h5">{step.title}</h3>
                 <p class="t-b3 text-ink-2">{step.text}</p>

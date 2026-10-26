@@ -9,7 +9,7 @@ import { posts } from '../../data/content';
     <div class="flex flex-col gap-4">
       <Eyebrow>Blog</Eyebrow>
       <span class="h-px w-full bg-line"></span>
-      <h2 class="t-h2">Governance Briefings</h2>
+      <h2 data-reveal class="t-h2">Governance Briefings</h2>
     </div>
     <div class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:px-0 lg:gap-8 lg:overflow-visible">
       {posts.slice(0, 3).map((p) => <BlogCard {...p} category="Corporate Strategy Hub" href={`/insights/${p.slug}`} imageHeight={360} radius="sm" class="w-[300px] shrink-0 snap-start md:w-[340px] lg:w-auto lg:flex-1" />)}

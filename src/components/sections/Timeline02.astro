@@ -13,28 +13,28 @@ interface Props {
 const { items, active = 1 } = Astro.props;
 const Ticks = (_on: boolean) => Array.from({ length: 15 });
 ---
-<section class="bg-white px-4 py-12 md:px-10 md:py-24" data-section="TIMELINE-02" data-tabs data-active={active}>
+<section class="bg-white px-4 py-12 md:px-10 md:py-24" data-section="TIMELINE-02" data-accordion data-autoplay="6">
   <div class="-mx-4 flex snap-x snap-mandatory items-start gap-6 overflow-x-auto px-4 [scrollbar-width:none] md:-mx-10 md:px-10 lg:mx-auto lg:max-w-[1360px] lg:overflow-visible lg:px-0">
     {
       items.map((m, i) => {
         const on = i === active;
         return (
-          <article class="flex w-[280px] shrink-0 snap-start flex-col lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-tab-item>
+          <article class="group flex w-[280px] cursor-pointer shrink-0 snap-start flex-col lg:w-auto lg:min-w-0 lg:flex-1 lg:shrink" data-accordion-item data-open={on ? '' : undefined}>
             <div class="flex items-start gap-6">
-              <span class={`h-[216px] w-px shrink-0 ${on ? 'bg-black' : 'bg-line'}`} />
+              <span class={`h-[216px] w-px shrink-0 bg-line group-data-open:bg-black transition-colors duration-500`} />
               <div class="flex h-[216px] min-w-0 flex-1 flex-col justify-between">
                 <div class="flex flex-col gap-[22px] font-heading">
-                  <p class={`t-h1 ${on ? 'text-black' : 'text-zinc-200'}`}>{m.year}</p>
-                  <h3 class={`t-h5 ${on ? 'text-black' : 'text-ink-5'}`}>{m.title}</h3>
+                  <p class={`t-h1 text-zinc-200 group-data-open:text-black transition-colors duration-500`}>{m.year}</p>
+                  <h3 class={`t-h5 text-ink-5 group-data-open:text-black transition-colors duration-500`}>{m.title}</h3>
                 </div>
                 <div class="flex items-center justify-between">
                   {Ticks(on).map(() => (
-                    <span class={`h-[51px] w-px ${on ? 'bg-black/30' : 'bg-line'}`} />
+                    <span class={`h-[51px] w-px bg-line group-data-open:bg-black/30 transition-colors duration-500`} />
                   ))}
                 </div>
               </div>
             </div>
-            {on && (
+            <div class={`overflow-hidden ${on ? '' : 'h-0'}`} data-accordion-panel>
               <div class="flex items-stretch gap-6">
                 <span class="w-px shrink-0 bg-line" />
                 <div class="flex h-[259px] min-w-0 flex-1 flex-col justify-between pt-10">
@@ -42,7 +42,7 @@ const Ticks = (_on: boolean) => Array.from({ length: 15 });
                   <Media tone="duotone" class="h-[128px] w-full" />
                 </div>
               </div>
-            )}
+            </div>
           </article>
         );
       })

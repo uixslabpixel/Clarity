@@ -25,7 +25,7 @@ const fullTitle = title === 'Clarity' ? title : `${title} — Clarity`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-video-url={site.videoUrl || undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +36,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body class={bodyClass}>
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to content</a>
@@ -52,8 +55,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
     {footer && <Footer variant={footer} />}
     <script>
-      import { initMenu } from '../scripts/menu';
-      initMenu();
+      import '../scripts/main';
     </script>
   </body>
 </html>

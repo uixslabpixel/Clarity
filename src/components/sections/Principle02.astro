@@ -11,31 +11,25 @@ import { principles } from '../../data/about';
       <Eyebrow>Core principles</Eyebrow>
       <span class="h-px w-full bg-line"></span>
       <div class="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
-        <h2 class="t-h2">Our Practice's Core Principles</h2>
+        <h2 data-reveal class="t-h2">Our Practice's Core Principles</h2>
         <Button href="/contact" variant="soft">Book a Call</Button>
       </div>
     </div>
-    <div class="flex flex-col items-stretch gap-8 lg:flex-row" data-tabs data-active="0">
+    <div class="flex flex-col items-stretch gap-8 lg:flex-row" data-accordion data-autoplay="7">
       <ol class="flex flex-col lg:w-[380px] lg:shrink-0">
         {
-          principles.map((p, i) =>
-            i === 0 ? (
-              <li class="relative flex min-h-[260px] flex-col gap-8 border-t lg:size-[380px] border-line bg-gradient-to-b from-[#f4f1ec]/0 to-[#f4f1ec]" data-tab-item>
-                <span class="absolute -top-px left-0 h-px w-1/2 bg-black" data-progress />
-                <div class="flex flex-1 flex-col justify-between gap-6 px-4 pb-6 pt-6 md:px-8 md:pb-8 lg:pt-0">
-                  <h3 class="t-h5">{p.title}</h3>
-                  <p class="t-b3 text-ink-2">{p.text}</p>
-                </div>
-              </li>
-            ) : (
-              <li class="border-t border-line pt-6 md:pt-8" data-tab-item>
-                <button type="button" class="t-h5 w-full px-4 pb-6 text-left md:px-8 md:pb-8">{p.title}</button>
-              </li>
-            ),
-          )
+          principles.map((p, i) => (
+            <li class="group relative flex flex-col border-t border-line data-open:min-h-[260px] data-open:bg-gradient-to-b data-open:from-[#f4f1ec]/0 data-open:to-[#f4f1ec] lg:data-open:h-[380px]" data-accordion-item data-open={i === 0 ? '' : undefined}>
+              <span class="absolute -top-px left-0 h-px w-full origin-left bg-black" style={`transform:scaleX(${i === 0 ? 0.5 : 0})`} data-progress />
+              <button type="button" class="t-h5 w-full px-4 pb-6 pt-6 text-left md:px-8 md:pb-8 md:pt-8 lg:group-data-open:pt-0" data-accordion-trigger>{p.title}</button>
+              <div class="hidden flex-1 flex-col justify-end px-4 pb-6 group-data-open:flex md:px-8 md:pb-8" data-accordion-panel="fade">
+                <p class="t-b3 text-ink-2">{p.text}</p>
+              </div>
+            </li>
+          ))
         }
       </ol>
-      <Media class="h-[320px] md:h-[480px] lg:h-auto lg:flex-1" />
+      <Media data-reveal="media" class="h-[320px] md:h-[480px] lg:h-auto lg:flex-1" />
     </div>
   </div>
 </section>

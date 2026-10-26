@@ -11,25 +11,27 @@ import { process } from '../../data/content';
       <Eyebrow>How it works</Eyebrow>
       <span class="h-px w-full bg-line"></span>
       <div class="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
-        <h2 class="t-h2">Our 4-Step Engagement Model</h2>
+        <h2 data-reveal class="t-h2">Our 4-Step Engagement Model</h2>
         <Button href="/services" variant="soft">Access Domain Strategy</Button>
       </div>
     </div>
-    <div class="flex flex-col items-stretch gap-8 lg:flex-row" data-accordion data-active="0">
+    <div class="flex flex-col items-stretch gap-8 lg:flex-row" data-accordion data-autoplay="7">
       <ol class="flex flex-col lg:w-[380px] lg:shrink-0">
         {
           process.map((step, i) => (
-            <li class={`relative flex flex-col gap-8 border-t border-line ${i === 0 ? 'bg-gradient-to-b from-transparent to-black/5' : ''}`} data-accordion-item>
-              <span class={`absolute -top-px left-0 h-px bg-black ${i === 0 ? 'w-1/2' : 'w-0'}`} data-progress />
-              <div class={`flex flex-col px-4 pb-6 pt-6 md:px-8 md:pb-8 lg:pt-0 ${i === 0 ? 'gap-6 lg:gap-12' : ''}`}>
-                <button type="button" class="t-h5 text-left" aria-expanded={i === 0 ? 'true' : 'false'}>{step.title}</button>
-                {i === 0 && <p class="t-b3 text-ink-2" data-accordion-panel>{step.text}</p>}
+            <li class="group relative flex flex-col gap-8 border-t border-line data-open:bg-gradient-to-b data-open:from-transparent data-open:to-black/5" data-accordion-item data-open={i === 0 ? '' : undefined}>
+              <span class="absolute -top-px left-0 h-px w-full origin-left bg-black" style={`transform:scaleX(${i === 0 ? 0.5 : 0})`} data-progress />
+              <div class="flex flex-col px-4 pb-6 pt-6 md:px-8 md:pb-8 lg:pt-0">
+                <button type="button" class="t-h5 text-left" data-accordion-trigger>{step.title}</button>
+                <div class={`overflow-hidden ${i === 0 ? '' : 'h-0'}`} data-accordion-panel>
+                  <p class="t-b3 pt-6 text-ink-2 lg:pt-12">{step.text}</p>
+                </div>
               </div>
             </li>
           ))
         }
       </ol>
-      <Media class="h-[320px] rounded md:h-[480px] lg:h-auto lg:min-h-[480px] lg:flex-1" />
+      <Media data-reveal="media" class="h-[320px] rounded md:h-[480px] lg:h-auto lg:min-h-[480px] lg:flex-1" />
     </div>
   </div>
 </section>

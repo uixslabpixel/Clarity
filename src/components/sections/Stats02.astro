@@ -9,7 +9,7 @@ const { items = stats } = Astro.props;
 <div class="flex w-full flex-col items-stretch gap-4 text-center md:flex-row md:gap-6" data-section="STATS-02">
   {
     items.map((s) => (
-      <div class="flex flex-1 flex-col gap-[22px] rounded bg-black/5 p-6">
+      <div data-reveal class="flex flex-1 flex-col gap-[22px] rounded bg-black/5 p-6">
         <p class="t-h1" data-count>{s.value}</p>
         <p class="t-b3 text-ink-2">{s.label}</p>
       </div>

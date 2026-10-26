@@ -24,7 +24,7 @@ const {
       {
         blocks.map((b, i) => (
           <div class={`flex flex-col gap-4 py-6 ${i < blocks.length - 1 ? 'border-b border-line' : ''}`}>
-            <h2 class="t-h5">{b.heading}</h2>
+            <h2 data-reveal class="t-h5">{b.heading}</h2>
             <p class="t-b3 text-ink-2">{b.text}</p>
           </div>
         ))

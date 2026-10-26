@@ -14,7 +14,7 @@ interface Props {
 }
 const { title, category, date, author, excerpt, href = '#', imageHeight = 280, radius = 'lg', class: cls = '', slug: _slug, featured: _f, ...rest } = Astro.props;
 ---
-<a href={href} {...rest} class={`group flex min-w-0 flex-col gap-6 overflow-hidden ${radius === 'lg' ? 'rounded-lg' : 'rounded'} border border-line bg-white ${cls}`}>
+<a href={href} {...rest} data-reveal class={`group flex min-w-0 flex-col gap-6 overflow-hidden ${radius === 'lg' ? 'rounded-lg' : 'rounded'} border border-line bg-white ${cls}`}>
   <div class="relative w-full shrink-0 overflow-hidden bg-black/20" style={`height:${imageHeight}px`}>
     <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-[1.03]" />
     <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{category}</span>

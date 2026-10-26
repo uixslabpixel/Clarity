@@ -11,8 +11,9 @@ interface Props {
   label?: string;
   loading?: 'lazy' | 'eager';
   style?: string;
+  [key: `data-${string}`]: string | boolean | undefined;
 }
-const { src, alt = '', class: cls = '', tone = 'light', label, loading = 'lazy', style } = Astro.props;
+const { src, alt = '', class: cls = '', tone = 'light', label, loading = 'lazy', style, ...rest } = Astro.props;
 const tones = {
   light: 'bg-zinc-200',
   dark: 'bg-zinc-600',
@@ -21,9 +22,9 @@ const tones = {
 ---
 {
   src ? (
-    <img src={src} alt={alt} loading={loading} class={`object-cover ${cls}`} style={style} />
+    <img src={src} alt={alt} loading={loading} class={`object-cover ${cls}`} style={style} {...rest} />
   ) : (
-    <div style={style} class={`media-ph overflow-hidden ${tones[tone]} ${cls}`} role={alt ? 'img' : undefined} aria-label={alt || undefined}>
+    <div style={style} {...rest} class={`media-ph overflow-hidden ${tones[tone]} ${cls}`} role={alt ? 'img' : undefined} aria-label={alt || undefined}>
       {label && <span class="t-b5 absolute bottom-2 left-2 text-black/40">{label}</span>}
     </div>
   )

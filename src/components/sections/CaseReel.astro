@@ -4,12 +4,14 @@ import Media from '../ui/Media.astro';
 import Wordmark from '../ui/Wordmark.astro';
 import ClientLogo from '../ui/ClientLogo.astro';
 ---
-<section class="overflow-hidden bg-white px-4 py-12 md:px-10 md:py-20 lg:px-[max(40px,calc((100%-1200px)/2))]" data-section="CASE-06">
-  <div class="relative left-1/2 flex w-max -translate-x-1/2 gap-4 md:gap-8 [mask-image:linear-gradient(to_right,transparent_8%,black_30%,black_70%,transparent_92%)]" data-slider>
+<section class="overflow-hidden bg-white py-12 md:py-20" data-section="CASE-06">
+  <div class="[mask-image:linear-gradient(to_right,transparent_0%,black_26%,black_74%,transparent_100%)]">
+  <div class="relative left-1/2 w-max -translate-x-1/4" data-marquee="30">
+    <div class="flex w-max">
     {
-      Array.from({ length: 5 }).map((_, i) =>
-        i === 2 ? (
-          <article class="relative flex h-[340px] w-[250px] md:h-[430px] md:w-[320px] shrink-0 flex-col justify-end overflow-hidden rounded bg-black/[.04] p-6">
+      Array.from({ length: 10 }).map((_, i) =>
+        i % 5 === 2 ? (
+          <article class="relative flex h-[340px] w-[250px] md:h-[430px] md:w-[320px] mr-4 shrink-0 md:mr-8 flex-col justify-end overflow-hidden rounded bg-black/[.04] p-6">
             <Media class="absolute inset-0 size-full" />
             <div class="relative flex items-center gap-[11px] text-white">
               <Wordmark size={22} />
@@ -18,9 +20,11 @@ import ClientLogo from '../ui/ClientLogo.astro';
             </div>
           </article>
         ) : (
-          <div class="h-[340px] w-[250px] md:h-[430px] md:w-[320px] shrink-0 rounded bg-black/[.04]" />
+          <div class="h-[340px] w-[250px] md:h-[430px] md:w-[320px] mr-4 shrink-0 md:mr-8 rounded bg-black/[.04]" />
         ),
       )
     }
+    </div>
+  </div>
   </div>
 </section>

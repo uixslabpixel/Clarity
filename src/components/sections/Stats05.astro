@@ -8,14 +8,14 @@ import { portfolioStats } from '../../data/cases';
   <div class="mx-auto flex max-w-[1132px] flex-col items-center gap-10 md:gap-14">
     <div class="flex w-full max-w-[600px] flex-col items-center gap-3.5 text-center">
       <Eyebrow>Number performance</Eyebrow>
-      <h2 class="t-h2">Portfolio Performance Secured</h2>
+      <h2 data-reveal class="t-h2">Portfolio Performance Secured</h2>
     </div>
     <div class="flex w-full flex-col items-center gap-8 md:flex-row md:justify-center lg:gap-16">
       {
         portfolioStats.map((s, i) => (
           <>
             {i > 0 && <span class="h-px w-full bg-line md:h-[97px] md:w-px" />}
-            <div class="flex w-full flex-col items-center gap-4 text-center md:flex-1 lg:w-[400px] lg:flex-none">
+            <div data-reveal class="flex w-full flex-col items-center gap-4 text-center md:flex-1 lg:w-[400px] lg:flex-none">
               <p class="flex items-baseline gap-2 font-heading">
                 <span class="t-h1">{s.value}</span>
                 {s.unit && <span class="t-h5 text-ink-3">{s.unit}</span>}

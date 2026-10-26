@@ -14,55 +14,65 @@ interface Props {
   title?: string;
 }
 const { eyebrow = 'Case study', title = 'Featured Proof of Concept' } = Astro.props;
-const active = Math.floor(caseHighlights.length / 2);
-const left = caseHighlights.slice(0, active);
-const center = caseHighlights[active];
-const right = caseHighlights.slice(active + 1);
+const n = caseHighlights.length;
+const active = Math.floor(n / 2);
+const side = Math.floor(n / 2);
+const at = (i: number) => caseHighlights[((i % n) + n) % n];
+// One slide per highlight: that case in the centre, its neighbours on either side.
+const slides = caseHighlights.map((center, k) => ({
+  center,
+  left: Array.from({ length: side }, (_, j) => at(k - side + j)),
+  right: Array.from({ length: side }, (_, j) => at(k + 1 + j)),
+}));
 ---
-<section class="overflow-hidden bg-black px-4 py-12 text-white md:px-10 lg:p-20" data-section="CASE-01" data-carousel="coverflow">
+<section class="overflow-hidden bg-black px-4 py-12 text-white md:px-10 lg:p-20" data-section="CASE-01">
   <div class="mx-auto flex max-w-[1280px] flex-col items-center gap-8 lg:gap-14">
     <div class="flex w-full max-w-[710px] flex-col items-center gap-2 text-center lg:gap-3.5">
       <Eyebrow tone="light">{eyebrow}</Eyebrow>
-      <h2 class="t-h2">{title}</h2>
+      <h2 data-reveal class="t-h2">{title}</h2>
     </div>
-    <div class="flex w-full flex-col items-center gap-6 lg:gap-10">
+    <div class="flex w-full flex-col items-center gap-6 lg:gap-10" data-slider="fade" data-dot-on="bg-white" data-dot-off="bg-white/20">
       <div class="flex w-full items-center justify-between">
         <button type="button" data-prev aria-label="Previous case" class="grid size-6 place-items-center rounded-full bg-white/10"><Icon name="chevron-left" size={12} /></button>
         <div class="flex w-20 gap-1" data-dots>
-          {caseHighlights.map((_, i) => <span class={`h-[3px] flex-1 rounded-full ${i === active ? 'bg-white' : 'bg-white/20'}`} />)}
+          {caseHighlights.map((_, i) => <span class={`h-[3px] flex-1 rounded-full transition-colors ${i === active ? 'bg-white' : 'bg-white/20'}`} />)}
         </div>
         <button type="button" data-next aria-label="Next case" class="grid size-6 place-items-center rounded-full bg-white text-black"><Icon name="chevron-right" size={12} /></button>
       </div>
-      <div class="flex w-full items-start justify-center gap-16 lg:w-auto" data-track>
-        <div class="hidden items-center gap-16 lg:flex">
-          {left.map((c) => <SideCard {...c} />)}
+      <div class="grid w-full justify-items-center lg:w-auto">
+        {slides.map((slide, k) => (
+        <div class="col-start-1 row-start-1 flex w-full items-start justify-center gap-16 lg:w-auto" data-slide aria-hidden={k === active ? undefined : 'true'} style={k === active ? undefined : 'visibility:hidden;opacity:0'}>
+        <div class="hidden items-center gap-16 lg:flex" data-slide-part>
+          {slide.left.map((c) => <SideCard {...c} />)}
         </div>
-        <div class="flex w-full max-w-[480px] flex-col gap-6 lg:w-[480px] lg:shrink-0 lg:gap-8">
+        <div class="flex w-full max-w-[480px] flex-col gap-6 lg:w-[480px] lg:shrink-0 lg:gap-8" data-slide-part>
           <article class="relative flex h-[520px] w-full flex-col justify-between overflow-hidden rounded bg-white p-8 text-black">
             <div class="absolute inset-x-0 bottom-0 h-[315px] overflow-hidden">
               <GradientWash from="bottom" class="inset-[0_-131px_-51px_-131px]" />
             </div>
             <div class="relative flex flex-col gap-6">
-              <p class="t-h1">{center.value}</p>
-              <p class="t-b3 max-w-[350px] text-ink-2">{center.label}</p>
+              <p class="t-h1">{slide.center.value}</p>
+              <p class="t-b3 max-w-[350px] text-ink-2">{slide.center.label}</p>
             </div>
             <div class="relative flex items-center gap-[19px]">
               <Wordmark size={36} />
               <span class="h-[38px] w-px bg-black/20" />
-              <ClientLogo name={center.client} height={32} />
+              <ClientLogo name={slide.center.client} height={32} />
             </div>
           </article>
           <div class="flex w-full flex-col gap-6 lg:gap-8">
-            <h3 class="t-h5">{center.title}</h3>
+            <h3 class="t-h5">{slide.center.title}</h3>
             <div class="flex flex-col items-start gap-4">
-              <p class="t-b3 text-paper-2">{center.text}</p>
-              <Button href={center.href} variant="ghost-light" size="sm">Read More</Button>
+              <p class="t-b3 text-paper-2">{slide.center.text}</p>
+              <Button href={slide.center.href} variant="ghost-light" size="sm">Read More</Button>
             </div>
           </div>
         </div>
-        <div class="hidden items-center gap-16 lg:flex">
-          {right.map((c) => <SideCard {...c} />)}
+        <div class="hidden items-center gap-16 lg:flex" data-slide-part>
+          {slide.right.map((c) => <SideCard {...c} />)}
         </div>
+        </div>
+        ))}
       </div>
     </div>
   </div>

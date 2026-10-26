@@ -4,21 +4,26 @@ import Eyebrow from '../ui/Eyebrow.astro';
 import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { testimonials } from '../../data/content';
-const t = testimonials[0];
 ---
 <section class="bg-white px-4 pb-12 pt-12 md:px-10 md:pb-[60px] md:pt-20" data-section="TESTI-02">
-  <div class="mx-auto flex max-w-[900px] flex-col items-center gap-10 text-center" data-slider>
+  <div class="mx-auto flex max-w-[900px] flex-col items-center gap-10 text-center" data-slider="fade" data-autoplay="7">
     <Eyebrow>Customer spotlight</Eyebrow>
-    <figure class="flex flex-col items-center gap-4">
-      <Media class="size-[50px] rounded-full" alt={`Photo of ${t.name}`} />
-      <blockquote class="t-h3">{t.quote}</blockquote>
-      <figcaption class="t-b3 flex flex-col items-center gap-2">
-        <span>{t.name}</span>
-        <span class="text-ink-2">{t.role}</span>
-      </figcaption>
-    </figure>
+    <div class="grid w-full">
+      {
+        testimonials.map((t, i) => (
+          <figure class="col-start-1 row-start-1 flex flex-col items-center gap-4" data-slide aria-hidden={i === 0 ? undefined : 'true'} style={i === 0 ? undefined : 'visibility:hidden;opacity:0'}>
+            <Media class="size-[50px] rounded-full" src={t.photo ?? undefined} alt={`Photo of ${t.name}`} />
+            <blockquote class="t-h3" data-slide-part>{t.quote}</blockquote>
+            <figcaption class="t-b3 flex flex-col items-center gap-2" data-slide-part>
+              <span>{t.name}</span>
+              <span class="text-ink-2">{t.role}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
     <div class="flex w-20 gap-1" data-dots>
-      {Array.from({ length: 5 }).map((_, i) => <span class={`h-[3px] flex-1 rounded-full ${i === 0 ? 'bg-black' : 'bg-black/20'}`} />)}
+      {testimonials.map((_, i) => <span class={`h-[3px] flex-1 rounded-full transition-colors ${i === 0 ? 'bg-black' : 'bg-black/20'}`} />)}
     </div>
   </div>
   <Hatch class="-mx-4 w-auto md:-mx-10 mt-16 md:mt-28" />

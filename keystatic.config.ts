@@ -237,6 +237,10 @@ export default config({
           },
           { label: 'Announcement' },
         ),
+        videoUrl: fields.text({
+          label: 'Video URL (optional)',
+          description: 'Embed URL opened by the hero video cards, e.g. https://www.youtube-nocookie.com/embed/VIDEO_ID',
+        }),
         formEndpoint: fields.text({
           label: 'Form endpoint (optional)',
           description: 'Leave empty to use Netlify Forms. Set to a Formspree/Basin/etc. URL to post forms there instead.',

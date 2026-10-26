@@ -13,7 +13,7 @@ interface Props {
 }
 const { value, label, client, href, featured = false, class: cls = '' } = Astro.props;
 ---
-<article class={`relative flex h-[280px] flex-col md:h-[315px] justify-between overflow-hidden rounded p-6 ${featured ? 'bg-white' : 'border border-line bg-black/5'} ${cls}`}>
+<article data-reveal class={`relative flex h-[280px] flex-col md:h-[315px] justify-between overflow-hidden rounded p-6 ${featured ? 'bg-white' : 'border border-line bg-black/5'} ${cls}`}>
   {
     featured && (
       <div class="absolute inset-x-0 bottom-0 h-[182px]">

@@ -16,7 +16,7 @@ const { eyebrow = 'Get a demo', title, cta, href = '/contact' } = Astro.props;
   <div class="relative mx-auto flex max-w-[648px] flex-col items-center gap-8 text-center">
     <div class="flex w-full flex-col gap-2">
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 class="t-h2 text-balance">{title}</h2>
+      <h2 data-reveal class="t-h2 text-balance">{title}</h2>
     </div>
     <Button href={href}>{cta}</Button>
   </div>

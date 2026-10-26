@@ -11,7 +11,7 @@ const { items = stats } = Astro.props;
     items.map((s, i) => (
       <>
         {i > 0 && <span class="h-px w-full bg-line md:h-[97px] md:w-px" />}
-        <div class="flex w-full max-w-[250px] flex-col gap-4 text-center md:gap-[22px]">
+        <div data-reveal class="flex w-full max-w-[250px] flex-col gap-4 text-center md:gap-[22px]">
           <p class="t-h1" data-count>{s.value}</p>
           <p class="t-b3 text-ink-2">{s.label}</p>
         </div>

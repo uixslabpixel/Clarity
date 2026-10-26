@@ -8,9 +8,10 @@ import { caseStudies, industries } from '../../data/cases';
 <section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-24 lg:pb-[104px] lg:pt-[120px]" data-section="CASE-04">
   <Hatch class="absolute inset-x-0 top-0" />
   <div class="mx-auto flex max-w-[1132px] flex-col gap-10">
-    <FilterTabs items={industries} />
+    <FilterTabs items={['All', ...industries]} />
     <div class="flex flex-col gap-6">
       {caseStudies.map((c) => <CaseRow {...c} />)}
+      <p class="t-b3 py-10 text-center text-ink-3" data-filter-empty hidden>No case studies in this category yet.</p>
     </div>
   </div>
 </section>

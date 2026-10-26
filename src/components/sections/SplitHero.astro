@@ -19,9 +19,9 @@ const { crumb, meta, title, text } = Astro.props;
       {meta && <p class="t-label text-black">{meta}</p>}
     </div>
     <div class="flex max-w-[672px] flex-1 flex-col gap-6 md:gap-10">
-      <h1 class="t-h1" set:html={title} />
+      <h1 data-reveal class="t-h1" set:html={title} />
       <p class="t-b3 text-ink-2">{text}</p>
     </div>
   </div>
-  <Media tone="duotone" class="relative mx-auto h-[280px] w-full max-w-[1360px] md:h-[400px] lg:h-[480px]" loading="eager" />
+  <Media data-reveal="media" tone="duotone" class="relative mx-auto h-[280px] w-full max-w-[1360px] md:h-[400px] lg:h-[480px]" loading="eager" />
 </section>

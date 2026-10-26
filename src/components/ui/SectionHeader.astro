@@ -16,7 +16,7 @@ const hasAction = Astro.slots.has('default');
   <div class={`flex flex-col gap-2 md:gap-3.5 ${align === 'center' ? 'items-center text-center' : ''}`} style={`max-width:${width}px;width:100%`}>
     {eyebrow && <Eyebrow tone={tone === 'light' ? 'light' : 'dark'}>{eyebrow}</Eyebrow>}
     {divider && <span class={`h-px w-full ${tone === 'light' ? 'bg-white/10' : 'bg-line'}`} />}
-    <h2 class={`t-h2 ${tone === 'light' ? 'text-white' : 'text-black'}`} set:html={title} />
+    <h2 data-reveal class={`t-h2 ${tone === 'light' ? 'text-white' : 'text-black'}`} set:html={title} />
   </div>
   <slot />
 </div>
