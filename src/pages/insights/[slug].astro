@@ -29,7 +29,7 @@ const tags = ['AI Governance', 'Fiduciary Duty', 'Board of Directors', 'Risk Man
     date="July 3, 2026"
     readTime="7 min read"
   />
-  <ArticleBody toc={toc} class="pb-[104px] pt-[120px]">
+  <ArticleBody toc={toc}>
     <p>Six months ago, the audit committee of a publicly listed energy company received a debt restructuring recommendation from an internal AI model, not from the corporate finance team. The recommendation was accepted, executed, and three quarters later turned out to have misread the company's foreign currency exposure. The loss itself was modest, but the question that followed in the boardroom was far bigger than the number: who was actually accountable?</p>
     <p>This is no longer a hypothetical scenario for a governance conference panel. Our internal survey of 140 publicly listed companies in the region found that 61% of boards now receive at least one strategic recommendation generated or filtered by an AI system every quarter, spanning capital allocation, vendor risk assessment, and merger scenario modeling. What has lagged far behind is the governance framework to oversee it.</p>
     <h2 id="delegation">Delegation Without Discharging Responsibility</h2>
@@ -48,7 +48,7 @@ const tags = ['AI Governance', 'Fiduciary Duty', 'Board of Directors', 'Risk Man
       <li><strong>Fiduciary layer</strong>formal documentation in board minutes that an AI recommendation was tested, questioned, and weighed against alternatives, not simply accepted.</li>
     </ul>
     <figure>
-      <Media tone="duotone" class="h-[400px] w-full" alt="Glass facade corner" />
+      <Media tone="duotone" class="h-[312px] w-full" alt="Glass facade corner" />
       <figcaption>A glass facade corner symbolizes layered yet transparent oversight.</figcaption>
     </figure>
     <h2 id="regulation">Regulation Is Starting to Catch Up</h2>
@@ -57,9 +57,9 @@ const tags = ['AI Governance', 'Fiduciary Duty', 'Board of Directors', 'Risk Man
     <h2 id="what-boards-do">What Boards Should Do Now</h2>
     <p>Companies don't need to wait for final regulation to start fixing this. Three steps can be taken within a single upcoming quarter without a major organizational overhaul: mapping every decision point that currently involves an AI recommendation, assigning a named human owner of accountability for each of those points, and writing an algorithmic review clause into the audit committee's charter.</p>
     <p>The boardroom isn't being replaced by an algorithm. But a boardroom that doesn't adjust the way it asks questions will struggle to tell the difference between a recommendation that sounds convincing and one that is actually correct.</p>
-    <div class="!mt-10 flex items-center justify-between border-t border-line pt-4">
+    <div class="!mt-12 flex items-center justify-between border-t border-line pt-4">
       <span class="t-label text-ink-2">Tag</span>
-      <div class="t-label flex gap-2 text-black">
+      <div class="t-label flex gap-4 text-black">
         {tags.map((t) => <a href="/insights" class="hover:underline">/{t}</a>)}
       </div>
     </div>
