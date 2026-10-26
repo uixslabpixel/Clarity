@@ -14,6 +14,17 @@ npm run preview
 
 Requires Node 20+.
 
+## Deploy
+
+**Vercel** — *Add New → Project*, import this GitHub repo and keep the detected
+Astro defaults (build `npm run build`, output `dist`). Every push to `main` redeploys.
+The production domain is used for canonical URLs, the sitemap and `robots.txt`
+automatically; set a `SITE_URL` environment variable when you add a custom domain.
+Vercel has no built-in form handling, so set **Site Settings → Form endpoint** in
+Keystatic (e.g. a Formspree URL) before going live.
+
+**Netlify** — import the repo with the same build settings; forms work out of the box.
+
 ## Pages
 
 | Route | Page |

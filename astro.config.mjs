@@ -11,8 +11,14 @@ import sitemap from '@astrojs/sitemap';
 // Set KEYSTATIC=true with an SSR adapter to ship the admin (see README).
 const withCms = process.argv.includes('dev') || process.env.KEYSTATIC === 'true';
 
+// Canonical URLs, the sitemap and robots.txt use this. Set SITE_URL for a custom domain;
+// on Vercel the production domain is picked up automatically.
+const site =
+  process.env.SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'https://clarity.example.com');
+
 export default defineConfig({
-  site: 'https://clarity.example.com',
+  site,
   integrations: [
     markdoc(),
     sitemap({ filter: (page) => !/\/(template\/sections\/.+|thank-you|password)\/?$/.test(page) }),
