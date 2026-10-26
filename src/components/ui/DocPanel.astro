@@ -7,13 +7,14 @@ interface Props {
 }
 const { id, title, intro, meta } = Astro.props;
 ---
-<section id={id} class="scroll-mt-24 rounded border border-line bg-zinc-50 p-10">
-  <div class="flex flex-col gap-1.5 border-b border-line pb-4">
+<section id={id} class="flex scroll-mt-24 flex-col gap-4 border border-black/10 bg-black/[.02] p-10">
+  <div class="flex flex-col gap-1.5">
     <div class="flex items-center justify-between">
       <h2 class="t-label text-black">{title}</h2>
       {meta && <span class="t-label text-black">{meta}</span>}
     </div>
     {intro && <p class="t-b4 max-w-[540px] text-ink-2">{intro}</p>}
   </div>
-  <div class="pt-6"><slot /></div>
+  <span class="h-px w-full bg-zinc-200"></span>
+  <div><slot /></div>
 </section>

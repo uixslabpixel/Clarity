@@ -1,0 +1,25 @@
+---
+/** "In this page" index with a left rule; the active entry gets a dark rule (scroll-spy in step 6). */
+interface Props {
+  items: { id: string; label: string }[];
+  class?: string;
+}
+const { items, class: cls = '' } = Astro.props;
+---
+<nav aria-label="In this page" class={`flex flex-col gap-4 ${cls}`} data-toc>
+  <p class="t-label text-ink-2">In this page</p>
+  <ol class="flex flex-col">
+    {
+      items.map((t, i) => (
+        <li>
+          <a
+            href={`#${t.id}`}
+            class={`t-h6 block truncate border-l py-2 pl-6 pr-2 transition-colors ${i === 0 ? 'border-black text-black' : 'border-black/10 text-ink-3 hover:text-black'}`}
+          >
+            {t.label}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>

@@ -1,6 +1,7 @@
 ---
 /** ARTICLE-01 — rich text column + sticky "In this page" table of contents. */
 import Hatch from '../ui/Hatch.astro';
+import Toc from '../ui/Toc.astro';
 interface Props {
   toc: { id: string; label: string }[];
   class?: string;
@@ -13,19 +14,6 @@ const { toc, class: cls = 'pb-[200px] pt-[120px]' } = Astro.props;
     <article class="prose-clarity w-[800px]" data-article>
       <slot />
     </article>
-    <nav aria-label="In this page" class="sticky top-24 flex w-[270px] flex-col gap-4" data-toc>
-      <p class="t-label text-black">In this page</p>
-      <ol class="flex flex-col border-l border-line">
-        {
-          toc.map((t, i) => (
-            <li>
-              <a href={`#${t.id}`} class={`t-b4 -ml-px block border-l py-1.5 pl-3 transition-colors ${i === 0 ? 'border-black text-black' : 'border-transparent text-ink-3 hover:text-black'}`}>
-                {t.label}
-              </a>
-            </li>
-          ))
-        }
-      </ol>
-    </nav>
+    <Toc items={toc} class="sticky top-24 w-[270px]" />
   </div>
 </section>

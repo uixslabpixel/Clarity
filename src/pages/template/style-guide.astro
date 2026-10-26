@@ -54,13 +54,13 @@ const toc = [
       <div class="flex flex-col">
         {
           type.map((t) => (
-            <div class="flex flex-col gap-2 border-b border-line py-4 first:pt-0 last:border-0">
+            <div class="flex flex-col gap-2 border-b border-zinc-200 py-6 first:pt-0 last:border-0 last:pb-0">
               <p class={t.cls}>{t.label}</p>
-              <dl class="t-b5 grid grid-cols-4 text-ink-2">
+              <dl class="t-b4 flex justify-between text-[#2a2a28]">
                 <div><dt class="inline">Name:</dt> <dd class="inline">{t.font}</dd></div>
                 <div><dt class="inline">Size:</dt> <dd class="inline">{t.size}px</dd></div>
                 <div><dt class="inline">Weight:</dt> <dd class="inline">{t.weight ?? 'Regular'}</dd></div>
-                <div class="text-right"><dt class="inline">Letter Spacing:</dt> <dd class="inline">{t.ls ?? '0%'}</dd></div>
+                <div><dt class="inline">Letter Spacing:</dt> <dd class="inline">{t.ls ?? '0%'}</dd></div>
               </dl>
             </div>
           ))
@@ -73,11 +73,11 @@ const toc = [
           colors.map((c) => (
             <div class={c.items.length > 4 ? 'col-span-2' : ''}>
               <p class="t-label mb-2 text-black">{c.group}</p>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-x-4 gap-y-[9px]">
                 {c.items.map(([hex, a]) => (
-                  <figure class="flex w-[94px] flex-col gap-1">
-                    <span class="block h-10 rounded-sm border border-line" style={swatch(hex, a)} />
-                    <figcaption class="t-b5 flex justify-between text-ink-2"><span>{hex === 'gradient' ? 'Gradient' : hex}</span><span>{a}</span></figcaption>
+                  <figure class="flex w-[93px] flex-col gap-3">
+                    <span class="block h-10 border border-black/5" style={swatch(hex, a)} />
+                    <figcaption class="t-b5 flex justify-between text-black"><span>{hex === 'gradient' ? 'Gradient' : hex}</span><span>{a}</span></figcaption>
                   </figure>
                 ))}
               </div>
