@@ -12,9 +12,11 @@ interface Props {
   nav?: { layout?: NavLayout; theme?: NavTheme; active?: string } | false;
   announcement?: boolean;
   bodyClass?: string;
+  noindex?: boolean;
 }
 const {
   title,
+  noindex = false,
   description = 'Clarity — fractional executive leadership and operational governance for enterprise transitions.',
   footer = 'boxed',
   nav = {},
@@ -31,6 +33,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />

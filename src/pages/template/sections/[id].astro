@@ -1,0 +1,36 @@
+---
+/** Isolated preview of one section, embedded by /template/sections. */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/ui/Button.astro';
+import { sections } from './_registry';
+
+export function getStaticPaths() {
+  return sections.map((entry) => ({ params: { id: entry.id.toLowerCase() }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const Section = entry.component as any;
+---
+<BaseLayout title={`${entry.id} · ${entry.name}`} nav={false} footer={false} noindex>
+  {
+    entry.wrap ? (
+      <section class={entry.wrap}>
+        <div class="mx-auto max-w-[1360px]">
+          <Section {...entry.props} />
+        </div>
+      </section>
+    ) : entry.id === 'CALLOUT-01' ? (
+      <Section {...entry.props}>
+        <Button href="/contact">Contact crisis team</Button>
+        <Button href="mailto:hello@clarity.com" variant="soft" chevron={false} class="!bg-black/10">Email coordinator</Button>
+      </Section>
+    ) : (
+      <Section {...entry.props} />
+    )
+  }
+  <script>
+    // Report the rendered height so the catalog can size this iframe.
+    const post = () => parent !== window && parent.postMessage({ type: 'section-height', height: document.documentElement.scrollHeight }, '*');
+    new ResizeObserver(post).observe(document.body);
+    addEventListener('load', post);
+  </script>
+</BaseLayout>

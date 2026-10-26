@@ -1,0 +1,158 @@
+---
+/** Template Sections — every section in the template with a live, resizable preview. */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SimpleHero from '../../../components/sections/SimpleHero.astro';
+import { sections, categories } from './_registry';
+
+const devices = [
+  { id: 'desktop', label: 'Desktop', width: 1440 },
+  { id: 'tablet', label: 'Tablet', width: 768 },
+  { id: 'mobile', label: 'Mobile', width: 390 },
+];
+const href = (route: string) => (route.startsWith('/') && !route.includes('[') && !route.includes('*') ? route : null);
+---
+<BaseLayout title="Template Sections" description="Every section in the Clarity template, previewed live at desktop, tablet and mobile widths." nav={{ layout: 'inner', theme: 'light' }} footer="plain">
+  <SimpleHero
+    title="Template Sections"
+    text={`All ${sections.length} sections that make up the Clarity template, rendered live. Switch the device to preview each breakpoint, or open a section on its own.`}
+    maxWidth={640}
+  />
+
+  <section class="bg-white px-4 pb-24 md:px-10" data-section="SECTIONS-CATALOG" data-catalog>
+    <div class="mx-auto flex max-w-[1360px] flex-col gap-8">
+      <div class="sticky top-0 z-30 -mx-4 flex flex-col gap-4 border-b border-line bg-white/90 px-4 py-4 backdrop-blur md:-mx-10 md:px-10 lg:flex-row lg:items-center lg:justify-between">
+        <div class="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:flex-wrap md:px-0" role="toolbar" aria-label="Filter sections by category">
+          {
+            ['All', ...categories].map((c, i) => (
+              <button
+                type="button"
+                data-category={c}
+                aria-pressed={i === 0 ? 'true' : 'false'}
+                class="t-b4 shrink-0 rounded-full border border-line px-3.5 py-1.5 text-ink-2 transition-colors hover:border-black/30 hover:text-black aria-pressed:border-black aria-pressed:bg-black aria-pressed:text-white"
+              >
+                {c}
+              </button>
+            ))
+          }
+        </div>
+        <div class="flex items-center justify-between gap-4">
+          <p class="t-label text-ink-3" aria-live="polite"><span data-count>{sections.length}</span> sections</p>
+          <div class="flex rounded-full bg-black/5 p-1" role="radiogroup" aria-label="Preview width">
+            {
+              devices.map((d, i) => (
+                <button
+                  type="button"
+                  role="radio"
+                  data-device={d.width}
+                  aria-checked={i === 0 ? 'true' : 'false'}
+                  class="t-b4 rounded-full px-3.5 py-1.5 text-ink-2 transition-colors aria-checked:bg-white aria-checked:text-black aria-checked:shadow-[0_1px_2px_rgb(0_0_0/.08)]"
+                >
+                  {d.label} <span class="hidden text-ink-4 md:inline">{d.width}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <ol class="flex flex-col gap-16">
+        {
+          sections.map((s) => (
+            <li class="flex flex-col gap-4" data-entry data-entry-category={s.category} id={s.id.toLowerCase()}>
+              <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div class="flex flex-col gap-1">
+                  <p class="t-label text-ink-3">
+                    {s.id} · {s.category}
+                  </p>
+                  <h2 class="t-h5">{s.name}</h2>
+                </div>
+                <div class="t-b4 flex flex-wrap items-center gap-x-4 gap-y-1 text-ink-3">
+                  <span>
+                    Used on{' '}
+                    {s.usedOn.map((r, i) => (
+                      <>
+                        {i > 0 && ', '}
+                        {href(r) ? <a href={href(r)!} class="text-black underline-offset-2 hover:underline">{r}</a> : <span class="text-ink-2">{r}</span>}
+                      </>
+                    ))}
+                  </span>
+                  <a href={`/template/sections/${s.id.toLowerCase()}/`} target="_blank" rel="noopener" class="text-black underline-offset-2 hover:underline">
+                    Open preview ↗
+                  </a>
+                </div>
+              </div>
+              <div class="overflow-hidden rounded border border-line bg-surface-2" data-frame style={`height:${Math.round(s.height * 0.6)}px`}>
+                <iframe
+                  src={`/template/sections/${s.id.toLowerCase()}/`}
+                  title={`${s.id} preview`}
+                  loading="lazy"
+                  data-height={s.height}
+                  class="block origin-top-left border-0 bg-white"
+                  style={`width:1440px;height:${s.height}px`}
+                />
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <script>
+    const root = document.querySelector<HTMLElement>('[data-catalog]');
+    if (root) {
+      const frames = Array.from(root.querySelectorAll<HTMLElement>('[data-frame]'));
+      let device = 1440;
+
+      const layout = (frame: HTMLElement) => {
+        const iframe = frame.querySelector('iframe')!;
+        const width = Math.min(device, frame.clientWidth);
+        const scale = width / device;
+        const height = Number(iframe.dataset.height);
+        iframe.style.width = `${device}px`;
+        iframe.style.height = `${height}px`;
+        iframe.style.transform = `scale(${scale})`;
+        iframe.style.marginInline = device < frame.clientWidth ? `${(frame.clientWidth - device) / 2}px` : '0';
+        frame.style.height = `${Math.ceil(height * scale)}px`;
+      };
+      const layoutAll = () => frames.forEach(layout);
+
+      // Previews report their own height (see [id].astro).
+      addEventListener('message', (e) => {
+        if (e.data?.type !== 'section-height') return;
+        const frame = frames.find((f) => f.querySelector('iframe')?.contentWindow === e.source);
+        if (!frame) return;
+        const iframe = frame.querySelector('iframe')!;
+        if (Math.abs(Number(iframe.dataset.height) - e.data.height) < 2) return;
+        iframe.dataset.height = String(e.data.height);
+        layout(frame);
+      });
+
+      root.querySelectorAll<HTMLButtonElement>('[data-device]').forEach((btn, _, all) =>
+        btn.addEventListener('click', () => {
+          device = Number(btn.dataset.device);
+          all.forEach((b) => b.setAttribute('aria-checked', String(b === btn)));
+          layoutAll();
+        }),
+      );
+
+      const count = root.querySelector('[data-count]')!;
+      root.querySelectorAll<HTMLButtonElement>('[data-category]').forEach((btn, _, all) =>
+        btn.addEventListener('click', () => {
+          const cat = btn.dataset.category;
+          all.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          let n = 0;
+          root.querySelectorAll<HTMLElement>('[data-entry]').forEach((el) => {
+            el.hidden = cat !== 'All' && el.dataset.entryCategory !== cat;
+            if (!el.hidden) n++;
+          });
+          count.textContent = String(n);
+          layoutAll();
+        }),
+      );
+
+      new ResizeObserver(layoutAll).observe(root);
+      layoutAll();
+    }
+  </script>
+</BaseLayout>
