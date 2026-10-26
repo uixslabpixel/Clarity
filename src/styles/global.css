@@ -252,7 +252,8 @@
   line-height: 1.3;
   color: var(--color-ink-2);
 }
-.prose-clarity > * + * {
+.prose-clarity > * + *,
+.prose-clarity > article > * + * {
   margin-top: 24px;
 }
 .prose-clarity h2 {
@@ -263,7 +264,8 @@
   margin-top: 64px;
   scroll-margin-top: 96px;
 }
-.prose-clarity h2:first-child {
+.prose-clarity h2:first-child,
+.prose-clarity > article > h2:first-child {
   margin-top: 0;
 }
 .prose-clarity blockquote {

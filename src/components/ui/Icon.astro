@@ -16,7 +16,7 @@ interface Props {
   label?: string;
 }
 const { name, size = 16, class: cls = '', label } = Astro.props;
-const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' };
+const a11y: Record<string, string> = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' };
 ---
 <svg
   width={size}

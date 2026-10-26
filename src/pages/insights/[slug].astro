@@ -1,68 +1,42 @@
 ---
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostHero from '../../components/sections/PostHero.astro';
 import ArticleBody from '../../components/sections/ArticleBody.astro';
-import Media from '../../components/ui/Media.astro';
 import Blog01 from '../../components/sections/Blog01.astro';
 import CTA from '../../components/layout/CTA.astro';
 import { allPosts } from '../../data/posts';
 
-export function getStaticPaths() {
-  return allPosts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+export async function getStaticPaths() {
+  const entries = await getCollection('posts');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
-const { post } = Astro.props;
+const { entry } = Astro.props;
+const post = allPosts.find((p) => p.slug === entry.id)!;
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, label: h.text }));
 const related = allPosts.filter((p) => p.slug !== post.slug && !p.featured).slice(0, 3);
-const toc = [
-  { id: 'delegation', label: 'Delegation with responsibility' },
-  { id: 'layers', label: 'Three Oversight Layers to Build' },
-  { id: 'regulation', label: 'Regulation is catching up' },
-  { id: 'what-boards-do', label: 'What Boards Should Do Now' },
-];
-const tags = ['AI Governance', 'Fiduciary Duty', 'Board of Directors', 'Risk Management'];
 ---
 <BaseLayout title={post.title} description={post.excerpt} nav={{ active: '/insights' }}>
   <PostHero
-    category="Legal Strategy"
+    category={post.category}
     title={post.title}
-    dek="AI models are now shaping strategic recommendations for boards of directors. The question is no longer whether to adopt them, but who is accountable when a recommendation turns out to be wrong."
+    dek={post.dek || post.excerpt}
     author={post.author}
-    date="July 3, 2026"
-    readTime="7 min read"
+    date={post.longDate}
+    readTime={post.readTime}
+    cover={post.cover}
   />
   <ArticleBody toc={toc}>
-    <p>Six months ago, the audit committee of a publicly listed energy company received a debt restructuring recommendation from an internal AI model, not from the corporate finance team. The recommendation was accepted, executed, and three quarters later turned out to have misread the company's foreign currency exposure. The loss itself was modest, but the question that followed in the boardroom was far bigger than the number: who was actually accountable?</p>
-    <p>This is no longer a hypothetical scenario for a governance conference panel. Our internal survey of 140 publicly listed companies in the region found that 61% of boards now receive at least one strategic recommendation generated or filtered by an AI system every quarter, spanning capital allocation, vendor risk assessment, and merger scenario modeling. What has lagged far behind is the governance framework to oversee it.</p>
-    <h2 id="delegation">Delegation Without Discharging Responsibility</h2>
-    <p>The principle of corporate law that has long applied is fairly clear: directors may delegate analysis, but they cannot delegate fiduciary duty. The problem is that generative AI systems don't feel like delegation in the traditional sense. There's no consultant in the room who can be questioned directly, and the output is often presented with a level of certainty that doesn't reflect the actual uncertainty behind the model.</p>
-    <p>The result is what we call an accountability gap: the more polished a model's output appears, the less inclined a board is to interrogate the assumptions behind it. That is the exact opposite of what the duty of care standard requires.</p>
-    <blockquote>
-      <p>Fiduciary duty was never designed for a system that can answer convincingly without actually understanding.</p>
-      <cite>— Naia Pradipta, Head of Governance Research, Clarity</cite>
-    </blockquote>
-    <p>Three cases we reviewed this year share the same pattern: it wasn't the model that failed technically, it was the oversight process that failed to ask basic questions before the recommendation was executed. What training data underpinned it, what tail-risk scenarios were left uncovered, and who within the organization actually had the authority to veto it.</p>
-    <h2 id="layers">Three Layers of Oversight Worth Building</h2>
-    <p>Looking at companies that have avoided similar incidents, we found a consistent governance pattern, regardless of industry.</p>
-    <ul>
-      <li><strong>Technical layer</strong>an independent audit of the model and its training data, conducted by a party not involved in building the system.</li>
-      <li><strong>Procedural layer</strong>explicit boundaries on which decisions may be accelerated with AI assistance, and which must go through full human review.</li>
-      <li><strong>Fiduciary layer</strong>formal documentation in board minutes that an AI recommendation was tested, questioned, and weighed against alternatives, not simply accepted.</li>
-    </ul>
-    <figure>
-      <Media tone="duotone" class="h-[312px] w-full" alt="Glass facade corner" />
-      <figcaption>A glass facade corner symbolizes layered yet transparent oversight.</figcaption>
-    </figure>
-    <h2 id="regulation">Regulation Is Starting to Catch Up</h2>
-    <p>Financial authorities in several jurisdictions have begun revising governance guidance to explicitly name algorithmic decision-making systems, rather than treating them as adequately covered by existing IT risk management guidelines. The direction is consistent: requiring traceability of how a recommendation was produced, and requiring boards to document their reasoning for accepting or rejecting it.</p>
-    <p>For many companies, this means the internal AI-use policy that has long sat with the technology team needs to move up a level, becoming part of the corporate governance framework approved directly by the board.</p>
-    <h2 id="what-boards-do">What Boards Should Do Now</h2>
-    <p>Companies don't need to wait for final regulation to start fixing this. Three steps can be taken within a single upcoming quarter without a major organizational overhaul: mapping every decision point that currently involves an AI recommendation, assigning a named human owner of accountability for each of those points, and writing an algorithmic review clause into the audit committee's charter.</p>
-    <p>The boardroom isn't being replaced by an algorithm. But a boardroom that doesn't adjust the way it asks questions will struggle to tell the difference between a recommendation that sounds convincing and one that is actually correct.</p>
+    <Content />
+    {post.tags.length > 0 && (
     <div class="!mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
       <span class="t-label text-ink-2">Tag</span>
       <div class="t-label flex flex-wrap gap-4 text-black">
-        {tags.map((t) => <a href="/insights" class="hover:underline">/{t}</a>)}
+        {post.tags.map((t) => <a href="/insights" class="hover:underline">/{t}</a>)}
       </div>
     </div>
+    )}
   </ArticleBody>
   <Blog01 title="" posts={related as any} class="px-4 pb-12 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] lg:pb-20" />
   <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />

@@ -1,0 +1,3 @@
+version: "2.0.0"
+date: 2026-10-15
+notes: "Major performance update: WebP/AVIF image auto-compression enabled, added dynamic CMS filtering for Case Studies, and expanded inner page templates."

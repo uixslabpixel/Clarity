@@ -7,8 +7,11 @@ interface Props {
 }
 const { tone = 'light', placeholder = 'Current Executive Designation*', label = 'Email address', class: cls = '' } = Astro.props;
 const dark = tone === 'dark';
+import FormMeta from '../forms/FormMeta.astro';
+import { formAttrs } from '../../lib/forms';
 ---
-<form class={`flex h-12 w-full items-center gap-2 overflow-hidden rounded-lg border pl-4 pr-1 ${dark ? 'border-white/5' : 'border-line'} ${cls}`} data-newsletter>
+<form class={`flex h-12 w-full items-center gap-2 overflow-hidden rounded-lg border pl-4 pr-1 ${dark ? 'border-white/5' : 'border-line'} ${cls}`} data-newsletter {...formAttrs('newsletter')}>
+  <FormMeta name="newsletter" />
   <label class="sr-only" for={`nl-${tone}`}>{label}</label>
   <input
     id={`nl-${tone}`}

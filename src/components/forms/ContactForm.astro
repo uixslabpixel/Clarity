@@ -4,8 +4,11 @@ import Checkbox from '../ui/Checkbox.astro';
 import Icon from '../ui/Icon.astro';
 const products = ['System Strategy', 'Restructuring Execution', 'Logistical Operations', 'Quartr API'];
 const revenue = ['Under $50M', '$50M – $250M', '$250M – $1B', '$1B – $5B', 'Over $5B'];
+import FormMeta from './FormMeta.astro';
+import { formAttrs } from '../../lib/forms';
 ---
-<form class="flex w-full shrink-0 flex-col gap-10 lg:w-[520px] xl:w-[565px] overflow-hidden rounded border border-line bg-white p-4 backdrop-blur-[5px]" data-form="contact" method="post" name="discovery">
+<form class="flex w-full shrink-0 flex-col gap-10 lg:w-[520px] xl:w-[565px] overflow-hidden rounded border border-line bg-white p-4 backdrop-blur-[5px]" {...formAttrs('discovery')}>
+  <FormMeta name="discovery" />
   <div class="t-label flex flex-col gap-1">
     <span class="text-ink-2">Phase 01:</span>
     <span class="text-black">Client Operational Categorization Intent</span>

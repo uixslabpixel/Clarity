@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Footer, { type FooterVariant } from '../components/layout/Footer.astro';
 import Navbar, { type NavLayout, type NavTheme } from '../components/layout/Navbar.astro';
 import AnnouncementBar from '../components/layout/AnnouncementBar.astro';
+import { site } from '../data/site';
 
 interface Props {
   title: string;
@@ -41,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {
       nav && (
         <div class="absolute inset-x-0 top-0 z-40" data-site-header>
-          {announcement && <AnnouncementBar />}
+          {announcement && site.announcement.enabled && <AnnouncementBar />}
           <Navbar {...nav} />
         </div>
       )

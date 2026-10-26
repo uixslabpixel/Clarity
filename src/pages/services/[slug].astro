@@ -6,7 +6,7 @@ import Stats04 from '../../components/sections/Stats04.astro';
 import CaseProof from '../../components/sections/CaseProof.astro';
 import Faq from '../../components/sections/Faq.astro';
 import CTA from '../../components/layout/CTA.astro';
-import { services, detailBlocks } from '../../data/services';
+import { services } from '../../data/services';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
@@ -14,8 +14,8 @@ export function getStaticPaths() {
 const { service } = Astro.props;
 ---
 <BaseLayout title={service.title} description={service.text} nav={{ active: '/services' }}>
-  <DetailHero parent={{ label: 'Services', href: '/services' }} crumb={service.title} title={service.title} text={service.text} />
-  <ServiceBody blocks={detailBlocks} />
+  <DetailHero parent={{ label: 'Services', href: '/services' }} crumb={service.title} title={service.title} text={service.text} cover={service.cover} />
+  <ServiceBody blocks={service.blocks} card={service.card} />
   <Stats04 />
   <CaseProof />
   <Faq />

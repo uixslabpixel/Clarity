@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SimpleHero from '../components/sections/SimpleHero.astro';
+import Button from '../components/ui/Button.astro';
+---
+<BaseLayout title="Thank you" description="Your submission has been received.">
+  <SimpleHero title="Submission received" text="A senior partner reviews every inquiry personally. Expect a reply within one business day." />
+  <div class="flex justify-center bg-white px-4 pb-24 lg:pb-[104px]">
+    <Button href="/" variant="soft">Return to Home</Button>
+  </div>
+</BaseLayout>

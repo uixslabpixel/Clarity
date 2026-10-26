@@ -10,8 +10,9 @@ interface Props {
   author: string;
   date: string;
   readTime: string;
+  cover?: string | null;
 }
-const { category, title, dek, author, date, readTime } = Astro.props;
+const { category, title, dek, author, date, readTime, cover } = Astro.props;
 ---
 <section class="relative overflow-hidden bg-white pt-[61px]" data-section="HERO-09">
   <GradientWash class="inset-[-419px_0_683px_0]" />
@@ -23,7 +24,7 @@ const { category, title, dek, author, date, readTime } = Astro.props;
     <p class="t-b3 max-w-[500px] text-ink-2 lg:flex-1">{dek}</p>
   </div>
   <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
-    <Media tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
+    <Media src={cover ?? undefined} tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
   <dl class="relative flex flex-wrap items-end justify-between gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 lg:pb-16">
     <div class="flex items-center gap-4">

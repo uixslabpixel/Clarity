@@ -1,0 +1,3 @@
+version: "1.0.0"
+date: 2026-08-14
+notes: "Initial official release of the Clarity website template. Includes 3 Home page variants, CMS collections for Governance Briefings & Case Studies, design tokens mapped from Figma variables, and WCAG accessibility compliance."

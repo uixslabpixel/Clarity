@@ -1,0 +1,11 @@
+label: "Cookie Policy"
+title: "Cookie Policy"
+intro: "The cookies and similar technologies this website uses, and how you can control them."
+revised: "October 2026"
+sections:
+  - heading: "Essential Cookies"
+    body: "Required for core functionality such as security, form submission, and remembering your consent choice. These cannot be disabled."
+  - heading: "Analytics Cookies"
+    body: "Privacy-friendly, aggregated analytics help us understand which briefings are useful. These load only after you consent."
+  - heading: "Managing Preferences"
+    body: "You can change your choice at any time from the cookie banner or by clearing cookies in your browser settings."

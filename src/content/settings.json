@@ -1,0 +1,17 @@
+{
+  "name": "Clarity",
+  "tagline": "Operational governance and fractional leadership for high-stakes enterprise transitions.",
+  "owner": "Slabpixel",
+  "email": "hello@clarity.com",
+  "talentEmail": "talent@clarity.com",
+  "legalEmail": "legal@clarity.com",
+  "linkedin": "https://www.linkedin.com",
+  "x": "https://x.com",
+  "announcement": {
+    "enabled": true,
+    "text": "The Clarity Agent is live",
+    "cta": "Read now",
+    "href": "/insights/ai-joins-the-boardroom-table"
+  },
+  "formEndpoint": ""
+}

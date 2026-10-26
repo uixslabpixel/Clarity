@@ -1,23 +1,22 @@
 ---
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CaseHero from '../../components/sections/CaseHero.astro';
 import ArticleBody from '../../components/sections/ArticleBody.astro';
-import Media from '../../components/ui/Media.astro';
 import CTA from '../../components/layout/CTA.astro';
-import { caseStudies } from '../../data/cases';
 
-export function getStaticPaths() {
-  return caseStudies.map((c) => ({ params: { slug: c.slug }, props: { cs: c } }));
+export async function getStaticPaths() {
+  const entries = await getCollection('caseStudies');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
-const { cs } = Astro.props;
-const toc = [
-  { id: 'bottleneck', label: 'The Institutional Bottleneck' },
-  { id: 'intervention', label: 'The Strategic Intervention' },
-  { id: 'outcomes', label: 'The Verified Outcomes' },
-];
+const { entry } = Astro.props;
+const cs = entry.data;
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, label: h.text }));
 ---
 <BaseLayout title={cs.shortTitle} description={cs.title} nav={{ active: '/case-studies' }}>
   <CaseHero
+    cover={cs.cover}
     area={cs.area}
     title={cs.shortTitle}
     metric={cs.metric}
@@ -29,20 +28,7 @@ const toc = [
     ]}
   />
   <ArticleBody toc={toc}>
-    <h2 id="bottleneck">The Institutional Bottleneck</h2>
-    <p>{cs.client} was operating on a legacy operational model developed over a decade prior. As market volatility increased, their fixed operational costs did not scale down proportionately, leading to severe financial leaks and structural inertia. Key threat indicators included an 11% drop in on-time delivery metrics and a bloated middle-management layer that delayed critical boardroom decisions.</p>
-    <p>Before our advisory entry, the organization attempted three internal restructuring initiatives, all of which failed due to a lack of objective, data-driven governance and an unwillingness to disrupt established internal politics.</p>
-    <h2 id="intervention">The Strategic Intervention</h2>
-    <p>We initiated our engagement by deploying a blind diagnostic sweep across all fulfillment nodes, mapping the true operational cost per unit without reliance on internal managerial reporting.</p>
-    <p>“We bypassed the corporate narrative and looked directly at the ledger and telemetry data. The bottleneck wasn't the supply chain mechanics; it was the governance approvals slowing down the mechanics.”</p>
-    <p>Our team engineered a data-driven process correction blueprint. We eliminated 3 tiers of redundant approval workflows and deployed a fractional COO to oversee the transition phase, ensuring that internal politics could not override mathematical operational necessity. Governance auditing tools were left in place to track compliance.</p>
-    <figure>
-      <Media tone="dark" class="mx-auto h-[300px] w-full max-w-[396px] bg-black" alt="Bar chart of efficiency velocity over the 180-day timeline" />
-      <figcaption>Efficiency velocity over 180-day timeline</figcaption>
-    </figure>
-    <h2 id="outcomes">The Verified Outcomes</h2>
-    <p>The intervention resulted in an immediate correction of the structural trajectory. By day 180, system telemetry output records demonstrated a consistent return to baseline efficiency metrics, while the balance sheet verified significant overhead reduction.</p>
-    <p>The client leadership officially signed off on the operational hand-back, having secured a fortified organizational structure capable of withstanding future market shocks without advisory dependence.</p>
+    <Content />
   </ArticleBody>
   <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />
 </BaseLayout>

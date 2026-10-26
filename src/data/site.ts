@@ -1,14 +1,7 @@
-export const site = {
-  name: 'Clarity',
-  tagline: 'Operational governance and fractional leadership for high-stakes enterprise transitions.',
-  owner: 'Slabpixel',
-  email: 'hello@clarity.com',
-  talentEmail: 'talent@clarity.com',
-  legalEmail: 'legal@clarity.com',
-  linkedin: 'https://www.linkedin.com',
-  x: 'https://x.com',
-  announcement: { text: 'The Clarity Agent is live', cta: 'Read now', href: '/insights/ai-joins-the-boardroom-table' },
-};
+/** Global settings, edited in Keystatic under "Site Settings". */
+import settings from '../content/settings.json';
+
+export const site = settings;
 
 export const nav = [
   { label: 'About Us', href: '/about' },

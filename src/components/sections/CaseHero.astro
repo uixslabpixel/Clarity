@@ -9,8 +9,9 @@ interface Props {
   metric: string;
   metricLabel: string;
   meta: { label: string; value: string }[];
+  cover?: string | null;
 }
-const { area, title, metric, metricLabel, meta } = Astro.props;
+const { area, title, metric, metricLabel, meta, cover } = Astro.props;
 ---
 <section class="relative overflow-hidden bg-white pt-[61px]" data-section="HERO-07">
   <GradientWash class="inset-[-419px_0_675px_0]" />
@@ -25,7 +26,7 @@ const { area, title, metric, metricLabel, meta } = Astro.props;
     </div>
   </div>
   <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
-    <Media tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
+    <Media src={cover ?? undefined} tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
   <dl class="relative grid grid-cols-2 gap-6 px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))] pb-12 pt-8 md:flex md:items-end md:justify-between lg:pb-16">
     {

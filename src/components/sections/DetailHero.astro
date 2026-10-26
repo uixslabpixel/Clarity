@@ -8,8 +8,9 @@ interface Props {
   crumb: string;
   title: string;
   text: string;
+  cover?: string | null;
 }
-const { parent, crumb, title, text } = Astro.props;
+const { parent, crumb, title, text, cover } = Astro.props;
 ---
 <section class="relative overflow-hidden bg-white pb-12 pt-[61px] lg:pb-16" data-section="HERO-06">
   <GradientWash class="inset-[-419px_0_607px_0]" />
@@ -21,6 +22,6 @@ const { parent, crumb, title, text } = Astro.props;
     <p class="t-b3 max-w-[500px] text-ink-2 lg:flex-1">{text}</p>
   </div>
   <div class="relative px-4 md:px-10 lg:px-[max(40px,calc((100%-1132px)/2))]">
-    <Media tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
+    <Media src={cover ?? undefined} tone="duotone" class="h-[260px] w-full bg-black md:h-[400px] lg:h-[480px]" loading="eager" />
   </div>
 </section>

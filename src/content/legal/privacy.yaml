@@ -1,0 +1,11 @@
+label: "Privacy Policy"
+title: "Privacy Policy"
+intro: "How Clarity collects, processes, and protects personal and organizational data across advisory engagements and this website."
+revised: "October 2026"
+sections:
+  - heading: "Information We Collect"
+    body: "We collect the details you submit through our forms — name, company, role, email and phone — alongside basic, anonymized analytics about how the site is used."
+  - heading: "How We Use It"
+    body: "Submitted information is used solely to respond to inquiries, scope engagements, and send briefings you have opted into. We never sell or rent personal data."
+  - heading: "Retention & Your Rights"
+    body: "Inquiry data is retained for 24 months unless an engagement begins. You may request access, correction, or deletion at any time by contacting our compliance team."

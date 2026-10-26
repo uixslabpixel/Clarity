@@ -1,6 +1,8 @@
 ---
 /** NEWSLETTER-01 — "Subscribe to Clarity Brief" on the gradient wash (Blog). */
 import GradientWash from '../ui/GradientWash.astro';
+import FormMeta from '../forms/FormMeta.astro';
+import { formAttrs } from '../../lib/forms';
 ---
 <section class="relative overflow-hidden bg-white px-4 pb-24 pt-24 md:px-10 lg:h-[584px] lg:pb-0 lg:pt-[184px]" data-section="NEWSLETTER-01">
   <GradientWash from="bottom" class="inset-[291px_0_-411px_0]" />
@@ -9,9 +11,10 @@ import GradientWash from '../ui/GradientWash.astro';
       <h2 class="t-h2">Subscribe to Clarity Brief</h2>
       <p class="t-b4 mx-auto max-w-[560px] text-ink-2">Weekly report on institutional performance, management strategy, risks, and governance sent to select leaders.</p>
     </div>
-    <form class="flex w-full flex-col items-stretch gap-2 md:w-auto md:flex-row md:items-center" data-newsletter>
+    <form class="flex w-full flex-col items-stretch gap-2 md:w-auto md:flex-row md:items-center" data-newsletter {...formAttrs('newsletter')}>
+  <FormMeta name="newsletter" />
       <label for="brief-email" class="sr-only">Email address</label>
-      <input id="brief-email" type="email" required placeholder="Secure Corporate Email Address" class="t-b4 h-12 w-full rounded-full md:w-[376px] border border-line bg-white/60 px-4 outline-none placeholder:text-ink-4 focus:border-black/40" />
+      <input id="brief-email" name="email" type="email" required placeholder="Secure Corporate Email Address" class="t-b4 h-12 w-full rounded-full md:w-[376px] border border-line bg-white/60 px-4 outline-none placeholder:text-ink-4 focus:border-black/40" />
       <button type="submit" class="t-b4 h-12 rounded-full bg-black px-4 text-white transition-colors hover:bg-zinc-600">Join Executive Roster</button>
     </form>
   </div>

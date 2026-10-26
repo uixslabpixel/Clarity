@@ -1,0 +1,16 @@
+---
+/** Captioned image inside article bodies (`{% figure %}` in Markdoc). */
+import Media from '../ui/Media.astro';
+interface Props {
+  src?: string;
+  alt?: string;
+  caption?: string;
+  height?: number;
+  width?: number;
+}
+const { src, alt = '', caption, height = 312, width } = Astro.props;
+---
+<figure>
+  <Media src={src} tone={width ? 'dark' : 'duotone'} alt={alt} class="mx-auto w-full max-md:!h-[220px]" style={`height:${height}px;${width ? `max-width:${width}px` : ''}`} />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

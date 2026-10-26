@@ -1,0 +1,12 @@
+---
+/** Pull quote inside article bodies (`{% quote %}` in Markdoc). */
+interface Props {
+  quote: string;
+  cite?: string;
+}
+const { quote, cite } = Astro.props;
+---
+<blockquote>
+  <p>{quote}</p>
+  {cite && <cite>{cite}</cite>}
+</blockquote>

@@ -1,8 +1,9 @@
 /**
- * Seed content taken from the Figma design. In step 5 these move into
- * Keystatic-managed content collections; components already consume them
- * through props so the swap is mechanical.
+ * Section copy. Team, briefings and testimonials come from Keystatic
+ * collections; the remaining arrays are template copy edited in code.
  */
+import { getCollection } from 'astro:content';
+import { allPosts } from './posts';
 
 export const clients = ['Veeta', 'Owlearn', 'Deepstack', 'Wellnex', 'Botanic', 'Sonance', 'Vexum'];
 
@@ -90,63 +91,12 @@ export const process = [
   { title: 'Governance Auditing', text: 'Implementation of continuous automated auditing layers to lock in operational efficiency loops permanently.' },
 ];
 
-export const team = [
-  {
-    name: 'Arthur Sterling',
-    role: 'Senior Partner, Corporate Strategy',
-    bio: 'Former CEO of global industrials. Orchestrated a $2.4B structural turnaround. Specialist in aggressive board-level scenario planning.',
-  },
-  {
-    name: 'Eleanor Vance',
-    role: 'Managing Director, Operations',
-    bio: 'Architected supply chain fortification protocols for Fortune 100 networks. Master of workflow automation alignment.',
-  },
-  {
-    name: 'Marcus Reed',
-    role: 'Fractional Executive Partner',
-    bio: 'Deployed as interim CFO across 6 major M&A transitions. Specialized in extreme-scale capital reallocation.',
-  },
-  {
-    name: 'Helena Rousseau',
-    role: 'Principal, Risk & Compliance',
-    bio: 'Led compliance overhauls for three cross-border financial groups. Expert in regulatory scenario mapping.',
-  },
-];
+export const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order).map(({ id, data }) => ({ ...data, slug: id }));
 
-export const posts = [
-  {
-    slug: 'integrating-ai-into-fiduciary-oversight',
-    title: 'Integrating AI into fiduciary oversight',
-    category: 'Risk & Compliance',
-    date: '18/06/26',
-    author: 'Jhon Vick',
-    excerpt: 'Examining the legal and operational ramifications of deploying machine learning models in executive workflows.',
-  },
-  {
-    slug: 'navigating-sudden-c-suite-transitions',
-    title: 'Navigating sudden C-suite transitions',
-    category: 'Executive Leadership',
-    date: '18/06/26',
-    author: 'Helena Rousseau',
-    excerpt: 'A tactical framework for boards to stabilize operations, deploy interim assets, and manage stakeholder confidence.',
-  },
-  {
-    slug: 'fortifying-macro-supply-chain-bottlenecks',
-    title: 'Fortifying macro supply chain bottlenecks',
-    category: 'Operational Audit',
-    date: '18/06/26',
-    author: 'Jonathan Kane',
-    excerpt: 'Examining the legal and operational ramifications of deploying machine learning models in logistics networks.',
-  },
-];
+/** Latest three briefings (the featured one is reserved for the Insights hero). */
+export const posts = allPosts.filter((p) => !p.featured).slice(0, 3);
 
-export const testimonials = [
-  {
-    quote: '“Clarity stripped the operational theater away from our restructuring strategy. What remained was pure, highly predictable executive execution.”',
-    name: 'Vicky Vick',
-    role: 'Chief Financial Officer',
-  },
-];
+export const testimonials = (await getCollection('testimonials')).map(({ data }) => data);
 
 export const frictionPoints = [
   'Supply chain fragility',
