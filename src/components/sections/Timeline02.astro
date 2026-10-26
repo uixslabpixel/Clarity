@@ -1,6 +1,7 @@
 ---
 /** TIMELINE-02 — three year columns over a tick ruler; the active one expands with copy + image (About 2). */
 import Media from '../ui/Media.astro';
+import { img } from '../../data/images';
 interface Item {
   year: string;
   title: string;
@@ -39,7 +40,7 @@ const Ticks = (_on: boolean) => Array.from({ length: 15 });
                 <span class="w-px shrink-0 bg-line" />
                 <div class="flex h-[259px] min-w-0 flex-1 flex-col justify-between pt-10">
                   <p class="t-b3 text-ink-2">{m.text}</p>
-                  <Media tone="duotone" class="h-[128px] w-full" />
+                  <Media src={img.towerRound} sizes="420px" tone="duotone" class="h-[128px] w-full" />
                 </div>
               </div>
             </div>

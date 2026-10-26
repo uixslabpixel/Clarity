@@ -7,6 +7,7 @@ import GradientWash from '../ui/GradientWash.astro';
 import Media from '../ui/Media.astro';
 import NewsletterInput from '../ui/NewsletterInput.astro';
 import { site, legalLinks } from '../../data/site';
+import { img } from '../../data/images';
 
 export type FooterVariant = 'boxed' | 'dark' | 'plain';
 interface Props {
@@ -91,6 +92,7 @@ const copyright = `© ${year} Clarity by ${site.owner}. All rights reserved.`;
   variant === 'dark' && (
     <footer class="relative overflow-hidden bg-black px-4 pb-40 pt-24 text-white md:px-10 lg:pb-[280px] lg:pt-[144px]">
       <Media
+        src={img.towersBlue}
         tone="dark"
         class="absolute inset-x-0 bottom-0 h-[680px] opacity-60 [mask-image:linear-gradient(to_bottom,transparent,black_70%)]"
       />

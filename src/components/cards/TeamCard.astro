@@ -5,13 +5,14 @@ interface Props {
   role: string;
   class?: string;
   height?: number;
+  photo?: string | null;
 }
-const { name, role, class: cls = '', height = 470 } = Astro.props;
+const { name, role, class: cls = '', height = 470, photo } = Astro.props;
 ---
 <article data-reveal class={`relative flex min-w-0 flex-col justify-between md:flex-1 overflow-hidden rounded border border-line bg-white/0 p-6 ${cls}`} style={`height:${height}px`}>
   <div class="relative z-10 flex flex-col gap-2">
     <h3 class="t-h5">{name}</h3>
     <p class="t-b3 text-ink-2">{role}</p>
   </div>
-  <Media class="absolute inset-x-0 bottom-0 mx-auto h-[300px] w-[260px] rounded-t-full [mask-image:linear-gradient(to_bottom,black_70%,transparent)]" alt={`Portrait of ${name}`} />
+  <Media src={photo ?? undefined} sizes="260px" class={`absolute inset-x-0 bottom-0 mx-auto h-[300px] w-[260px] object-top [mask-image:linear-gradient(to_bottom,black_70%,transparent)] ${photo ? '' : 'rounded-t-full'}`} alt={`Portrait of ${name}`} />
 </article>

@@ -1,5 +1,6 @@
 ---
 import Media from './Media.astro';
+import { avatars } from '../../data/images';
 interface Props {
   count?: number;
   size?: number;
@@ -7,5 +8,5 @@ interface Props {
 const { count = 5, size = 31 } = Astro.props;
 ---
 <div class="flex shrink-0" aria-hidden="true">
-  {Array.from({ length: count }).map((_, i) => <Media class="rounded-full ring-2 ring-white" tone={i % 2 ? 'light' : 'duotone'} style={`width:${size}px;height:${size}px;margin-left:${i ? -10 : 0}px`} />)}
+  {Array.from({ length: count }).map((_, i) => <Media src={avatars[i % avatars.length]} sizes="64px" alt="" class="rounded-full ring-2 ring-white" tone={i % 2 ? 'light' : 'duotone'} style={`width:${size}px;height:${size}px;margin-left:${i ? -10 : 0}px`} />)}
 </div>

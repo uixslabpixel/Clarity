@@ -6,9 +6,11 @@ import Hatch from '../ui/Hatch.astro';
 interface Props {
   blocks: { heading: string; text: string }[];
   card?: { title: string; text: string; cta: string; note: string };
+  image?: string | null;
 }
 const {
   blocks,
+  image,
   card = {
     title: 'Direct Strategic Access',
     text: 'We create a milestone plan focusing on automation and efficiency.',
@@ -31,7 +33,7 @@ const {
       }
     </div>
     <aside class="flex min-w-0 lg:sticky lg:top-24 lg:w-[320px] xl:w-auto xl:flex-1 flex-col gap-6 border border-line">
-      <Media tone="duotone" class="h-[128px] w-full bg-black/20" />
+      <Media src={image} sizes="360px" tone="duotone" class="h-[128px] w-full bg-black/20" />
       <div class="flex flex-col gap-8 px-6 pb-6">
         <div class="flex flex-col gap-4">
           <h3 class="t-h5 truncate">{card.title}</h3>

@@ -2,6 +2,7 @@
 /** REACH-01 — arc of tilted image tiles framing the heading + stats (About 1). */
 import Eyebrow from '../ui/Eyebrow.astro';
 import { reachStats } from '../../data/about';
+import { reachImages } from '../../data/images';
 const spokes = [15, -177.5, -152.5, 170, -140, 157.26, -127.26, 144, -114, 131, -101, 118, -88, 105];
 ---
 <section class="relative h-[880px] overflow-hidden md:h-[688px] bg-white" data-section="REACH-01">
@@ -9,8 +10,8 @@ const spokes = [15, -177.5, -152.5, 170, -140, 157.26, -127.26, 144, -114, 131, 
     {
       spokes.map((deg, i) => (
         <div class="absolute left-1/2 top-0 flex h-full w-[93px] -translate-x-1/2 flex-col justify-between" style={`transform: translateX(-50%) rotate(${deg}deg)`}>
-          <span class={`block h-[93px] w-[93px] border border-black/10 ${i % 3 === 0 ? 'bg-zinc-600/70' : 'bg-black/10'}`} />
-          <span class={`block h-[93px] w-[93px] border border-black/10 ${i % 2 === 0 ? 'bg-zinc-600/70' : 'bg-black/10'}`} />
+          <span class={`block h-[93px] w-[93px] border border-black/10 bg-cover bg-center ${i % 3 === 0 ? 'bg-zinc-600/70' : 'bg-black/10'}`} style={`background-image:url(${reachImages[i % reachImages.length].replace('.webp', '-800.webp')})`} />
+          <span class={`block h-[93px] w-[93px] border border-black/10 bg-cover bg-center ${i % 2 === 0 ? 'bg-zinc-600/70' : 'bg-black/10'}`} style={`background-image:url(${reachImages[(i + 1) % reachImages.length].replace('.webp', '-800.webp')})`} />
         </div>
       ))
     }

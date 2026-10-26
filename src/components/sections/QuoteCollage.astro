@@ -3,6 +3,7 @@
 import Eyebrow from '../ui/Eyebrow.astro';
 import Media from '../ui/Media.astro';
 import Icon from '../ui/Icon.astro';
+import { img } from '../../data/images';
 const tiles = [
   { left: 97, top: -55.5 }, { left: 97, top: 121.5, photo: true }, { left: 97, top: 298.5 },
   { left: -80, top: -143.5 }, { left: -80, top: 33.5 }, { left: -80, top: 210.5 }, { left: -80, top: 387.5 },
@@ -15,7 +16,7 @@ const tiles = [
       {
         tiles.map((t) =>
           t.photo ? (
-            <Media class="absolute size-[161px] rounded-lg" style={`left:${t.left}px;top:${t.top}px`} />
+            <Media src={img.portraitOffice} sizes="161px" class="absolute size-[161px] rounded-lg" style={`left:${t.left}px;top:${t.top}px`} />
           ) : (
             <span class="absolute size-[161px] rounded-lg border border-line bg-black/[.04]" style={`left:${t.left}px;top:${t.top}px`} />
           ),

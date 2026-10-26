@@ -5,6 +5,7 @@ import Icon from '../ui/Icon.astro';
 import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { principles } from '../../data/about';
+import { img } from '../../data/images';
 ---
 <section class="relative bg-white px-4 pb-12 pt-24 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] lg:pb-[98px] lg:pt-[138px]" data-section="PRINCIPLE-01">
   <Hatch class="absolute inset-x-0 top-0" />
@@ -31,9 +32,9 @@ import { principles } from '../../data/about';
       </ul>
     </div>
     <div class="flex w-full shrink-0 flex-col gap-4 self-stretch lg:w-[575px]">
-      <Media data-reveal="media" class="h-[240px] w-full md:h-[350px]" />
-      <Media tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:flex-1" />
-      <Media tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:flex-1" />
+      <Media src={img.meetingPresentation} data-reveal="media" class="h-[240px] w-full md:h-[350px]" />
+      <Media src={img.teamTable} tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:grow lg:basis-0" />
+      <Media src={img.teamTableDark} tone="dark" class="h-[120px] w-full opacity-80 md:h-[160px] lg:h-auto lg:min-h-0 lg:grow lg:basis-0" />
     </div>
   </div>
 </section>

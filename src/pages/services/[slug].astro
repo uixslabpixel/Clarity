@@ -15,7 +15,7 @@ const { service } = Astro.props;
 ---
 <BaseLayout title={service.title} description={service.text} nav={{ active: '/services' }}>
   <DetailHero parent={{ label: 'Services', href: '/services' }} crumb={service.title} title={service.title} text={service.text} cover={service.cover} />
-  <ServiceBody blocks={service.blocks} card={service.card} />
+  <ServiceBody blocks={service.blocks} card={service.card} image={service.cover} />
   <Stats04 />
   <CaseProof />
   <Faq />

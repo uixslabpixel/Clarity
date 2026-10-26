@@ -3,6 +3,7 @@
 import Media from '../ui/Media.astro';
 import Wordmark from '../ui/Wordmark.astro';
 import ClientLogo from '../ui/ClientLogo.astro';
+import { img } from '../../data/images';
 ---
 <section class="overflow-hidden bg-white py-12 md:py-20" data-section="CASE-06">
   <div class="[mask-image:linear-gradient(to_right,transparent_0%,black_26%,black_74%,transparent_100%)]">
@@ -12,7 +13,7 @@ import ClientLogo from '../ui/ClientLogo.astro';
       Array.from({ length: 10 }).map((_, i) =>
         i % 5 === 2 ? (
           <article class="relative flex h-[340px] w-[250px] md:h-[430px] md:w-[320px] mr-4 shrink-0 md:mr-8 flex-col justify-end overflow-hidden rounded bg-black/[.04] p-6">
-            <Media class="absolute inset-0 size-full" />
+            <Media src={img.portraitOffice} sizes="320px" class="absolute inset-0 size-full" />
             <div class="relative flex items-center gap-[11px] text-white">
               <Wordmark size={22} />
               <span class="h-[22px] w-px bg-white/40" />

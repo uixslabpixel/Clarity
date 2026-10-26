@@ -4,6 +4,7 @@ import Eyebrow from '../ui/Eyebrow.astro';
 import Button from '../ui/Button.astro';
 import Media from '../ui/Media.astro';
 import { process } from '../../data/content';
+import { processImages } from '../../data/images';
 ---
 <section class="bg-white px-4 py-12 md:px-10 md:py-20 lg:px-[max(40px,calc((100%-1200px)/2))]" data-section="PROCESS-02">
   <div class="mx-auto flex max-w-[1200px] flex-col gap-10 lg:gap-16">
@@ -19,7 +20,7 @@ import { process } from '../../data/content';
       <ol class="flex flex-col lg:w-[380px] lg:shrink-0">
         {
           process.map((step, i) => (
-            <li class="group relative flex flex-col gap-8 border-t border-line data-open:bg-gradient-to-b data-open:from-transparent data-open:to-black/5" data-accordion-item data-open={i === 0 ? '' : undefined}>
+            <li class="group relative flex flex-col gap-8 border-t border-line data-open:bg-gradient-to-b data-open:from-transparent data-open:to-black/5" data-accordion-item data-image={processImages[i % processImages.length]} data-open={i === 0 ? '' : undefined}>
               <span class="absolute -top-px left-0 h-px w-full origin-left bg-black" style={`transform:scaleX(${i === 0 ? 0.5 : 0})`} data-progress />
               <div class="flex flex-col px-4 pb-6 pt-6 md:px-8 md:pb-8 lg:pt-0">
                 <button type="button" class="t-h5 text-left" data-accordion-trigger>{step.title}</button>
@@ -31,7 +32,7 @@ import { process } from '../../data/content';
           ))
         }
       </ol>
-      <Media data-reveal="media" class="h-[320px] rounded md:h-[480px] lg:h-auto lg:min-h-[480px] lg:flex-1" />
+      <Media src={processImages[0]} data-accordion-image data-reveal="media" class="h-[320px] rounded md:h-[480px] lg:h-auto lg:min-h-[480px] lg:min-w-0 lg:grow lg:basis-0" />
     </div>
   </div>
 </section>

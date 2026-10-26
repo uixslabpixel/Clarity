@@ -6,10 +6,11 @@ import Icon from '../ui/Icon.astro';
 import ClientLogo from '../ui/ClientLogo.astro';
 import { clients } from '../../data/content';
 import { site } from '../../data/site';
+import { img } from '../../data/images';
 const marquee = [...clients, ...clients];
 ---
 <section class="relative flex min-h-[760px] flex-col justify-end overflow-hidden bg-black px-4 pb-24 pt-40 text-white md:min-h-[860px] md:px-10 lg:block lg:h-[900px] lg:min-h-0 lg:p-0" data-section="HERO-02">
-  <Media tone="dark" class="absolute inset-0 size-full scale-110" loading="eager" data-parallax="60" />
+  <Media src={img.officeBw} tone="dark" class="absolute inset-0 size-full scale-110" loading="eager" data-parallax="60" />
   <div class="absolute inset-0 bg-[linear-gradient(236.58deg,transparent_10.7%,rgb(0_0_0/.4)_63.67%)]"></div>
   <div class="relative flex flex-col gap-10 lg:absolute lg:left-1/2 lg:top-[438px] lg:w-[min(1360px,calc(100%-80px))] lg:-translate-x-1/2 lg:flex-row lg:items-end lg:justify-between">
     <div class="flex flex-col gap-8 lg:w-[710px]">
@@ -31,7 +32,7 @@ const marquee = [...clients, ...clients];
       </div>
     </div>
     <button type="button" data-video-card data-reveal class="group relative h-[164px] w-[254px] shrink-0 overflow-hidden rounded border border-white/10 bg-white/10 text-left backdrop-blur-[20px]">
-      <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-105" />
+      <Media src={img.heroTowers} sizes="260px" tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-105" />
       <span class="absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-black/20 p-4">
         <span class="t-b4">Enterprise Alpha governance.</span>
         <span class="flex items-center gap-2">

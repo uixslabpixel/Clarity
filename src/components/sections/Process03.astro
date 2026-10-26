@@ -6,6 +6,7 @@ import Icon from '../ui/Icon.astro';
 import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { process } from '../../data/content';
+import { processImages } from '../../data/images';
 ---
 <section class="bg-white px-4 pb-12 pt-12 md:px-10 md:pb-[60px] md:pt-20" data-section="PROCESS-03">
   <div class="mx-auto flex max-w-[1360px] flex-col gap-10 lg:gap-16">
@@ -39,7 +40,7 @@ import { process } from '../../data/content';
                 <h3 class="t-h5">{step.title}</h3>
                 <p class="t-b3 text-ink-2">{step.text}</p>
               </div>
-              <Media class="h-[220px] w-full shrink-0 md:size-[260px]" />
+              <Media src={processImages[i % processImages.length]} sizes="(min-width: 768px) 260px, 100vw" class="h-[220px] w-full shrink-0 md:size-[260px]" alt="" />
             </article>
           ))
         }

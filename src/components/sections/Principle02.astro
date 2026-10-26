@@ -4,6 +4,7 @@ import Eyebrow from '../ui/Eyebrow.astro';
 import Button from '../ui/Button.astro';
 import Media from '../ui/Media.astro';
 import { principles } from '../../data/about';
+import { img } from '../../data/images';
 ---
 <section class="bg-white px-4 py-12 md:px-10 md:py-20" data-section="PRINCIPLE-02">
   <div class="mx-auto flex max-w-[1360px] flex-col gap-10 lg:gap-16">
@@ -29,7 +30,7 @@ import { principles } from '../../data/about';
           ))
         }
       </ol>
-      <Media data-reveal="media" class="h-[320px] md:h-[480px] lg:h-auto lg:flex-1" />
+      <Media src={img.meetingPresentation} data-reveal="media" class="h-[320px] md:h-[480px] lg:h-auto lg:min-w-0 lg:grow lg:basis-0" />
     </div>
   </div>
 </section>

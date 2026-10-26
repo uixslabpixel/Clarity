@@ -19,7 +19,7 @@ const { post } = Astro.props;
       <p class="t-b3 text-ink-2">{post.excerpt}</p>
     </div>
     <div class="relative h-[260px] w-full shrink-0 md:h-[400px] lg:h-[444px] lg:w-[736px] overflow-hidden bg-black/20">
-      <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" loading="eager" />
+      <Media src={post.cover ?? undefined} sizes="(min-width: 1024px) 736px, 100vw" tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" loading="eager" />
       <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{post.category}</span>
     </div>
   </a>

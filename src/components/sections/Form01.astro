@@ -6,6 +6,7 @@ import AvatarStack from '../ui/AvatarStack.astro';
 import Media from '../ui/Media.astro';
 import Icon from '../ui/Icon.astro';
 import DemoForm from '../forms/DemoForm.astro';
+import { img } from '../../data/images';
 interface Props {
   variant?: 'light' | 'dark';
   width?: number;
@@ -18,7 +19,7 @@ const dark = variant === 'dark';
   {
     dark ? (
       <>
-        <Media tone="dark" class="absolute inset-0 size-full" />
+        <Media src={img.officeBw} tone="dark" class="absolute inset-0 size-full" />
         <div class="absolute inset-0 bg-black/40" />
         <button type="button" data-video-card aria-label="Play video" class="absolute bottom-5 right-5 grid size-6 place-items-center rounded-full bg-white/20">
           <Icon name="play" size={12} />

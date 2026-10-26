@@ -10,10 +10,7 @@ import { gsap, ScrollTrigger, $$, reducedMotion } from './env';
 
 export function initMotion() {
   initHeader();
-  if (reducedMotion()) {
-    gsap.set('[data-reveal]', { clearProps: 'all', autoAlpha: 1 });
-    return;
-  }
+  if (reducedMotion()) return; // reveal targets are only hidden by CSS when motion is allowed
   initReveals();
   initCounters();
   initParallax();

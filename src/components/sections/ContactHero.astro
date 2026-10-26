@@ -5,6 +5,7 @@ import GradientWash from '../ui/GradientWash.astro';
 import Media from '../ui/Media.astro';
 import Icon from '../ui/Icon.astro';
 import ContactForm from '../forms/ContactForm.astro';
+import { img } from '../../data/images';
 interface Props {
   variant?: 'light' | 'dark';
 }
@@ -15,7 +16,7 @@ const dark = variant === 'dark';
   {
     dark ? (
       <>
-        <Media tone="dark" class="absolute inset-0 size-full" loading="eager" />
+        <Media src={img.glassPrism} tone="dark" class="absolute inset-0 size-full" loading="eager" />
         <div class="absolute inset-0 bg-black/50" />
       </>
     ) : (

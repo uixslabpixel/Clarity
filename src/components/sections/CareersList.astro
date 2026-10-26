@@ -6,6 +6,7 @@ import Button from '../ui/Button.astro';
 import Media from '../ui/Media.astro';
 import { jobs, departments } from '../../data/careers';
 import { site } from '../../data/site';
+import { img } from '../../data/images';
 ---
 <section class="relative bg-white px-4 md:px-10 lg:px-[max(40px,calc((100%-1170px)/2))] pb-12 pt-24 lg:pb-20 lg:pt-[120px]" data-section="CAREERS-01">
   <Hatch class="absolute inset-x-0 top-0" />
@@ -37,7 +38,7 @@ import { site } from '../../data/site';
         }
       </div>
       <aside class="flex w-full shrink-0 lg:sticky lg:top-24 lg:w-[341px] flex-col gap-6 border border-line">
-        <Media class="h-[128px] w-full bg-black/20" />
+        <Media src={img.officeWhiteboardTeam} sizes="341px" class="h-[128px] w-full bg-black/20" />
         <div class="flex flex-col gap-8 px-6 pb-6">
           <div class="flex flex-col gap-4">
             <h3 class="t-h5">The Clarity Mandate</h3>

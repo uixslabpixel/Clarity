@@ -1,12 +1,14 @@
 ---
 import Media from './Media.astro';
 import Icon from './Icon.astro';
+import { img } from '../../data/images';
 interface Props {
   title?: string;
   duration?: string;
   class?: string;
+  image?: string;
 }
-const { title = 'Enterprise Alpha governance.', duration = '1:30', class: cls = '' } = Astro.props;
+const { title = 'Enterprise Alpha governance.', duration = '1:30', class: cls = '', image = img.officeBw } = Astro.props;
 ---
 <button
   type="button"
@@ -14,7 +16,7 @@ const { title = 'Enterprise Alpha governance.', duration = '1:30', class: cls = 
   data-reveal
   class={`flex items-start gap-2 rounded border border-white/10 bg-white/10 p-2 text-left backdrop-blur-[20px] transition-colors hover:bg-white/20 ${cls}`}
 >
-  <Media tone="dark" class="h-[77px] w-[109px] shrink-0 rounded-[2px]" />
+  <Media src={image} sizes="120px" tone="dark" class="h-[77px] w-[109px] shrink-0 rounded-[2px]" />
   <span class="flex flex-col justify-between self-stretch">
     <span class="t-b5 w-[104px] text-white">{title}</span>
     <span class="flex items-center gap-2">

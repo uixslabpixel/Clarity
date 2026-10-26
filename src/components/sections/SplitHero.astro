@@ -3,13 +3,15 @@
 import Breadcrumb from '../ui/Breadcrumb.astro';
 import GradientWash from '../ui/GradientWash.astro';
 import Media from '../ui/Media.astro';
+import { img } from '../../data/images';
 interface Props {
   crumb: string;
   meta?: string;
   title: string;
   text: string;
+  image?: string;
 }
-const { crumb, meta, title, text } = Astro.props;
+const { crumb, meta, title, text, image = img.facadeGrid } = Astro.props;
 ---
 <section class="relative overflow-hidden bg-white px-4 pb-4 pt-[60px] md:px-10 md:pb-10" data-section="HERO-05">
   <GradientWash class="inset-[-419px_0_652px_0]" />
@@ -23,5 +25,5 @@ const { crumb, meta, title, text } = Astro.props;
       <p class="t-b3 text-ink-2">{text}</p>
     </div>
   </div>
-  <Media data-reveal="media" tone="duotone" class="relative mx-auto h-[280px] w-full max-w-[1360px] md:h-[400px] lg:h-[480px]" loading="eager" />
+  <Media src={image} data-reveal="media" tone="duotone" class="relative mx-auto h-[280px] w-full max-w-[1360px] md:h-[400px] lg:h-[480px]" loading="eager" />
 </section>

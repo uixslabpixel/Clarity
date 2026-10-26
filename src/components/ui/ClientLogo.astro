@@ -1,13 +1,29 @@
 ---
-/** Client logo slot. Text stand-in until the SVG logos land in the asset pass. */
+/**
+ * Client logo. Known names render the vector logo from src/assets/logos
+ * (drop in `<name>.svg` to add one); anything else falls back to a wordmark.
+ * Logos inherit `currentColor`. `height` is the visual glyph height.
+ */
 interface Props {
   name: string;
   height?: number;
   class?: string;
 }
 const { name, height = 20, class: cls = '' } = Astro.props;
+const files = import.meta.glob<string>('../../assets/logos/*.svg', { query: '?raw', import: 'default', eager: true });
+const key = name.toLowerCase().replace(/[^a-z0-9]+/g, '');
+const svg = Object.entries(files).find(([path]) => path.endsWith(`/${key}.svg`))?.[1];
+// Exported frames are 28px tall with ~21px of glyph, so scale the frame to the requested glyph height.
+const frame = Math.round(height * (28 / 21));
+const markup = svg?.replace('<svg', `<svg role="img" aria-label="${name}" style="height:${frame}px;width:auto;display:block"`);
 ---
-<span class={`inline-flex shrink-0 items-center gap-1.5 font-heading leading-none ${cls}`} style={`font-size:${Math.round(height * 0.9)}px;height:${height}px`} data-logo={name}>
-  <span class="inline-block rounded-full bg-current opacity-80" style={`width:${height}px;height:${height}px`}></span>
-  {name.toLowerCase()}
-</span>
+{
+  markup ? (
+    <span class={`inline-flex shrink-0 items-center ${cls}`} style={`height:${height}px`} data-logo={name} set:html={markup} />
+  ) : (
+    <span class={`inline-flex shrink-0 items-center gap-1.5 font-heading leading-none ${cls}`} style={`font-size:${Math.round(height * 0.9)}px;height:${height}px`} data-logo={name}>
+      <span class="inline-block rounded-full bg-current opacity-80" style={`width:${height}px;height:${height}px`}></span>
+      {name.toLowerCase()}
+    </span>
+  )
+}

@@ -70,6 +70,7 @@ function setup(root: HTMLElement) {
     media.forEach((m, i) => m.toggleAttribute('data-open', i === next));
     animatePanel(panelOf(prev), false);
     animatePanel(panelOf(curr), true);
+    swapImage(curr.dataset.image);
     if (!userInteracted) play();
   }
 
@@ -79,12 +80,27 @@ function setup(root: HTMLElement) {
     const fade = panel.dataset.accordionPanel === 'fade';
     const d = reducedMotion() ? 0 : 0.5;
     if (fade) {
-      if (open) gsap.fromTo(panel, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: d, ease: 'power2.out', clearProps: 'all' });
+      if (open) gsap.fromTo(panel, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: d, ease: 'power2.out', clearProps: 'opacity,visibility,transform,height' });
       return;
     }
     gsap.killTweensOf(panel);
     if (open) gsap.fromTo(panel, { height: panel.offsetHeight }, { height: 'auto', duration: d, ease: 'power3.inOut' });
     else gsap.to(panel, { height: 0, duration: d, ease: 'power3.inOut' });
+  }
+
+  /** Optional shared image ([data-accordion-image]) that follows the open item's data-image. */
+  function swapImage(src?: string) {
+    const img = root.querySelector<HTMLImageElement>('img[data-accordion-image]');
+    if (!img || !src || img.getAttribute('src') === src) return;
+    gsap.to(img, {
+      autoAlpha: 0.2,
+      duration: reducedMotion() ? 0 : 0.25,
+      onComplete: () => {
+        img.removeAttribute('srcset');
+        img.src = src;
+        gsap.to(img, { autoAlpha: 1, duration: reducedMotion() ? 0 : 0.45 });
+      },
+    });
   }
 
   function resetProgress(item: HTMLElement, value: number) {
@@ -122,10 +138,10 @@ function animateDetails(details: HTMLDetailsElement) {
     if (reducedMotion()) return;
     e.preventDefault();
     if (details.open) {
-      gsap.to(body, { height: 0, opacity: 0, duration: 0.35, ease: 'power2.inOut', onComplete: () => { details.open = false; gsap.set(body, { clearProps: 'all' }); } });
+      gsap.to(body, { height: 0, opacity: 0, duration: 0.35, ease: 'power2.inOut', onComplete: () => { details.open = false; gsap.set(body, { clearProps: 'opacity,visibility,transform,height' }); } });
     } else {
       details.open = true;
-      gsap.from(body, { height: 0, opacity: 0, duration: 0.45, ease: 'power2.out', clearProps: 'all' });
+      gsap.from(body, { height: 0, opacity: 0, duration: 0.45, ease: 'power2.out', clearProps: 'opacity,visibility,transform,height' });
     }
   });
 }

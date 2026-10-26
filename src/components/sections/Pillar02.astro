@@ -5,6 +5,7 @@ import Icon from '../ui/Icon.astro';
 import Media from '../ui/Media.astro';
 import Hatch from '../ui/Hatch.astro';
 import { pillars } from '../../data/content';
+import { img } from '../../data/images';
 ---
 <section class="bg-white px-4 py-12 md:px-10 md:py-20 lg:px-[max(40px,calc((100%-1200px)/2))] lg:pb-[60px] lg:pt-[98px]" data-section="PILLAR-02">
   <div class="mx-auto max-w-[1200px]">
@@ -31,7 +32,7 @@ import { pillars } from '../../data/content';
           }
         </div>
       </div>
-      <Media data-reveal="media" tone="dark" class="h-[420px] w-full shrink-0 md:h-[560px] lg:h-[713px] lg:w-[410px]" />
+      <Media src={img.meetingLaptop} sizes="(min-width: 1024px) 410px, 100vw" data-reveal="media" tone="dark" class="h-[420px] w-full shrink-0 md:h-[560px] lg:h-[713px] lg:w-[410px]" />
     </div>
     <Hatch />
   </div>

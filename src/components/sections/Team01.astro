@@ -21,10 +21,9 @@ const { eyebrow = 'Teams', title = 'Led by Experienced Practitioners' } = Astro.
       {
         team.map((m) => (
           <article data-reveal class="relative h-[520px] w-[calc(100vw-32px)] max-w-[480px] shrink-0 snap-start overflow-hidden lg:h-[600px] lg:w-[480px]">
-            <Media
-              class="absolute left-1/2 top-[130px] size-[min(430px,100%)] -translate-x-1/2 lg:left-[50px] lg:top-[169px] lg:size-[430px] lg:translate-x-0 [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
-              alt={`Portrait of ${m.name}`}
-            />
+            <div class="absolute left-1/2 top-[130px] size-[min(430px,100%)] -translate-x-1/2 lg:left-[50px] lg:top-[169px] lg:size-[430px] lg:translate-x-0 overflow-hidden [mask-image:radial-gradient(closest-side,black_55%,transparent)]">
+              <Media src={m.photo ?? undefined} sizes="760px" class="absolute left-[-46%] top-[-51.6%] h-[261%] w-[174%] max-w-none" alt={`Portrait of ${m.name}`} />
+            </div>
             <div class="absolute left-4 top-[41px] flex items-center gap-6 lg:left-0">
               <span class="hidden h-[52px] w-px bg-black/20 lg:block" />
               <div class="flex w-[275px] flex-col gap-2">

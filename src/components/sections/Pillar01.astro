@@ -4,6 +4,7 @@ import Eyebrow from '../ui/Eyebrow.astro';
 import Icon from '../ui/Icon.astro';
 import Media from '../ui/Media.astro';
 import { pillars } from '../../data/content';
+import { pillarImages } from '../../data/images';
 
 interface Props {
   eyebrow?: string;
@@ -28,7 +29,7 @@ const { eyebrow = 'Core pillars', title = 'Core Pillars of Architecture', items 
             class="min-h-0 basis-0 grow overflow-hidden rounded opacity-30 transition-[flex-basis,flex-grow,opacity] duration-700 ease-[cubic-bezier(.65,0,.35,1)] data-open:shrink-0 data-open:grow-0 data-open:basis-[168px] data-open:opacity-100 lg:data-open:basis-[519px]"
             data-open={i === 0 ? '' : undefined}
           >
-            <Media tone="dark" class="size-full" alt={item.title} />
+            <Media src={pillarImages[i % pillarImages.length]} sizes="(min-width: 1024px) 575px, 100vw" tone="dark" class="size-full" alt={item.title} />
           </div>
         ))
       }

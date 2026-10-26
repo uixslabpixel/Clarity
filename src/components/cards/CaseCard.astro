@@ -6,12 +6,13 @@ interface Props {
   title: string;
   href: string;
   class?: string;
+  cover?: string | null;
 }
-const { tag, title, href, class: cls = '' } = Astro.props;
+const { tag, title, href, class: cls = '', cover } = Astro.props;
 ---
 <article data-reveal class={`group flex min-w-0 flex-col overflow-hidden border border-line bg-white ${cls}`}>
   <div class="relative h-[220px] overflow-hidden md:h-[280px]">
-    <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-[1.03]" />
+    <Media src={cover ?? undefined} sizes="(min-width: 768px) 560px, 100vw" tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-[1.03]" />
     <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{tag}</span>
   </div>
   <div class="flex flex-col items-start gap-6 p-6">
