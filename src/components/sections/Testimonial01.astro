@@ -1,0 +1,26 @@
+---
+/** TESTI-01 — split testimonial: photo left, quote right, arrows (Home 1). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import SliderNav from '../ui/SliderNav.astro';
+import Media from '../ui/Media.astro';
+import { testimonials } from '../../data/content';
+const t = testimonials[0];
+---
+<section class="bg-white px-[135px] py-[90px]" data-section="TESTI-01">
+  <div class="mx-auto flex max-w-[1170px] flex-col gap-8">
+    <div class="flex items-center justify-between">
+      <Eyebrow>Customer spotlight</Eyebrow>
+      <SliderNav />
+    </div>
+    <figure class="flex items-center overflow-hidden rounded border border-line" data-slider>
+      <Media class="h-[435px] min-w-0 flex-1" alt={`Photo of ${t.name}`} />
+      <div class="flex h-[435px] min-w-0 flex-1 flex-col justify-between p-16">
+        <blockquote class="t-b1 text-black">{t.quote}</blockquote>
+        <figcaption class="t-b3 flex flex-col gap-2">
+          <span class="text-black">{t.name}</span>
+          <span class="text-ink-2">{t.role}</span>
+        </figcaption>
+      </div>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+---
+import Media from './Media.astro';
+interface Props {
+  count?: number;
+  size?: number;
+}
+const { count = 5, size = 31 } = Astro.props;
+---
+<div class="flex shrink-0" aria-hidden="true">
+  {Array.from({ length: count }).map((_, i) => <Media class="rounded-full ring-2 ring-white" tone={i % 2 ? 'light' : 'duotone'} style={`width:${size}px;height:${size}px;margin-left:${i ? -10 : 0}px`} />)}
+</div>

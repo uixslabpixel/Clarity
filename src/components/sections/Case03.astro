@@ -1,0 +1,61 @@
+---
+/** CASE-03 — testimonial-style case card with two metrics and slider controls (Home 3). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Media from '../ui/Media.astro';
+import Wordmark from '../ui/Wordmark.astro';
+import ClientLogo from '../ui/ClientLogo.astro';
+import Icon from '../ui/Icon.astro';
+import { testimonials } from '../../data/content';
+const t = testimonials[0];
+const metrics = [
+  { value: '34%', label: 'Average efficiency gain across clients.' },
+  { value: '$42M+', label: 'Restructuring overhead costs mitigated.' },
+];
+---
+<div class="flex w-full flex-col items-center gap-14" data-section="CASE-03">
+  <div class="flex w-[700px] flex-col items-center gap-3.5 text-center">
+    <Eyebrow>Case study</Eyebrow>
+    <h2 class="t-h2">Featured Proof of Concept</h2>
+  </div>
+  <div class="flex w-full flex-col gap-6" data-slider>
+    <article class="flex w-full flex-col gap-[88px] overflow-hidden rounded border border-line p-8">
+      <div class="flex items-start justify-between">
+        <div class="flex items-center gap-3">
+          <Media class="size-[50px] rounded-full" alt={`Photo of ${t.name}`} />
+          <div class="t-b3 flex flex-col gap-1">
+            <span>{t.name}</span>
+            <span class="text-ink-2">{t.role}</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-[11px]">
+          <Wordmark size={22} />
+          <span class="h-[22px] w-px bg-black/20"></span>
+          <ClientLogo name="Owlearn" height={19} />
+        </div>
+      </div>
+      <div class="flex max-w-[720px] flex-col gap-10">
+        <blockquote class="t-b1">{t.quote}</blockquote>
+        <div class="flex items-center gap-10">
+          {
+            metrics.map((m, i) => (
+              <>
+                {i > 0 && <span class="h-[59px] w-px bg-line" />}
+                <div class="flex flex-1 flex-col gap-2">
+                  <p class="t-h3">{m.value}</p>
+                  <p class="t-b3 text-ink-2">{m.label}</p>
+                </div>
+              </>
+            ))
+          }
+        </div>
+      </div>
+    </article>
+    <div class="flex items-center justify-between">
+      <button type="button" data-prev aria-label="Previous" class="grid size-6 place-items-center rounded-full bg-black/[.04]"><Icon name="chevron-left" size={12} /></button>
+      <div class="flex w-20 gap-1" data-dots>
+        {Array.from({ length: 5 }).map((_, i) => <span class={`h-[3px] flex-1 rounded-full ${i === 0 ? 'bg-black' : 'bg-black/20'}`} />)}
+      </div>
+      <button type="button" data-next aria-label="Next" class="grid size-6 place-items-center rounded-full bg-black text-white"><Icon name="chevron-right" size={12} /></button>
+    </div>
+  </div>
+</div>

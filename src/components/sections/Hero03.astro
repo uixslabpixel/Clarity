@@ -1,0 +1,33 @@
+---
+/** HERO-03 — inset rounded hero image under a minimal nav (Home 3). */
+import Media from '../ui/Media.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import VideoCard from '../ui/VideoCard.astro';
+import { site } from '../../data/site';
+---
+<section class="bg-white px-10 pb-10 pt-[60px]" data-section="HERO-03">
+  <div class="relative h-[804px] overflow-hidden rounded bg-black text-white">
+    <Media tone="duotone" class="absolute inset-0 size-full" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black/60"></div>
+    <div class="absolute left-10 top-1/2 flex w-[1280px] -translate-y-1/2 items-end justify-between">
+      <div class="flex w-[710px] flex-col gap-8">
+        <div class="flex flex-col gap-4">
+          <a href={site.announcement.href} class="group flex items-center gap-4">
+            <span class="t-b4">{site.announcement.text}</span>
+            <span class="flex items-center gap-1">
+              <span class="t-b4 text-paper-2 transition-colors group-hover:text-white">{site.announcement.cta}</span>
+              <span class="grid size-4 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
+            </span>
+          </a>
+          <h1 class="t-h1">Engineering Enterprise Alpha governance.</h1>
+        </div>
+        <div class="flex gap-4">
+          <Button href="/contact" variant="light">Book a Call</Button>
+          <Button href="/contact" variant="ghost-light" chevron={false}>Talk to Sales</Button>
+        </div>
+      </div>
+      <VideoCard />
+    </div>
+  </div>
+</section>

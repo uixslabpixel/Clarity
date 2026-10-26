@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+const { tone = 'light', class: cls = '' } = Astro.props;
+const prev = tone === 'dark' ? 'bg-white/10 text-white' : 'bg-black/5 text-black';
+const next = tone === 'dark' ? 'bg-white text-black' : 'bg-black text-white';
+---
+<div class={`flex items-center gap-2 ${cls}`}>
+  <button type="button" data-prev aria-label="Previous" class={`grid size-6 place-items-center rounded-full ${prev}`}>
+    <Icon name="chevron-left" size={10} />
+  </button>
+  <button type="button" data-next aria-label="Next" class={`grid size-6 place-items-center rounded-full ${next}`}>
+    <Icon name="chevron-right" size={10} />
+  </button>
+</div>

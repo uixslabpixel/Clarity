@@ -1,0 +1,21 @@
+---
+import Wordmark from '../ui/Wordmark.astro';
+import ClientLogo from '../ui/ClientLogo.astro';
+interface Props {
+  value: string;
+  label: string;
+  client: string;
+}
+const { value, label, client } = Astro.props;
+---
+<article class="flex h-[315px] w-[252px] shrink-0 flex-col justify-between overflow-hidden rounded border border-white/5 bg-white/5 p-6">
+  <div class="flex flex-col gap-6 text-paper-4">
+    <p class="t-h1">{value}</p>
+    <p class="t-b3 max-w-[350px]">{label}</p>
+  </div>
+  <div class="flex items-center gap-[11px] text-paper-4">
+    <Wordmark size={22} />
+    <span class="h-[22px] w-px bg-white/20"></span>
+    <ClientLogo name={client} height={19} />
+  </div>
+</article>

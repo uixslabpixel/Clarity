@@ -1,0 +1,21 @@
+---
+/**
+ * Brand peach→periwinkle wash. `from="top"` is opaque at the top and fades
+ * downward (page heroes, announcement bar); `from="bottom"` fades upward
+ * (CTAs, footer card). Mirrors the masked "square" layers in Figma.
+ */
+interface Props {
+  from?: 'top' | 'bottom';
+  class?: string;
+}
+const { from = 'top', class: cls = '' } = Astro.props;
+const dir = from === 'top' ? 'to bottom' : 'to top';
+const angle = from === 'top' ? '-105.21deg' : '-74.79deg';
+const mask = `linear-gradient(${dir}, rgb(0 0 0 / .6) 29%, transparent 99%)`;
+---
+<div
+  aria-hidden="true"
+  class={`pointer-events-none absolute ${cls}`}
+  style={`background-image: linear-gradient(${angle}, #9bacd8 61.52%, #fa8513 123.26%); -webkit-mask-image: ${mask}; mask-image: ${mask};`}
+>
+</div>

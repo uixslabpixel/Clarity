@@ -1,0 +1,14 @@
+---
+import Icon from '../ui/Icon.astro';
+import { site } from '../../data/site';
+interface Props {
+  tone?: 'light' | 'dark';
+}
+const { tone = 'light' } = Astro.props;
+const dark = tone === 'dark';
+---
+<div class={`flex items-center gap-2.5 ${dark ? 'text-white' : 'text-black'}`}>
+  <a href={site.x} aria-label="Clarity on X" class="opacity-70 transition-opacity hover:opacity-100"><Icon name="x" size={14} /></a>
+  <span class={`h-3.5 w-px ${dark ? 'bg-white/20' : 'bg-black/20'}`}></span>
+  <a href={site.linkedin} aria-label="Clarity on LinkedIn" class="opacity-70 transition-opacity hover:opacity-100"><Icon name="linkedin" size={14} /></a>
+</div>

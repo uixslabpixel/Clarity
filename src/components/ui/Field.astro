@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  label: string;
+  name: string;
+  type?: 'text' | 'email' | 'tel' | 'select' | 'textarea' | 'password';
+  placeholder?: string;
+  required?: boolean;
+  options?: string[];
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+const { label, name, type = 'text', placeholder, required = false, options = [], class: cls = '' } = Astro.props;
+const id = `f-${name}`;
+const control =
+  't-b4 w-full rounded-lg border border-black/[.11] bg-white px-4 text-black outline-none transition-colors placeholder:text-ink-4 focus:border-black/40';
+---
+<div class={`flex w-full flex-col gap-1 ${cls}`}>
+  <label for={id} class="t-b4 text-ink-2">{label}{required && '*'}</label>
+  {
+    type === 'select' ? (
+      <div class="relative">
+        <select id={id} name={name} required={required} class={`${control} h-10 appearance-none pr-10 text-ink-4 [&:has(option:checked:not([value='']))]:text-black`}>
+          <option value="">{placeholder}</option>
+          {options.map((o) => <option value={o}>{o}</option>)}
+        </select>
+        <Icon name="sort" size={12} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-4" />
+      </div>
+    ) : type === 'textarea' ? (
+      <textarea id={id} name={name} required={required} placeholder={placeholder} rows="4" class={`${control} min-h-[110px] resize-y py-2.5`} />
+    ) : (
+      <input id={id} name={name} type={type} required={required} placeholder={placeholder} class={`${control} h-10`} />
+    )
+  }
+</div>

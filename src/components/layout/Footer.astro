@@ -1,0 +1,123 @@
+---
+import Wordmark from '../ui/Wordmark.astro';
+import FooterColumns from './FooterColumns.astro';
+import Socials from './Socials.astro';
+import Hatch from '../ui/Hatch.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+import NewsletterInput from '../ui/NewsletterInput.astro';
+import { site, legalLinks } from '../../data/site';
+
+export type FooterVariant = 'boxed' | 'dark' | 'plain';
+interface Props {
+  variant?: FooterVariant;
+}
+const { variant = 'boxed' } = Astro.props;
+const year = new Date().getFullYear();
+const copyright = `© ${year} Clarity by ${site.owner}. All rights reserved.`;
+---
+{
+  variant === 'boxed' && (
+    <footer class="relative bg-white px-[120px] pb-[164px] pt-[116px]">
+      <div class="mx-auto flex max-w-[1200px] flex-col gap-6">
+        <div class="relative flex overflow-hidden rounded-lg border border-line bg-white p-10">
+          <GradientWash from="bottom" class="inset-[105px_-139px_-415px_-101px]" />
+          <div class="relative flex w-full items-start justify-between">
+            <div class="flex w-[336px] flex-col justify-between self-stretch">
+              <div class="flex flex-col gap-4">
+                <a href="/" aria-label="Clarity home"><Wordmark size={56} /></a>
+                <p class="t-b4 text-ink-2">{site.tagline}</p>
+              </div>
+              <Socials />
+            </div>
+            <div class="flex w-[456px] flex-col gap-8">
+              <FooterColumns />
+              <div class="h-px w-full bg-line" />
+              <div class="flex flex-col gap-3">
+                <p class="t-label text-ink-2">Stay in the loop</p>
+                <NewsletterInput />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="t-b4 flex items-start justify-between text-ink-3">
+          <p>{copyright}</p>
+          <div class="flex items-center gap-2">
+            {legalLinks.map((l, i) => (
+              <>
+                {i > 0 && <span class="h-3.5 w-px bg-zinc-300" />}
+                <a href={l.href} class="transition-colors hover:text-black">{l.label}</a>
+              </>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Hatch class="absolute inset-x-0 bottom-0" />
+    </footer>
+  )
+}
+{
+  variant === 'plain' && (
+    <footer
+      class="relative px-10 pb-[176px] pt-10"
+      style="background-image: linear-gradient(180deg, rgb(244 241 236 / 0) 0%, rgb(244 241 236) 100%);"
+    >
+      <div class="mx-auto flex max-w-[1360px] items-stretch justify-between">
+        <div class="flex flex-col justify-between">
+          <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-6">
+              <a href="/" aria-label="Clarity home"><Wordmark size={56} /></a>
+              <p class="t-b4 w-[314px] text-ink-2">{site.tagline}</p>
+            </div>
+            <div class="h-px w-full bg-line" />
+            <Socials />
+          </div>
+          <p class="t-b4 text-ink-2">{copyright}</p>
+        </div>
+        <div class="flex w-[456px] flex-col gap-24">
+          <FooterColumns />
+          <div class="flex flex-col gap-3">
+            <p class="t-label text-ink-2">Stay in the loop</p>
+            <NewsletterInput />
+          </div>
+        </div>
+      </div>
+      <Hatch class="absolute inset-x-0 bottom-0" />
+    </footer>
+  )
+}
+{
+  variant === 'dark' && (
+    <footer class="relative overflow-hidden bg-black px-[135px] pb-[280px] pt-[144px] text-white">
+      <Media
+        tone="dark"
+        class="absolute inset-x-0 bottom-0 h-[680px] opacity-60 [mask-image:linear-gradient(to_bottom,transparent,black_70%)]"
+      />
+      <Hatch tone="dark" class="absolute inset-x-0 top-0" />
+      <div class="relative mx-auto flex max-w-[1170px] flex-col gap-12">
+        <div class="flex items-center justify-between">
+          <div class="flex flex-col gap-8">
+            <a href="/" aria-label="Clarity home"><Wordmark size={56} /></a>
+            <p class="t-b4 w-[314px] text-paper-2">{site.tagline}</p>
+          </div>
+          <div class="flex w-[430px] flex-col gap-3">
+            <p class="t-label text-paper-2">Stay in the loop</p>
+            <NewsletterInput tone="dark" />
+          </div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <div class="h-px w-full bg-white/20" />
+          <div class="flex items-start justify-between">
+            <div class="flex flex-col justify-between self-stretch">
+              <p class="t-b4 text-paper-2">{copyright}</p>
+              <Socials tone="dark" />
+            </div>
+            <FooterColumns tone="dark" />
+          </div>
+          <div class="h-px w-full bg-white/20" />
+        </div>
+      </div>
+    </footer>
+  )
+}
+

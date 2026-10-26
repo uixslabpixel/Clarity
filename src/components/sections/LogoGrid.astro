@@ -1,0 +1,18 @@
+---
+/** LOGO-02 — 3×2 bordered client logo grid (Home 3). */
+import ClientLogo from '../ui/ClientLogo.astro';
+import Hatch from '../ui/Hatch.astro';
+import { clients } from '../../data/content';
+---
+<section class="bg-white px-10 pb-[61px] pt-2" data-section="LOGO-02">
+  <div class="mx-auto grid max-w-[1360px] grid-cols-3 gap-5">
+    {
+      clients.slice(0, 6).map((c) => (
+        <div class="grid h-[240px] place-items-center border border-line text-black/80">
+          <ClientLogo name={c} height={44} />
+        </div>
+      ))
+    }
+  </div>
+  <Hatch class="relative left-1/2 mt-12 w-screen max-w-[1440px] -translate-x-1/2" />
+</section>

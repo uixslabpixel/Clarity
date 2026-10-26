@@ -1,0 +1,70 @@
+---
+/** FORM-01 / FORM-02 — demo request section. `light` sits on the gradient wash, `dark` over a photo. */
+import Eyebrow from '../ui/Eyebrow.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import AvatarStack from '../ui/AvatarStack.astro';
+import Media from '../ui/Media.astro';
+import Icon from '../ui/Icon.astro';
+import DemoForm from '../forms/DemoForm.astro';
+interface Props {
+  variant?: 'light' | 'dark';
+  width?: number;
+  class?: string;
+}
+const { variant = 'light', width = 1170, class: cls = 'px-[135px] pb-[104px] pt-20' } = Astro.props;
+const dark = variant === 'dark';
+---
+<section class={`relative overflow-hidden ${dark ? 'bg-black text-white' : 'bg-white'} ${cls}`} data-section={dark ? 'FORM-02' : 'FORM-01'}>
+  {
+    dark ? (
+      <>
+        <Media tone="dark" class="absolute inset-0 size-full" />
+        <div class="absolute inset-0 bg-black/40" />
+        <button type="button" data-video-card aria-label="Play video" class="absolute bottom-5 right-5 grid size-6 place-items-center rounded-full bg-white/20">
+          <Icon name="play" size={12} />
+        </button>
+      </>
+    ) : (
+      <>
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute left-[calc(50%+25px)] top-[-10px] size-[659px] [background-image:repeating-linear-gradient(90deg,rgb(0_0_0/.06)_0_1px,transparent_1px_8px)] [mask-image:radial-gradient(closest-side,black,transparent)]"
+        />
+        <GradientWash from="bottom" class="inset-[396px_0_-268px_0]" />
+      </>
+    )
+  }
+  <div class="relative mx-auto flex items-stretch justify-between" style={`max-width:${width}px`}>
+    <div class="flex w-[480px] flex-col justify-between">
+      <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+          <Eyebrow tone={dark ? 'light' : 'dark'}>Get a demo</Eyebrow>
+          <h2 class="t-h2">Architect Your Transformation</h2>
+        </div>
+        <p class={`t-b3 ${dark ? 'text-paper-2' : 'text-ink-2'}`}>Submit your inquiry to initiate a secure operational diagnostic with our senior practice partners.</p>
+      </div>
+      {
+        dark ? (
+          <div class="flex flex-col gap-4">
+            <span class="h-px w-full bg-white/20" />
+            <div class="t-b4 flex items-center gap-4">
+              <span class="flex items-center gap-2">
+                <span class="flex gap-1">{Array.from({ length: 5 }).map(() => <Icon name="star" size={16} />)}</span>
+                4.8 Stars on Trustpilot
+              </span>
+              <span class="size-1 rounded-full bg-white/20" />
+              <span>Trusted by 3 million owners</span>
+            </div>
+          </div>
+        ) : (
+          <div class="flex h-[31px] items-center gap-4">
+            <AvatarStack />
+            <span class="h-px flex-1 bg-black/20" />
+            <span class="t-b4 text-black">4.8 Stars on Trustpilot</span>
+          </div>
+        )
+      }
+    </div>
+    <DemoForm />
+  </div>
+</section>

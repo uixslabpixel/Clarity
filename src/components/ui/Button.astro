@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+
+type Variant = 'light' | 'dark' | 'soft' | 'ghost' | 'ghost-light';
+interface Props {
+  href?: string;
+  variant?: Variant;
+  chevron?: boolean;
+  size?: 'md' | 'sm';
+  type?: 'button' | 'submit';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { href, variant = 'dark', chevron = true, size = 'md', type = 'button', class: cls = '', ...rest } = Astro.props;
+
+const base =
+  'btn group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-3.5 t-b4 transition-colors duration-300';
+const sizes = { md: 'h-10', sm: 'h-9' };
+const variants: Record<Variant, string> = {
+  light: 'bg-white text-black hover:bg-zinc-100',
+  dark: 'bg-black text-white hover:bg-zinc-600',
+  soft: 'bg-black/5 text-black hover:bg-black/10',
+  ghost: 'bg-black/20 text-white hover:bg-black/40',
+  'ghost-light': 'bg-white/10 text-white hover:bg-white/20',
+};
+const chip: Record<Variant, string> = {
+  light: 'bg-black/10',
+  dark: 'bg-white/10',
+  soft: 'bg-black/10',
+  ghost: 'bg-white/10',
+  'ghost-light': 'bg-white/10',
+};
+const classes = `${base} ${sizes[size]} ${variants[variant]} ${cls}`;
+const Tag = href ? 'a' : 'button';
+---
+<Tag class={classes} href={href} type={href ? undefined : type} {...rest}>
+  <span><slot /></span>
+  {
+    chevron && (
+      <span class={`grid size-4 place-items-center rounded-full ${chip[variant]}`}>
+        <Icon name="chevron-right" size={8} class="transition-transform duration-300 group-hover:translate-x-px" />
+      </span>
+    )
+  }
+</Tag>

@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import Footer, { type FooterVariant } from '../components/layout/Footer.astro';
+import Navbar, { type NavLayout, type NavTheme } from '../components/layout/Navbar.astro';
+import AnnouncementBar from '../components/layout/AnnouncementBar.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  footer?: FooterVariant | false;
+  nav?: { layout?: NavLayout; theme?: NavTheme; active?: string } | false;
+  announcement?: boolean;
+  bodyClass?: string;
+}
+const {
+  title,
+  description = 'Clarity — fractional executive leadership and operational governance for enterprise transitions.',
+  footer = 'boxed',
+  nav = {},
+  announcement = false,
+  bodyClass = '',
+} = Astro.props;
+const fullTitle = title === 'Clarity' ? title : `${title} — Clarity`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class={bodyClass}>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to content</a>
+    {
+      nav && (
+        <div class="absolute inset-x-0 top-0 z-40" data-site-header>
+          {announcement && <AnnouncementBar />}
+          <Navbar {...nav} />
+        </div>
+      )
+    }
+    <main id="main" class="relative">
+      <slot />
+    </main>
+    {footer && <Footer variant={footer} />}
+  </body>
+</html>

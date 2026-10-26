@@ -1,0 +1,19 @@
+---
+import Field from '../ui/Field.astro';
+import { frictionPoints } from '../../data/content';
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+---
+<form class={`flex w-[461px] shrink-0 flex-col gap-12 overflow-hidden rounded border border-line bg-white p-4 ${cls}`} data-form="demo" method="post" name="demo-request">
+  <div class="flex flex-col gap-4">
+    <Field label="Corporate Legal Entity Name" name="company" placeholder="e.g. Acme Holdings Ltd." required />
+    <Field label="Authorized Representative Name" name="name" placeholder="e.g. Sarah Mitchell" required />
+    <Field label="Secure Corporate Email Address" name="email" type="email" placeholder="e.g. sarah@acme.com" required />
+    <Field label="Direct Phone Line" name="phone" type="tel" placeholder="e.g. +1 (212) 555-0147" required />
+    <Field label="Primary Friction Point" name="friction" type="select" placeholder="Select the area requiring attention" options={frictionPoints} />
+    <Field label="Describe Scope of Strategic Inquiry" name="message" type="textarea" placeholder="Briefly describe the situation, challenge, or strategic need..." required />
+  </div>
+  <button type="submit" class="t-b4 h-10 w-full rounded-full bg-black px-3.5 text-white transition-colors hover:bg-zinc-600">Submit Request &amp; Schedule Call</button>
+</form>

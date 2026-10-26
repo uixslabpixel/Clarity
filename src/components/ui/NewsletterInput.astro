@@ -1,0 +1,22 @@
+---
+interface Props {
+  tone?: 'light' | 'dark';
+  placeholder?: string;
+  label?: string;
+  class?: string;
+}
+const { tone = 'light', placeholder = 'Current Executive Designation*', label = 'Email address', class: cls = '' } = Astro.props;
+const dark = tone === 'dark';
+---
+<form class={`flex h-12 w-full items-center gap-2 overflow-hidden rounded-lg border pl-4 pr-1 ${dark ? 'border-white/5' : 'border-line'} ${cls}`} data-newsletter>
+  <label class="sr-only" for={`nl-${tone}`}>{label}</label>
+  <input
+    id={`nl-${tone}`}
+    type="email"
+    name="email"
+    required
+    placeholder={placeholder}
+    class={`t-b4 min-w-0 flex-1 bg-transparent outline-none placeholder:text-zinc-400 ${dark ? 'text-white' : 'text-black'}`}
+  />
+  <button type="submit" class={`t-b4 h-10 shrink-0 rounded px-3.5 transition-colors ${dark ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-600'}`}>Send</button>
+</form>

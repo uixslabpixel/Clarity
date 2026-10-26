@@ -1,0 +1,13 @@
+---
+/** Client logo slot. Text stand-in until the SVG logos land in the asset pass. */
+interface Props {
+  name: string;
+  height?: number;
+  class?: string;
+}
+const { name, height = 20, class: cls = '' } = Astro.props;
+---
+<span class={`inline-flex shrink-0 items-center gap-1.5 font-heading leading-none ${cls}`} style={`font-size:${Math.round(height * 0.9)}px;height:${height}px`} data-logo={name}>
+  <span class="inline-block rounded-full bg-current opacity-80" style={`width:${height}px;height:${height}px`}></span>
+  {name.toLowerCase()}
+</span>

@@ -1,0 +1,61 @@
+---
+/**
+ * Minimal inline icon set (structural glyphs only).
+ * Brand/illustrative icons are swapped in during the asset pass.
+ */
+export type IconName =
+  | 'chevron-right' | 'chevron-left' | 'chevron-down' | 'chevron-up' | 'sort'
+  | 'play' | 'x' | 'linkedin' | 'search' | 'close' | 'menu' | 'star'
+  | 'location' | 'building' | 'check' | 'arrow-right' | 'quote'
+  | 'split' | 'user' | 'network' | 'users' | 'shield' | 'chart';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+  label?: string;
+}
+const { name, size = 16, class: cls = '', label } = Astro.props;
+const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' };
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 16 16"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={`shrink-0 ${cls}`}
+  {...a11y}
+>
+  {name === 'chevron-right' && <path d="M6 3.5 10.5 8 6 12.5" />}
+  {name === 'chevron-left' && <path d="M10 3.5 5.5 8 10 12.5" />}
+  {name === 'chevron-down' && <path d="M3.5 6 8 10.5 12.5 6" />}
+  {name === 'chevron-up' && <path d="M3.5 10 8 5.5 12.5 10" />}
+  {name === 'sort' && <path d="M5 6.5 8 3.5l3 3M5 9.5l3 3 3-3" />}
+  {name === 'play' && <path d="M5 3.2v9.6L12.6 8z" fill="currentColor" stroke="none" />}
+  {name === 'x' && <path d="M2.5 2.5h3l8 11h-3zM13.2 2.5 8.9 7.3M2.8 13.5l4.3-4.8" stroke-width="1.3" />}
+  {name === 'linkedin' && (
+    <>
+      <rect x="2" y="2" width="12" height="12" rx="1.5" stroke-width="1.3" />
+      <path d="M5.3 7.2v3.6M5.3 5.1v.1M7.6 10.8V7.2m0 1.9c0-1 .7-1.8 1.6-1.8s1.5.6 1.5 1.8v1.7" stroke-width="1.2" />
+    </>
+  )}
+  {name === 'search' && <><circle cx="7" cy="7" r="4.5" /><path d="m10.5 10.5 3 3" /></>}
+  {name === 'close' && <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />}
+  {name === 'menu' && <path d="M2.5 5h11M2.5 11h11" />}
+  {name === 'star' && <path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="currentColor" stroke="none" />}
+  {name === 'location' && <><path d="M8 14.5s5-4.6 5-8.2a5 5 0 0 0-10 0c0 3.6 5 8.2 5 8.2z" fill="currentColor" stroke="none" /><circle cx="8" cy="6.3" r="1.7" fill="#fff" stroke="none" /></>}
+  {name === 'building' && <><rect x="3.5" y="1.5" width="9" height="13" rx="1" fill="currentColor" stroke="none" /><path d="M6 4.5h1M9 4.5h1M6 7.5h1M9 7.5h1M7 14.5v-3h2v3" stroke="#fff" stroke-width="1.2" /></>}
+  {name === 'check' && <path d="M3.5 8.5 6.5 11.5 12.5 4.5" />}
+  {name === 'arrow-right' && <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" />}
+  {name === 'quote' && <path d="M3 12.5V9c0-3 1.5-5 4-5.5M9 12.5V9c0-3 1.5-5 4-5.5" stroke-width="2.2" />}
+  {name === 'split' && <><circle cx="3.5" cy="8" r="1.5" /><circle cx="12.5" cy="3.5" r="1.5" /><circle cx="12.5" cy="12.5" r="1.5" /><path d="M5 8h2.5L11 4.2M7.5 8 11 11.8" /></>}
+  {name === 'user' && <><circle cx="8" cy="5" r="2.7" /><path d="M2.8 14c.6-2.8 2.7-4.3 5.2-4.3s4.6 1.5 5.2 4.3" /></>}
+  {name === 'network' && <><rect x="6" y="1.8" width="4" height="3.4" rx=".6" /><rect x="1.5" y="10.8" width="4" height="3.4" rx=".6" /><rect x="10.5" y="10.8" width="4" height="3.4" rx=".6" /><path d="M8 5.2v2.8M3.5 10.8V8h9v2.8" /></>}
+  {name === 'users' && <><rect x="1.5" y="2" width="13" height="7.5" rx="1" /><circle cx="5" cy="12" r="1.2" /><circle cx="11" cy="12" r="1.2" /><path d="M3 14.5c.4-.9 1.1-1.3 2-1.3s1.6.4 2 1.3M9 14.5c.4-.9 1.1-1.3 2-1.3s1.6.4 2 1.3" /></>}
+  {name === 'shield' && <path d="M8 1.8 13 3.6v4c0 3.2-2.2 5.6-5 6.6-2.8-1-5-3.4-5-6.6v-4zM5.8 8l1.6 1.6 3-3.2" />}
+  {name === 'chart' && <path d="M2.5 13.5h11M4.5 11V8M8 11V4.5M11.5 11V6.5" />}
+</svg>

@@ -1,0 +1,8 @@
+---
+interface Props {
+  class?: string;
+  tone?: 'light' | 'dark';
+}
+const { class: cls = '', tone = 'light' } = Astro.props;
+---
+<div aria-hidden="true" class={`h-12 w-full ${tone === 'dark' ? 'hatch-dark' : 'hatch'} ${cls}`}></div>

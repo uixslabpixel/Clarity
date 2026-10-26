@@ -1,0 +1,26 @@
+---
+/** CASE-06 — edge-faded reel of case portraits; centre card carries the client mark (Home 2). */
+import Media from '../ui/Media.astro';
+import Wordmark from '../ui/Wordmark.astro';
+import ClientLogo from '../ui/ClientLogo.astro';
+---
+<section class="overflow-hidden bg-white px-[120px] py-20" data-section="CASE-06">
+  <div class="relative left-1/2 flex w-max -translate-x-1/2 gap-8 [mask-image:linear-gradient(to_right,transparent_8%,black_30%,black_70%,transparent_92%)]" data-slider>
+    {
+      Array.from({ length: 5 }).map((_, i) =>
+        i === 2 ? (
+          <article class="relative flex h-[430px] w-[320px] shrink-0 flex-col justify-end overflow-hidden rounded bg-black/[.04] p-6">
+            <Media class="absolute inset-0 size-full" />
+            <div class="relative flex items-center gap-[11px] text-white">
+              <Wordmark size={22} />
+              <span class="h-[22px] w-px bg-white/40" />
+              <ClientLogo name="Owlearn" height={19} />
+            </div>
+          </article>
+        ) : (
+          <div class="h-[430px] w-[320px] shrink-0 rounded bg-black/[.04]" />
+        ),
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero03 from '../components/sections/Hero03.astro';
+import LogoGrid from '../components/sections/LogoGrid.astro';
+import Pillar03 from '../components/sections/Pillar03.astro';
+import Stats03 from '../components/sections/Stats03.astro';
+import Case03 from '../components/sections/Case03.astro';
+import Process03 from '../components/sections/Process03.astro';
+import TeamGrid from '../components/sections/TeamGrid.astro';
+import BlogSlider from '../components/sections/BlogSlider.astro';
+import Testimonial02 from '../components/sections/Testimonial02.astro';
+import Form01 from '../components/sections/Form01.astro';
+---
+<BaseLayout title="Home 3" nav={{ layout: 'minimal', theme: 'light', active: '' }} footer="plain">
+  <Hero03 />
+  <LogoGrid />
+  <Pillar03 />
+  <section class="bg-white px-10 py-20">
+    <div class="mx-auto flex max-w-[1360px] flex-col items-center gap-28">
+      <Stats03 />
+      <Case03 />
+    </div>
+  </section>
+  <Process03 />
+  <TeamGrid />
+  <BlogSlider />
+  <Testimonial02 />
+  <Form01 width={1360} class="px-10 pb-[104px] pt-20" />
+</BaseLayout>

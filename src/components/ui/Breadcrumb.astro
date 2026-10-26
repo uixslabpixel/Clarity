@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: { label: string; href?: string }[];
+  class?: string;
+  tone?: 'dark' | 'light';
+}
+const { items, class: cls = '', tone = 'dark' } = Astro.props;
+const muted = tone === 'light' ? 'text-paper-2' : 'text-ink-2';
+const strong = tone === 'light' ? 'text-white' : 'text-black';
+---
+<nav aria-label="Breadcrumb" class={`t-label flex items-center gap-2 whitespace-nowrap ${cls}`}>
+  {
+    items.map((item, i) =>
+      i < items.length - 1 ? (
+        <a href={item.href ?? '/'} class={`${muted} transition-colors hover:text-current`}>{item.label}</a>
+      ) : (
+        <span class={strong} aria-current="page">/{item.label}</span>
+      ),
+    )
+  }
+</nav>

@@ -1,0 +1,17 @@
+---
+import Media from '../ui/Media.astro';
+interface Props {
+  name: string;
+  role: string;
+  class?: string;
+  height?: number;
+}
+const { name, role, class: cls = '', height = 470 } = Astro.props;
+---
+<article class={`relative flex min-w-0 flex-1 flex-col justify-between overflow-hidden rounded border border-line bg-white/0 p-6 ${cls}`} style={`height:${height}px`}>
+  <div class="relative z-10 flex flex-col gap-2">
+    <h3 class="t-h5">{name}</h3>
+    <p class="t-b3 text-ink-2">{role}</p>
+  </div>
+  <Media class="absolute inset-x-0 bottom-0 mx-auto h-[300px] w-[260px] rounded-t-full [mask-image:linear-gradient(to_bottom,black_70%,transparent)]" alt={`Portrait of ${name}`} />
+</article>

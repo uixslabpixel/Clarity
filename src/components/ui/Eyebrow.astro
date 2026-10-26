@@ -1,0 +1,8 @@
+---
+interface Props {
+  class?: string;
+  tone?: 'dark' | 'light';
+}
+const { class: cls = '', tone = 'dark' } = Astro.props;
+---
+<p class={`t-label ${tone === 'light' ? 'text-paper-2' : 'text-ink-2'} ${cls}`}><slot /></p>

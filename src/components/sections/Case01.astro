@@ -1,0 +1,69 @@
+---
+/** CASE-01 — dark coverflow: dimmed side cards, highlighted centre card (Home 1). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+import Wordmark from '../ui/Wordmark.astro';
+import ClientLogo from '../ui/ClientLogo.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Icon from '../ui/Icon.astro';
+import SideCard from '../cards/CaseSideCard.astro';
+import { caseHighlights } from '../../data/content';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+}
+const { eyebrow = 'Case study', title = 'Featured Proof of Concept' } = Astro.props;
+const active = Math.floor(caseHighlights.length / 2);
+const left = caseHighlights.slice(0, active);
+const center = caseHighlights[active];
+const right = caseHighlights.slice(active + 1);
+---
+<section class="overflow-hidden bg-black p-20 text-white" data-section="CASE-01" data-carousel="coverflow">
+  <div class="mx-auto flex max-w-[1280px] flex-col items-center gap-14">
+    <div class="flex w-[710px] flex-col items-center gap-3.5 text-center">
+      <Eyebrow tone="light">{eyebrow}</Eyebrow>
+      <h2 class="t-h2">{title}</h2>
+    </div>
+    <div class="flex w-full flex-col items-center gap-10">
+      <div class="flex w-full items-center justify-between">
+        <button type="button" data-prev aria-label="Previous case" class="grid size-6 place-items-center rounded-full bg-white/10"><Icon name="chevron-left" size={12} /></button>
+        <div class="flex w-20 gap-1" data-dots>
+          {caseHighlights.map((_, i) => <span class={`h-[3px] flex-1 rounded-full ${i === active ? 'bg-white' : 'bg-white/20'}`} />)}
+        </div>
+        <button type="button" data-next aria-label="Next case" class="grid size-6 place-items-center rounded-full bg-white text-black"><Icon name="chevron-right" size={12} /></button>
+      </div>
+      <div class="flex items-start justify-center gap-16" data-track>
+        <div class="flex items-center gap-16">
+          {left.map((c) => <SideCard {...c} />)}
+        </div>
+        <div class="flex flex-col gap-8">
+          <article class="relative flex h-[520px] w-[480px] flex-col justify-between overflow-hidden rounded bg-white p-8 text-black">
+            <div class="absolute inset-x-0 bottom-0 h-[315px] overflow-hidden">
+              <GradientWash from="bottom" class="inset-[0_-131px_-51px_-131px]" />
+            </div>
+            <div class="relative flex flex-col gap-6">
+              <p class="t-h1">{center.value}</p>
+              <p class="t-b3 max-w-[350px] text-ink-2">{center.label}</p>
+            </div>
+            <div class="relative flex items-center gap-[19px]">
+              <Wordmark size={36} />
+              <span class="h-[38px] w-px bg-black/20" />
+              <ClientLogo name={center.client} height={32} />
+            </div>
+          </article>
+          <div class="flex w-[480px] flex-col gap-8">
+            <h3 class="t-h5">{center.title}</h3>
+            <div class="flex flex-col items-start gap-4">
+              <p class="t-b3 text-paper-2">{center.text}</p>
+              <Button href={center.href} variant="ghost-light" size="sm">Read More</Button>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-16">
+          {right.map((c) => <SideCard {...c} />)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

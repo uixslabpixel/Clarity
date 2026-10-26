@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero02 from '../components/sections/Hero02.astro';
+import Pillar02 from '../components/sections/Pillar02.astro';
+import Case02 from '../components/sections/Case02.astro';
+import Stats02 from '../components/sections/Stats02.astro';
+import Team02 from '../components/sections/Team02.astro';
+import Process02 from '../components/sections/Process02.astro';
+import CaseReel from '../components/sections/CaseReel.astro';
+import Blog02 from '../components/sections/Blog02.astro';
+import Form01 from '../components/sections/Form01.astro';
+---
+<BaseLayout title="Home 2" nav={{ layout: 'minimal', theme: 'dark', active: '' }}>
+  <Hero02 />
+  <Pillar02 />
+  <Case02 />
+  <section class="bg-white px-[120px] py-24">
+    <div class="mx-auto flex max-w-[1200px] flex-col items-center gap-6">
+      <Stats02 />
+      <Team02 />
+    </div>
+  </section>
+  <Process02 />
+  <CaseReel />
+  <Blog02 />
+  <Form01 variant="dark" width={1200} class="px-[120px] py-20" />
+</BaseLayout>

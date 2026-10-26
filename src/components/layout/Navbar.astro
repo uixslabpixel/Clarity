@@ -1,0 +1,77 @@
+---
+import Wordmark from '../ui/Wordmark.astro';
+import Button from '../ui/Button.astro';
+import { nav } from '../../data/site';
+
+export type NavLayout = 'center' | 'inner' | 'minimal';
+export type NavTheme = 'light' | 'dark';
+interface Props {
+  layout?: NavLayout;
+  theme?: NavTheme;
+  active?: string;
+  class?: string;
+}
+const { layout = 'inner', theme = 'light', active, class: cls = '' } = Astro.props;
+const dark = theme === 'dark';
+const isActive = (href: string) => (active ? active === href : Astro.url.pathname.startsWith(href));
+const linkClass = (href: string) =>
+  `t-b4 transition-colors ${
+    isActive(href) ? (dark ? 'text-white' : 'text-black') : dark ? 'text-paper-3 hover:text-white' : 'text-ink-3 hover:text-black'
+  }`;
+const links = nav;
+---
+<header
+  data-navbar
+  class={`relative z-40 flex w-full items-center justify-between px-10 py-3 ${
+    layout === 'inner' ? (dark ? 'border-b border-white/10 bg-white/5 backdrop-blur-[5px]' : 'border-b border-line bg-white/40 backdrop-blur-[5px]') : ''
+  } ${layout === 'center' ? 'bg-white/5 backdrop-blur-[5px]' : ''} ${
+    layout === 'minimal' ? (dark ? 'h-14 border-b border-white/20 bg-white/10 backdrop-blur-[5px]' : 'px-14 py-[18px]') : ''
+  } ${cls}`}
+>
+  {
+    layout === 'center' && (
+      <>
+        <nav aria-label="Primary" class="flex items-center gap-2">
+          {links.map((l) => <a href={l.href} class={`${linkClass(l.href)} px-0.5 leading-6`}>{l.label}</a>)}
+        </nav>
+        <a href="/" aria-label="Clarity home" class={`absolute left-1/2 -translate-x-1/2 ${dark ? 'text-white' : 'text-black'}`}>
+          <Wordmark size={24} />
+        </a>
+        <div class="flex items-center gap-1">
+          <a href="/password" class={`t-b4 rounded-full px-3.5 py-2 ${dark ? 'text-white' : 'text-black'}`}>Log In</a>
+          <Button href="/contact" variant={dark ? 'light' : 'dark'}>Book a Call</Button>
+        </div>
+      </>
+    )
+  }
+  {
+    layout === 'inner' && (
+      <>
+        <div class="flex items-center gap-10">
+          <a href="/" aria-label="Clarity home" class={dark ? 'text-white' : 'text-black'}>
+            <Wordmark size={24} />
+          </a>
+          <nav aria-label="Primary" class="flex items-center gap-3.5">
+            {links.map((l) => <a href={l.href} class={`${linkClass(l.href)} leading-6`}>{l.label}</a>)}
+          </nav>
+        </div>
+        <div class="flex items-center gap-1">
+          <a href="/password" class={`t-b4 rounded-full px-3.5 py-2 ${dark ? 'text-white' : 'text-black'}`}>Log In</a>
+          <Button href="/contact" size="sm" variant={dark ? 'light' : 'dark'}>Book a Call</Button>
+        </div>
+      </>
+    )
+  }
+  {
+    layout === 'minimal' && (
+      <>
+        <a href="/" aria-label="Clarity home" class={dark ? 'text-white' : 'text-black'}>
+          <Wordmark size={24} />
+        </a>
+        <nav aria-label="Primary" class="flex items-center gap-3.5">
+          {links.map((l) => <a href={l.href} class={`${linkClass(l.href)} leading-6`}>{l.label}</a>)}
+        </nav>
+      </>
+    )
+  }
+</header>

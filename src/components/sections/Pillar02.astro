@@ -1,0 +1,38 @@
+---
+/** PILLAR-02 — grey card with 2×2 icon grid and portrait image (Home 2). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Icon from '../ui/Icon.astro';
+import Media from '../ui/Media.astro';
+import Hatch from '../ui/Hatch.astro';
+import { pillars } from '../../data/content';
+---
+<section class="bg-white px-[120px] pb-[60px] pt-[98px]" data-section="PILLAR-02">
+  <div class="mx-auto max-w-[1200px]">
+    <div class="flex items-stretch gap-20 overflow-hidden rounded bg-black/5">
+      <div class="flex flex-1 flex-col justify-between py-10 pl-10">
+        <div class="flex flex-col gap-4">
+          <Eyebrow>Core pillars</Eyebrow>
+          <span class="h-px w-full bg-line"></span>
+          <h2 class="t-h2">Core Pillars of Clarity</h2>
+        </div>
+        <div class="grid grid-cols-2">
+          {
+            pillars.map((p, i) => (
+              <div class={`flex flex-col gap-8 border-line p-6 ${['border-b border-r', 'border-b border-l', 'border-r border-t', 'border-l border-t'][i]}`}>
+                <div class="flex items-center gap-4">
+                  <span class="grid size-8 shrink-0 place-items-center rounded-full bg-black/5">
+                    <Icon name={p.icon as any} size={16} />
+                  </span>
+                  <h3 class="t-h5">{p.short}</h3>
+                </div>
+                <p class="t-b3 line-clamp-2 text-ink-2">{p.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <Media tone="dark" class="h-[713px] w-[410px] shrink-0" />
+    </div>
+    <Hatch />
+  </div>
+</section>

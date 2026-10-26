@@ -1,0 +1,25 @@
+---
+/** TESTI-02 — centred quote with avatar and dash pagination (Home 3). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Media from '../ui/Media.astro';
+import Hatch from '../ui/Hatch.astro';
+import { testimonials } from '../../data/content';
+const t = testimonials[0];
+---
+<section class="bg-white px-10 pb-[60px] pt-20" data-section="TESTI-02">
+  <div class="mx-auto flex max-w-[900px] flex-col items-center gap-10 text-center" data-slider>
+    <Eyebrow>Customer spotlight</Eyebrow>
+    <figure class="flex flex-col items-center gap-4">
+      <Media class="size-[50px] rounded-full" alt={`Photo of ${t.name}`} />
+      <blockquote class="t-h3">{t.quote}</blockquote>
+      <figcaption class="t-b3 flex flex-col items-center gap-2">
+        <span>{t.name}</span>
+        <span class="text-ink-2">{t.role}</span>
+      </figcaption>
+    </figure>
+    <div class="flex w-20 gap-1" data-dots>
+      {Array.from({ length: 5 }).map((_, i) => <span class={`h-[3px] flex-1 rounded-full ${i === 0 ? 'bg-black' : 'bg-black/20'}`} />)}
+    </div>
+  </div>
+  <Hatch class="relative left-1/2 mt-28 w-screen max-w-[1440px] -translate-x-1/2" />
+</section>

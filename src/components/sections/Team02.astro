@@ -1,0 +1,22 @@
+---
+/** TEAM-02 — three bordered portrait cards on a gradient (Home 2 / Home 3). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Hatch from '../ui/Hatch.astro';
+import TeamCard from '../cards/TeamCard.astro';
+import { team } from '../../data/content';
+---
+<div class="flex w-full flex-col bg-black/5" data-section="TEAM-02">
+  <div class="relative flex flex-col justify-center gap-10 overflow-hidden bg-white p-10">
+    <GradientWash from="bottom" class="inset-[396px_-120px_-403px_-120px]" />
+    <div class="relative flex flex-col gap-4">
+      <Eyebrow class="!text-ink-3">Our team</Eyebrow>
+      <span class="h-px w-full bg-line"></span>
+      <h2 class="t-h2">Led by Experienced Practitioners</h2>
+    </div>
+    <div class="relative flex items-center gap-6">
+      {team.slice(0, 3).map((m) => <TeamCard name={m.name} role={m.role} />)}
+    </div>
+  </div>
+  <Hatch class="bg-white" />
+</div>

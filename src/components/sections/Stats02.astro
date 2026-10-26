@@ -1,0 +1,18 @@
+---
+/** STATS-02 — three grey metric cards (Home 2). */
+import { stats } from '../../data/content';
+interface Props {
+  items?: { value: string; label: string }[];
+}
+const { items = stats } = Astro.props;
+---
+<div class="flex w-full items-center gap-6 text-center" data-section="STATS-02">
+  {
+    items.map((s) => (
+      <div class="flex flex-1 flex-col gap-[22px] rounded bg-black/5 p-6">
+        <p class="t-h1" data-count>{s.value}</p>
+        <p class="t-b3 text-ink-2">{s.label}</p>
+      </div>
+    ))
+  }
+</div>

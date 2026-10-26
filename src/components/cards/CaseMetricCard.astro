@@ -1,0 +1,36 @@
+---
+import Wordmark from '../ui/Wordmark.astro';
+import ClientLogo from '../ui/ClientLogo.astro';
+import Button from '../ui/Button.astro';
+import GradientWash from '../ui/GradientWash.astro';
+interface Props {
+  value: string;
+  label: string;
+  client: string;
+  href?: string;
+  featured?: boolean;
+  class?: string;
+}
+const { value, label, client, href, featured = false, class: cls = '' } = Astro.props;
+---
+<article class={`relative flex h-[315px] flex-col justify-between overflow-hidden rounded p-6 ${featured ? 'bg-white' : 'border border-line bg-black/5'} ${cls}`}>
+  {
+    featured && (
+      <div class="absolute inset-x-0 bottom-0 h-[182px]">
+        <GradientWash from="bottom" class="inset-[-27px_-85px_-157px_-84px]" />
+      </div>
+    )
+  }
+  <div class="relative flex items-start gap-2">
+    <div class="flex flex-1 items-center gap-[11px]">
+      <Wordmark size={22} />
+      <span class="h-[22px] w-px bg-black/20"></span>
+      <ClientLogo name={client} height={19} />
+    </div>
+    {featured && href && <Button href={href} variant="soft" size="sm">Read More</Button>}
+  </div>
+  <div class="relative flex flex-col gap-6">
+    <p class="t-h1">{value}</p>
+    <p class="t-b3 text-ink-2">{label}</p>
+  </div>
+</article>

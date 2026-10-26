@@ -1,0 +1,35 @@
+---
+/** PROCESS-02 — accordion steps with a large image (Home 2). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+import Media from '../ui/Media.astro';
+import { process } from '../../data/content';
+---
+<section class="bg-white px-[120px] py-20" data-section="PROCESS-02">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-16">
+    <div class="flex flex-col gap-4">
+      <Eyebrow>How it works</Eyebrow>
+      <span class="h-px w-full bg-line"></span>
+      <div class="flex items-end justify-between gap-8">
+        <h2 class="t-h2">Our 4-Step Engagement Model</h2>
+        <Button href="/services" variant="soft">Access Domain Strategy</Button>
+      </div>
+    </div>
+    <div class="flex items-stretch gap-8" data-accordion data-active="0">
+      <ol class="flex w-[380px] shrink-0 flex-col">
+        {
+          process.map((step, i) => (
+            <li class={`relative flex flex-col gap-8 border-t border-line ${i === 0 ? 'bg-gradient-to-b from-transparent to-black/5' : ''}`} data-accordion-item>
+              <span class={`absolute -top-px left-0 h-px bg-black ${i === 0 ? 'w-1/2' : 'w-0'}`} data-progress />
+              <div class={`flex flex-col px-8 pb-8 ${i === 0 ? 'gap-12' : ''}`}>
+                <button type="button" class="t-h5 text-left" aria-expanded={i === 0 ? 'true' : 'false'}>{step.title}</button>
+                {i === 0 && <p class="t-b3 text-ink-2" data-accordion-panel>{step.text}</p>}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <Media class="min-h-[480px] flex-1 rounded" />
+    </div>
+  </div>
+</section>

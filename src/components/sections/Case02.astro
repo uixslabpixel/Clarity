@@ -1,0 +1,26 @@
+---
+/** CASE-02 — 2×2 metric cards + client logo strip (Home 2). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import LogoStrip from '../ui/LogoStrip.astro';
+import CaseMetricCard from '../cards/CaseMetricCard.astro';
+
+const cards = [
+  { value: '34%', label: 'Average operational efficiency gain across client portfolio organizations.', client: 'Botanic', href: '/case-studies/saving-a-multinational-distribution-system', featured: true },
+  { value: '89%', label: 'Retention of key supply chain assets during sudden market disruptions.', client: 'Deepstack' },
+  { value: '2.5×', label: 'Faster transitions with Fractional Executive Leadership.', client: 'Wellnex' },
+  { value: '42%', label: 'Reduced friction in automated workflows.', client: 'Owlearn' },
+];
+---
+<section class="bg-white px-[120px] py-20" data-section="CASE-02">
+  <div class="mx-auto flex max-w-[1200px] flex-col items-center gap-16">
+    <div class="flex w-full flex-col gap-4 text-center">
+      <Eyebrow class="!text-ink-3">Case study</Eyebrow>
+      <span class="h-px w-full bg-line"></span>
+      <h2 class="t-h2">Featured Proof of Concept</h2>
+    </div>
+    <div class="grid w-full grid-cols-[minmax(0,1fr)_573px] gap-6">
+      {cards.map((c) => <CaseMetricCard {...c} />)}
+    </div>
+    <LogoStrip />
+  </div>
+</section>

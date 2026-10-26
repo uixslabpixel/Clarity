@@ -1,0 +1,22 @@
+---
+/** BLOG-01 — three latest briefings. */
+import SectionHeader from '../ui/SectionHeader.astro';
+import BlogCard from '../cards/BlogCard.astro';
+import { posts as allPosts } from '../../data/content';
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  posts?: typeof allPosts;
+  headerWidth?: number;
+  class?: string;
+}
+const { eyebrow = 'Blog', title = 'Governance Briefings', posts = allPosts, headerWidth = 480, class: cls = 'px-[135px] py-20' } = Astro.props;
+---
+<section class={`bg-white ${cls}`} data-section="BLOG-01">
+  <div class="mx-auto flex max-w-[1170px] flex-col gap-12">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} width={headerWidth} />}
+    <div class="flex gap-8">
+      {posts.slice(0, 3).map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} class="flex-1" />)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+/** PILLAR-01 — dark split: accordion list + swapping image stack (Home 1). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Icon from '../ui/Icon.astro';
+import Media from '../ui/Media.astro';
+import { pillars } from '../../data/content';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  items?: { title: string; text: string }[];
+}
+const { eyebrow = 'Core pillars', title = 'Core Pillars of Architecture', items = pillars } = Astro.props;
+---
+<section class="bg-black px-[135px] py-[98px] text-white" data-section="PILLAR-01">
+  <div class="mx-auto flex max-w-[1170px] items-start gap-16" data-accordion data-active="0">
+    <div class="flex max-w-[600px] flex-1 flex-col gap-[104px]">
+      <div class="flex flex-col gap-3.5">
+        <Eyebrow tone="light">{eyebrow}</Eyebrow>
+        <h2 class="t-h2 max-w-[400px]">{title}</h2>
+      </div>
+      <ul class="flex flex-col gap-6 pt-[292px]">
+        {
+          items.map((item, i) => (
+            <li class={`flex flex-col gap-2 ${i > 0 ? 'border-t border-white/20 pt-6' : ''}`} data-accordion-item data-open={i === 0 ? '' : undefined}>
+              <button type="button" class="group flex w-full items-center gap-4 text-left" aria-expanded={i === 0 ? 'true' : 'false'}>
+                <span class={`grid size-4 shrink-0 place-items-center rounded-full bg-white/10 ${i === 0 ? '' : 'hidden'}`} data-accordion-icon>
+                  <Icon name="chevron-right" size={8} />
+                </span>
+                <span class={i === 0 ? 't-h5 flex-1 text-white' : 't-b3 flex-1 text-paper-3 transition-colors group-hover:text-white'}>{item.title}</span>
+              </button>
+              {i === 0 && <p class="t-b3 pl-8 text-white" data-accordion-panel>{item.text}</p>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="flex w-[575px] shrink-0 flex-col gap-4 self-stretch">
+      <Media tone="dark" class="h-[519px] w-full rounded" />
+      {items.slice(1).map(() => <Media tone="dark" class="min-h-0 w-full flex-1 rounded opacity-30" />)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+/** TEAM-01 — horizontal portrait slider with faded portraits (Home 1). */
+import SectionHeader from '../ui/SectionHeader.astro';
+import Button from '../ui/Button.astro';
+import Hatch from '../ui/Hatch.astro';
+import Media from '../ui/Media.astro';
+import { team } from '../../data/content';
+interface Props {
+  eyebrow?: string;
+  title?: string;
+}
+const { eyebrow = 'Teams', title = 'Led by Experienced Practitioners' } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white px-[135px] pb-24 pt-36" data-section="TEAM-01">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex max-w-[1170px] flex-col gap-12">
+    <SectionHeader eyebrow={eyebrow} title={title}>
+      <Button href="/team" variant="soft">View Full Leadership Team</Button>
+    </SectionHeader>
+    <div class="flex gap-14" data-slider>
+      {
+        team.map((m) => (
+          <article class="relative h-[600px] w-[480px] shrink-0 overflow-hidden">
+            <Media
+              class="absolute left-[50px] top-[169px] size-[430px] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+              alt={`Portrait of ${m.name}`}
+            />
+            <div class="absolute left-0 top-[41px] flex items-center gap-6">
+              <span class="h-[52px] w-px bg-black/20" />
+              <div class="flex w-[275px] flex-col gap-2">
+                <h3 class="t-h5">{m.name}</h3>
+                <p class="t-b3 text-ink-2">{m.role}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

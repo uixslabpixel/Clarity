@@ -1,0 +1,19 @@
+---
+import ClientLogo from './ClientLogo.astro';
+import { clients } from '../../data/content';
+interface Props {
+  items?: string[];
+  class?: string;
+}
+const { items = clients.slice(0, 6), class: cls = '' } = Astro.props;
+---
+<div class={`flex items-stretch gap-4 text-black/30 ${cls}`}>
+  {
+    items.map((c, i) => (
+      <>
+        {i > 0 && <span class="w-px self-stretch bg-black/10" />}
+        <ClientLogo name={c} height={21} class="px-2.5" />
+      </>
+    ))
+  }
+</div>

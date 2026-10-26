@@ -1,0 +1,24 @@
+---
+import Media from './Media.astro';
+import Icon from './Icon.astro';
+interface Props {
+  title?: string;
+  duration?: string;
+  class?: string;
+}
+const { title = 'Enterprise Alpha governance.', duration = '1:30', class: cls = '' } = Astro.props;
+---
+<button
+  type="button"
+  data-video-card
+  class={`flex items-start gap-2 rounded border border-white/10 bg-white/10 p-2 text-left backdrop-blur-[20px] transition-colors hover:bg-white/20 ${cls}`}
+>
+  <Media tone="dark" class="h-[77px] w-[109px] shrink-0 rounded-[2px]" />
+  <span class="flex flex-col justify-between self-stretch">
+    <span class="t-b5 w-[104px] text-white">{title}</span>
+    <span class="flex items-center gap-2">
+      <span class="grid size-4 place-items-center rounded-full bg-white/20 text-white"><Icon name="play" size={8} /></span>
+      <span class="t-b5 text-paper-3">Watch ({duration})</span>
+    </span>
+  </span>
+</button>

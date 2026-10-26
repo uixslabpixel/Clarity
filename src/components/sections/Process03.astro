@@ -1,0 +1,52 @@
+---
+/** PROCESS-03 — sticky numbered index + stacked image cards (Home 3). */
+import SectionHeader from '../ui/SectionHeader.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import Media from '../ui/Media.astro';
+import Hatch from '../ui/Hatch.astro';
+import { process } from '../../data/content';
+---
+<section class="bg-white px-10 pb-[60px] pt-20" data-section="PROCESS-03">
+  <div class="mx-auto flex max-w-[1360px] flex-col gap-16">
+    <SectionHeader eyebrow="How it works" title="Our 4-Step Engagement Model">
+      <Button href="/services" variant="soft">Access Domain Strategy</Button>
+    </SectionHeader>
+    <div class="flex items-start justify-between" data-scrollspy>
+      <ol class="sticky top-24 flex w-[316px] flex-col gap-3.5">
+        {
+          process.map((step, i) => (
+            <>
+              {i > 0 && <li aria-hidden="true" class="h-px w-full bg-line" />}
+              <li class="flex items-center gap-4" data-spy-link>
+                {i === 0 && (
+                  <span class="grid size-4 place-items-center rounded-full bg-black/10">
+                    <Icon name="chevron-right" size={8} />
+                  </span>
+                )}
+                <a href={`#step-${i + 1}`} class="flex flex-1 items-center gap-2">
+                  <span class="t-label text-ink-2">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="t-h6">{step.title}</span>
+                </a>
+              </li>
+            </>
+          ))
+        }
+      </ol>
+      <div class="flex w-[900px] flex-col gap-4">
+        {
+          process.map((step, i) => (
+            <article id={`step-${i + 1}`} class="flex items-stretch gap-8 overflow-hidden rounded border border-line p-8">
+              <div class="flex flex-1 flex-col justify-between">
+                <h3 class="t-h5">{step.title}</h3>
+                <p class="t-b3 text-ink-2">{step.text}</p>
+              </div>
+              <Media class="size-[260px] shrink-0" />
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <Hatch class="relative left-1/2 mt-16 w-screen max-w-[1440px] -translate-x-1/2" />
+</section>

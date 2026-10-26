@@ -1,0 +1,30 @@
+---
+/**
+ * Image slot. Until the asset pass, renders a neutral placeholder with the
+ * exact box the design reserves for the image.
+ */
+interface Props {
+  src?: string;
+  alt?: string;
+  class?: string;
+  tone?: 'light' | 'dark' | 'duotone';
+  label?: string;
+  loading?: 'lazy' | 'eager';
+  style?: string;
+}
+const { src, alt = '', class: cls = '', tone = 'light', label, loading = 'lazy', style } = Astro.props;
+const tones = {
+  light: 'bg-zinc-200',
+  dark: 'bg-zinc-600',
+  duotone: 'bg-[linear-gradient(160deg,#a6a3bf_0%,#8a86a8_55%,#e9a39a_100%)]',
+};
+---
+{
+  src ? (
+    <img src={src} alt={alt} loading={loading} class={`object-cover ${cls}`} style={style} />
+  ) : (
+    <div style={style} class={`media-ph overflow-hidden ${tones[tone]} ${cls}`} role={alt ? 'img' : undefined} aria-label={alt || undefined}>
+      {label && <span class="t-b5 absolute bottom-2 left-2 text-black/40">{label}</span>}
+    </div>
+  )
+}

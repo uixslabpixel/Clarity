@@ -1,0 +1,18 @@
+---
+/** BLOG-01b — three briefings under a divided header (Home 2). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import BlogCard from '../cards/BlogCard.astro';
+import { posts } from '../../data/content';
+---
+<section class="bg-white px-[120px] py-20" data-section="BLOG-01b">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-16">
+    <div class="flex flex-col gap-4">
+      <Eyebrow>Blog</Eyebrow>
+      <span class="h-px w-full bg-line"></span>
+      <h2 class="t-h2">Governance Briefings</h2>
+    </div>
+    <div class="flex gap-8">
+      {posts.slice(0, 3).map((p) => <BlogCard {...p} category="Corporate Strategy Hub" href={`/insights/${p.slug}`} imageHeight={360} radius="sm" class="flex-1" />)}
+    </div>
+  </div>
+</section>

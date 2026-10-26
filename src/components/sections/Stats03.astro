@@ -1,0 +1,21 @@
+---
+/** STATS-03 — three centred stats separated by dividers (Home 3). */
+import { stats } from '../../data/content';
+interface Props {
+  items?: { value: string; label: string }[];
+}
+const { items = stats } = Astro.props;
+---
+<div class="flex items-center justify-center gap-16" data-section="STATS-03">
+  {
+    items.map((s, i) => (
+      <>
+        {i > 0 && <span class="h-[97px] w-px bg-line" />}
+        <div class="flex w-[250px] flex-col gap-[22px] text-center">
+          <p class="t-h1" data-count>{s.value}</p>
+          <p class="t-b3 text-ink-2">{s.label}</p>
+        </div>
+      </>
+    ))
+  }
+</div>
