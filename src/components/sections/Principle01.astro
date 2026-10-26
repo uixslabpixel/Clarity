@@ -1,0 +1,43 @@
+---
+/** PRINCIPLE-01 — accordion principles with swapping image stack (About 1). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Icon from '../ui/Icon.astro';
+import Media from '../ui/Media.astro';
+import Hatch from '../ui/Hatch.astro';
+import { principles } from '../../data/about';
+---
+<section class="relative bg-white px-[135px] pb-[98px] pt-[138px]" data-section="PRINCIPLE-01">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex max-w-[1170px] items-start gap-16" data-accordion data-active="0">
+    <div class="flex max-w-[600px] flex-1 flex-col gap-[152px]">
+      <div class="flex flex-col gap-3.5">
+        <Eyebrow>Core principles</Eyebrow>
+        <h2 class="t-h2 max-w-[480px]">Our Practice's Core Principles</h2>
+      </div>
+      <ul class="flex flex-col">
+        {
+          principles.map((p, i) => (
+            <li class="border-b border-line py-6" data-accordion-item>
+              {i === 0 ? (
+                <div class="flex flex-col gap-4">
+                  <button type="button" class="flex w-full items-center gap-4 text-left" aria-expanded="true">
+                    <span class="grid size-4 shrink-0 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
+                    <span class="t-h5 flex-1">{p.title}</span>
+                  </button>
+                  <p class="t-b3 pl-8 text-ink-2" data-accordion-panel>{p.text}</p>
+                </div>
+              ) : (
+                <button type="button" class="t-h6 w-full text-left" aria-expanded="false">{p.title}</button>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="flex w-[575px] shrink-0 flex-col gap-4 self-stretch">
+      <Media class="h-[350px] w-full" />
+      <Media tone="dark" class="min-h-0 w-full flex-1 opacity-80" />
+      <Media tone="dark" class="min-h-0 w-full flex-1 opacity-80" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+/** SERVICE-02 — alternating image / copy rows (Services 2). */
+import Button from '../ui/Button.astro';
+import Media from '../ui/Media.astro';
+import { services } from '../../data/services';
+---
+<div class="flex flex-col gap-16" data-section="SERVICE-02">
+  {
+    services.map((s, i) => (
+      <article class={`flex items-start gap-8 ${i % 2 ? 'flex-row-reverse justify-between' : ''}`}>
+        <Media tone="duotone" class="size-[512px] shrink-0" />
+        <div class={`flex flex-col gap-8 pt-0 ${i % 2 ? 'w-[512px]' : 'w-[492px]'}`}>
+          <h2 class="t-h5">{s.title}</h2>
+          <div class="flex flex-col items-start gap-4">
+            <p class="t-b3 text-ink-2">{s.text}</p>
+            <Button href={`/services/${s.slug}`} variant="soft" size="sm">{s.cta}</Button>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</div>

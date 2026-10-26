@@ -1,0 +1,50 @@
+---
+/** SERVICE-03 — detail copy blocks + sticky CTA sidebar card (Service Detail). */
+import Media from '../ui/Media.astro';
+import Icon from '../ui/Icon.astro';
+import Hatch from '../ui/Hatch.astro';
+interface Props {
+  blocks: { heading: string; text: string }[];
+  card?: { title: string; text: string; cta: string; note: string };
+}
+const {
+  blocks,
+  card = {
+    title: 'Direct Strategic Access',
+    text: 'We create a milestone plan focusing on automation and efficiency.',
+    cta: 'Retain Practice Lead',
+    note: 'Download Service-Specific Technical PDF Brochure',
+  },
+} = Astro.props;
+---
+<section class="relative bg-white px-[135px] pb-20 pt-[120px]" data-section="SERVICE-03">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex max-w-[1170px] items-start gap-12">
+    <div class="flex w-[781px] shrink-0 flex-col">
+      {
+        blocks.map((b, i) => (
+          <div class={`flex flex-col gap-4 py-6 ${i < blocks.length - 1 ? 'border-b border-line' : ''}`}>
+            <h2 class="t-h5">{b.heading}</h2>
+            <p class="t-b3 text-ink-2">{b.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <aside class="sticky top-24 flex min-w-0 flex-1 flex-col gap-6 border border-line">
+      <Media tone="duotone" class="h-[128px] w-full bg-black/20" />
+      <div class="flex flex-col gap-8 px-6 pb-6">
+        <div class="flex flex-col gap-4">
+          <h3 class="t-h5 truncate">{card.title}</h3>
+          <p class="t-b3 text-ink-2">{card.text}</p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href="/contact" class="t-b4 group flex w-full items-center justify-between rounded-full bg-black px-3.5 py-2 text-white transition-colors hover:bg-zinc-600">
+            {card.cta}
+            <span class="grid size-4 place-items-center rounded-full bg-white text-black"><Icon name="chevron-right" size={8} /></span>
+          </a>
+          <a href="#" class="t-b5 text-ink-2 underline-offset-2 hover:underline">{card.note}</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

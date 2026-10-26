@@ -1,0 +1,17 @@
+---
+/** CASE-05 — "Proof of Execution", two case cards (Service Detail). */
+import SectionHeader from '../ui/SectionHeader.astro';
+import CaseCard from '../cards/CaseCard.astro';
+const cards = [
+  { tag: 'Logistics Architecture / Global Logistics Corp', title: 'Saving a multinational distribution system from supply chain decay.', href: '/case-studies/saving-a-multinational-distribution-system' },
+  { tag: 'Financial Systems / Alpha Capital', title: 'Overhauling legacy compliance architectures to unlock institutional agility.', href: '/case-studies/overhauling-legacy-compliance' },
+];
+---
+<section class="bg-white px-[154px] pb-[100px] pt-20" data-section="CASE-05">
+  <div class="mx-auto flex max-w-[1132px] flex-col gap-12">
+    <SectionHeader eyebrow="Document" title="Proof of Execution Documented" width={480} />
+    <div class="flex gap-8">
+      {cards.map((c) => <CaseCard {...c} class="flex-1" />)}
+    </div>
+  </div>
+</section>

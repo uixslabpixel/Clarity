@@ -1,0 +1,40 @@
+---
+/** STATS-04 — range benchmarks with logo strip (Service Detail). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import LogoStrip from '../ui/LogoStrip.astro';
+interface Props {
+  items?: { from: string; to: string; label: string }[];
+}
+const {
+  items = [
+    { from: '+22%', to: '45%', label: 'Expected operational efficiency gains realized across target entities.' },
+    { from: '-15%', to: '30%', label: 'Overhead reduction margins locked within enterprise units.' },
+  ],
+} = Astro.props;
+---
+<section class="bg-white px-[154px] py-20" data-section="STATS-04">
+  <div class="mx-auto flex max-w-[1132px] flex-col items-center gap-14">
+    <div class="flex w-[480px] flex-col items-center gap-3.5 text-center">
+      <Eyebrow>Benchmarks</Eyebrow>
+      <h2 class="t-h2">Target Performance Benchmarks</h2>
+    </div>
+    <div class="flex items-center gap-16">
+      {
+        items.map((s, i) => (
+          <>
+            {i > 0 && <span class="h-[97px] w-px bg-line" />}
+            <div class="flex w-[400px] flex-col items-center gap-4 text-center">
+              <p class="flex items-baseline gap-4 font-heading">
+                <span class="t-h1">{s.from}</span>
+                <span class="t-b3 text-ink-3">to</span>
+                <span class="t-h1">{s.to}</span>
+              </p>
+              <p class="t-b3 max-w-[300px] text-ink-2">{s.label}</p>
+            </div>
+          </>
+        ))
+      }
+    </div>
+    <LogoStrip items={['Vexum', 'Deepstack', 'Wellnex', 'Botanic', 'Veeta', 'Owlearn']} />
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import ServiceList from '../../components/sections/ServiceList.astro';
+import Process04 from '../../components/sections/Process04.astro';
+import ImageBanner from '../../components/sections/ImageBanner.astro';
+import CTA from '../../components/layout/CTA.astro';
+---
+<BaseLayout title="Services" nav={{ active: '/services' }}>
+  <PageHero
+    crumb="Services"
+    title="Strategic <br/>Advisory Capabilities"
+    text="An analytical overview of our core practices engineered to extract operational efficiency and secure market alpha."
+  />
+  <ServiceList />
+  <Process04 />
+  <ImageBanner />
+  <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+/** HERO-05 — split hero: breadcrumb + period left, headline right, full-width image (About 2). */
+import Breadcrumb from '../ui/Breadcrumb.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+interface Props {
+  crumb: string;
+  meta?: string;
+  title: string;
+  text: string;
+}
+const { crumb, meta, title, text } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white px-10 pb-10 pt-[60px]" data-section="HERO-05">
+  <GradientWash class="inset-[-419px_0_652px_0]" />
+  <div class="relative mx-auto flex max-w-[1360px] items-start justify-between px-4 pb-[60px] pt-10">
+    <div class="flex w-[93px] flex-col justify-between self-stretch">
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: crumb }]} />
+      {meta && <p class="t-label text-black">{meta}</p>}
+    </div>
+    <div class="flex max-w-[672px] flex-1 flex-col gap-10">
+      <h1 class="t-h1" set:html={title} />
+      <p class="t-b3 text-ink-2">{text}</p>
+    </div>
+  </div>
+  <Media tone="duotone" class="relative mx-auto h-[480px] w-full max-w-[1360px]" loading="eager" />
+</section>

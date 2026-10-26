@@ -1,13 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/sections/PageHero.astro';
+import Principle01 from '../components/sections/Principle01.astro';
+import Timeline01 from '../components/sections/Timeline01.astro';
+import Reach01 from '../components/sections/Reach01.astro';
 import CTA from '../components/layout/CTA.astro';
 ---
-<BaseLayout title="About">
+<BaseLayout title="About" nav={{ active: '/about' }}>
   <PageHero
     crumb="About"
     title="Architecting <br/>Institutional Resiliency"
     text="Clarity was founded to remove bloat in enterprise consulting. We avoid superficial slides and focus on operational integration to help leaders navigate volatility and build executive autonomy."
   />
+  <Principle01 />
+  <Timeline01 />
+  <Reach01 />
   <CTA title="Align with an Advisory Obsessed with Progress" cta="Secure an Analytical Partnership" />
 </BaseLayout>

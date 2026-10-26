@@ -1,0 +1,40 @@
+---
+/** REACH-02 — dotted world map with office pins (About 2). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Icon from '../ui/Icon.astro';
+import Hatch from '../ui/Hatch.astro';
+import { locations } from '../../data/about';
+const pins = [
+  { left: 260, top: 441 },
+  { left: 636, top: 461 },
+  { left: 360, top: 569 },
+  { left: 1020, top: 545 },
+  { left: 80, top: 675 },
+  { left: 836, top: 671 },
+];
+---
+<section class="relative h-[743px] overflow-hidden bg-gradient-to-b from-[#f4f1ec]/70 to-[#f4f1ec]" data-section="REACH-02">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="relative mx-auto flex max-w-[1440px] flex-col items-center gap-4 px-10 pt-[106px] text-center">
+    <Eyebrow>Global reach</Eyebrow>
+    <span class="h-px w-full bg-line"></span>
+    <h2 class="t-h2">Global Jurisdictional Reach</h2>
+  </div>
+  <div
+    aria-hidden="true"
+    class="absolute left-1/2 top-[340px] h-[640px] w-[1180px] -translate-x-1/2 [background-image:radial-gradient(rgb(0_0_0/.22)_1.4px,transparent_1.6px)] [background-size:9px_9px] [mask-image:radial-gradient(ellipse_at_50%_55%,black_45%,transparent_70%)]"
+  >
+  </div>
+  <ul class="absolute inset-0 mx-auto max-w-[1440px]">
+    {
+      locations.map((l, i) => (
+        <li class="absolute" style={`left:${pins[i].left}px;top:${pins[i].top}px`}>
+          <span class="t-label flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-black shadow-[0_1px_2px_rgb(0_0_0/.06)]">
+            <span class="grid size-4 place-items-center rounded-full bg-black/10"><Icon name="chevron-right" size={8} /></span>
+            {l.label}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</section>

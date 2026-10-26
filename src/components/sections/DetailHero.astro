@@ -1,0 +1,26 @@
+---
+/** HERO-06 — breadcrumb + title left, intro right, wide image (Service Detail). */
+import Breadcrumb from '../ui/Breadcrumb.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+interface Props {
+  parent: { label: string; href: string };
+  crumb: string;
+  title: string;
+  text: string;
+}
+const { parent, crumb, title, text } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white pb-16 pt-[61px]" data-section="HERO-06">
+  <GradientWash class="inset-[-419px_0_607px_0]" />
+  <div class="relative flex items-end gap-8 px-[154px] py-[68px]">
+    <div class="flex max-w-[800px] flex-1 flex-col gap-4">
+      <Breadcrumb items={[parent, { label: crumb }]} />
+      <h1 class="t-h2 max-w-[672px]">{title}</h1>
+    </div>
+    <p class="t-b3 max-w-[500px] flex-1 text-ink-2">{text}</p>
+  </div>
+  <div class="relative px-[154px]">
+    <Media tone="duotone" class="h-[480px] w-full bg-black" loading="eager" />
+  </div>
+</section>

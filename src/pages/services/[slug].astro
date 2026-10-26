@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DetailHero from '../../components/sections/DetailHero.astro';
+import ServiceBody from '../../components/sections/ServiceBody.astro';
+import Stats04 from '../../components/sections/Stats04.astro';
+import CaseProof from '../../components/sections/CaseProof.astro';
+import Faq from '../../components/sections/Faq.astro';
+import CTA from '../../components/layout/CTA.astro';
+import { services, detailBlocks } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+const { service } = Astro.props;
+---
+<BaseLayout title={service.title} description={service.text} nav={{ active: '/services' }}>
+  <DetailHero parent={{ label: 'Services', href: '/services' }} crumb={service.title} title={service.title} text={service.text} />
+  <ServiceBody blocks={detailBlocks} />
+  <Stats04 />
+  <CaseProof />
+  <Faq />
+  <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />
+</BaseLayout>

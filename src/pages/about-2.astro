@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SplitHero from '../components/sections/SplitHero.astro';
+import Principle02 from '../components/sections/Principle02.astro';
+import Timeline02 from '../components/sections/Timeline02.astro';
+import Reach02 from '../components/sections/Reach02.astro';
+import CTA from '../components/layout/CTA.astro';
+import { milestones } from '../data/about';
+const items = [
+  { ...milestones[0] },
+  { ...milestones[1], title: 'Fractional C-Suite Disruption' },
+  { ...milestones[2], title: 'Algorithmic Diagnostic Rollout' },
+];
+---
+<BaseLayout title="About" nav={{ layout: 'minimal', theme: 'light', active: '/about' }} footer="plain">
+  <SplitHero
+    crumb="About"
+    meta="2019-2026"
+    title="Architecting <br/>Institutional Resiliency"
+    text="Clarity was founded to eliminate the structural bloat inherent in classic enterprise consulting models. We discard superficial slideshow templates in favor of direct operational integration. Our mandate is to guide market leaders through structural volatility, establishing permanent executive autonomy within client frameworks."
+  />
+  <Principle02 />
+  <Timeline02 items={items} />
+  <Reach02 />
+  <CTA title="Align with an Advisory Obsessed with Progress" cta="Secure an Analytical Partnership" />
+</BaseLayout>

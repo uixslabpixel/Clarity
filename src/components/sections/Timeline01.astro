@@ -1,0 +1,36 @@
+---
+/** TIMELINE-01 — horizontal milestones; the active year is in focus (About 1). */
+import Icon from '../ui/Icon.astro';
+import { milestones } from '../../data/about';
+const active = 1;
+---
+<section class="relative overflow-hidden bg-white px-[135px] py-24" data-section="TIMELINE-01" data-tabs data-active={active}>
+  <div class="relative mx-auto flex max-w-[1170px] items-start gap-10">
+    <span aria-hidden="true" class="absolute -left-[135px] top-[156px] h-0 w-[1367px] border-t-[1.5px] border-dashed border-black/20"></span>
+    {
+      milestones.map((m, i) => {
+        const on = i === active;
+        return (
+          <article class="relative flex min-w-0 flex-1 flex-col items-end gap-6" data-tab-item>
+            <div class="flex h-[98px] w-full flex-col gap-[22px] text-right font-heading">
+              <p class={`text-[24px] leading-[1.2] ${on ? 'text-ink-2' : 'text-transparent'}`}>{m.date}</p>
+              <p class={`t-h1 ${on ? 'text-black' : 'text-zinc-200'}`}>{m.year}</p>
+            </div>
+            <div class="flex w-full items-start gap-4">
+              <div class={`flex flex-1 flex-col gap-6 pt-[83px] ${on ? '' : 'text-ink-5'}`}>
+                <h3 class={`t-h5 ${on ? 'text-black' : ''}`}>{m.title}</h3>
+                <p class={`t-b3 ${on ? 'text-ink-2' : ''}`}>{m.text}</p>
+              </div>
+              <div class="relative w-[47px] shrink-0">
+                <span class={`absolute left-6 top-0 h-[106px] w-px ${on ? 'bg-black/40' : 'bg-black/10'}`} />
+                <span class={`relative mt-[83px] grid size-[47px] place-items-center rounded-full ${on ? 'bg-black/[.04] text-black' : 'bg-white text-black/10'}`}>
+                  <Icon name={m.icon as any} size={22} />
+                </span>
+              </div>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>

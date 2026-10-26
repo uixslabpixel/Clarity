@@ -1,0 +1,35 @@
+---
+/** FAQ-01 — centred accordion (Service Detail). */
+import Icon from '../ui/Icon.astro';
+import Hatch from '../ui/Hatch.astro';
+interface Props {
+  title?: string;
+  items?: { q: string; a: string }[];
+}
+const {
+  title = 'Operational Terms',
+  items = [
+    { q: 'What are the typical deployment timelines and onboarding SLAs?', a: 'Diagnostic teams deploy within 10 business days of signature. Fractional executives are typically in seat within 21 days, with a 30-day onboarding SLA covering data access, stakeholder mapping, and first-milestone sign-off.' },
+    { q: 'How are project milestones and fractional hour allocations structured?', a: 'Every engagement is broken into milestone-locked phases with a fixed hour envelope per phase. Unused hours roll forward one phase; overruns require written board approval before work continues.' },
+  ],
+} = Astro.props;
+---
+<section class="relative bg-white px-[154px] pb-40 pt-20" data-section="FAQ-01">
+  <div class="mx-auto flex max-w-[800px] flex-col gap-8">
+    <h2 class="t-h2 text-center">{title}</h2>
+    <div class="flex flex-col" data-accordion>
+      {
+        items.map((it) => (
+          <details class="group border-b border-line" data-accordion-item>
+            <summary class="t-b3 flex cursor-pointer list-none items-center justify-between gap-6 pb-[25px] pt-6 [&::-webkit-details-marker]:hidden">
+              {it.q}
+              <Icon name="chevron-down" size={16} class="transition-transform duration-300 group-open:rotate-180" />
+            </summary>
+            <p class="t-b3 -mt-2 pb-6 pr-10 text-ink-2">{it.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+  <Hatch class="absolute inset-x-0 bottom-0" />
+</section>

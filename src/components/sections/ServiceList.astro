@@ -1,0 +1,26 @@
+---
+/** SERVICE-01 — stacked grey service cards with image (Services 1). */
+import Button from '../ui/Button.astro';
+import Media from '../ui/Media.astro';
+import Hatch from '../ui/Hatch.astro';
+import { services } from '../../data/services';
+---
+<section class="relative bg-white px-[154px] pb-[104px] pt-[120px]" data-section="SERVICE-01">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex w-[946px] flex-col gap-4">
+    {
+      services.map((s) => (
+        <article class="flex items-start gap-10 bg-black/5 py-4 pl-6 pr-4">
+          <div class="flex h-[224px] min-w-0 flex-1 flex-col justify-between py-4">
+            <h2 class="t-h5 max-w-[300px]">{s.lines.map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h2>
+            <div class="flex items-end gap-8">
+              <p class="t-b3 max-w-[600px] flex-1 text-ink-2">{s.text}</p>
+              <Button href={`/services/${s.slug}`} variant="soft" class="!h-9">{s.cta}</Button>
+            </div>
+          </div>
+          <Media tone="duotone" class="size-[224px] shrink-0 bg-black" />
+        </article>
+      ))
+    }
+  </div>
+</section>

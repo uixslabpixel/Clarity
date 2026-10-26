@@ -1,0 +1,19 @@
+---
+/** BANNER-01 — full-bleed photo banner with headline and CTA (Services). */
+import Media from '../ui/Media.astro';
+import Button from '../ui/Button.astro';
+interface Props {
+  title?: string;
+  cta?: string;
+  href?: string;
+}
+const { title = 'Access the 2026 Executive Infrastructure Blueprint', cta = 'Access Technical Asset Report', href = '/contact' } = Astro.props;
+---
+<section class="relative h-[720px] overflow-hidden bg-black text-white" data-section="BANNER-01">
+  <Media tone="dark" class="absolute left-1/2 top-[-145px] h-[919px] w-[1470px] -translate-x-1/2" data-parallax />
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="absolute left-1/2 top-1/2 flex w-[1132px] -translate-x-1/2 -translate-y-1/2 items-center justify-between">
+    <h2 class="t-h2 w-[654px]">{title}</h2>
+    <Button href={href} variant="light">{cta}</Button>
+  </div>
+</section>

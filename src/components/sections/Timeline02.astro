@@ -1,0 +1,51 @@
+---
+/** TIMELINE-02 — three year columns over a tick ruler; the active one expands with copy + image (About 2). */
+import Media from '../ui/Media.astro';
+interface Item {
+  year: string;
+  title: string;
+  text: string;
+}
+interface Props {
+  items: Item[];
+  active?: number;
+}
+const { items, active = 1 } = Astro.props;
+const Ticks = (_on: boolean) => Array.from({ length: 15 });
+---
+<section class="bg-white px-10 py-24" data-section="TIMELINE-02" data-tabs data-active={active}>
+  <div class="mx-auto flex max-w-[1360px] items-start gap-6">
+    {
+      items.map((m, i) => {
+        const on = i === active;
+        return (
+          <article class="flex min-w-0 flex-1 flex-col" data-tab-item>
+            <div class="flex items-start gap-6">
+              <span class={`h-[216px] w-px shrink-0 ${on ? 'bg-black' : 'bg-line'}`} />
+              <div class="flex h-[216px] min-w-0 flex-1 flex-col justify-between">
+                <div class="flex flex-col gap-[22px] font-heading">
+                  <p class={`t-h1 ${on ? 'text-black' : 'text-zinc-200'}`}>{m.year}</p>
+                  <h3 class={`t-h5 ${on ? 'text-black' : 'text-ink-5'}`}>{m.title}</h3>
+                </div>
+                <div class="flex items-center justify-between">
+                  {Ticks(on).map(() => (
+                    <span class={`h-[51px] w-px ${on ? 'bg-black/30' : 'bg-line'}`} />
+                  ))}
+                </div>
+              </div>
+            </div>
+            {on && (
+              <div class="flex items-stretch gap-6">
+                <span class="w-px shrink-0 bg-line" />
+                <div class="flex h-[259px] min-w-0 flex-1 flex-col justify-between pt-10">
+                  <p class="t-b3 text-ink-2">{m.text}</p>
+                  <Media tone="duotone" class="h-[128px] w-full" />
+                </div>
+              </div>
+            )}
+          </article>
+        );
+      })
+    }
+  </div>
+</section>

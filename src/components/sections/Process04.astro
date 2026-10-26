@@ -1,0 +1,39 @@
+---
+/** PROCESS-04 — three method steps; the active one expands (Services 1). */
+import SectionHeader from '../ui/SectionHeader.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { methodSteps } from '../../data/services';
+---
+<section class="bg-white px-[154px] pb-[104px] pt-20" data-section="PROCESS-04">
+  <div class="mx-auto flex max-w-[1132px] flex-col gap-20">
+    <SectionHeader eyebrow="How it works" title="Delivering Alpha via Quantitative Methods" width={704}>
+      <Button href="/services/management-consulting" variant="soft">Access Domain Strategy</Button>
+    </SectionHeader>
+    <ol class="flex items-start gap-6" data-tabs data-active="0">
+      {
+        methodSteps.map((s, i) =>
+          i === 0 ? (
+            <li class="flex w-[476px] shrink-0 items-stretch border-l border-line" data-tab-item>
+              <div class="flex h-[300px] flex-1 flex-col justify-between bg-gradient-to-b from-[#f4f1ec]/0 to-[#f4f1ec] px-6 py-8">
+                <div class="flex items-start justify-between">
+                  <Icon name={s.icon as any} size={56} class="text-zinc-300" />
+                  <span class="t-label text-ink-2">{s.label}</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <h3 class="t-h5">{s.title}</h3>
+                  <p class="t-b3 line-clamp-3 text-ink-2">{s.text}</p>
+                </div>
+              </div>
+            </li>
+          ) : (
+            <li class="flex h-[300px] min-w-0 flex-1 flex-col justify-between border-l border-line px-6 py-8" data-tab-item>
+              <span class="t-label text-ink-2">{s.label}</span>
+              <h3 class="t-h5">{s.title}</h3>
+            </li>
+          ),
+        )
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import Media from '../ui/Media.astro';
+import Button from '../ui/Button.astro';
+interface Props {
+  tag: string;
+  title: string;
+  href: string;
+  class?: string;
+}
+const { tag, title, href, class: cls = '' } = Astro.props;
+---
+<article class={`group flex min-w-0 flex-col overflow-hidden border border-line bg-white ${cls}`}>
+  <div class="relative h-[280px] overflow-hidden">
+    <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-500 group-hover:scale-[1.03]" />
+    <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{tag}</span>
+  </div>
+  <div class="flex flex-col items-start gap-6 p-6">
+    <h3 class="t-h5">{title}</h3>
+    <Button href={href} variant="soft" size="sm">Enter Case Analysis</Button>
+  </div>
+</article>

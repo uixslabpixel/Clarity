@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import ServiceZigzag from '../components/sections/ServiceZigzag.astro';
+import Process05 from '../components/sections/Process05.astro';
+import ImageBanner from '../components/sections/ImageBanner.astro';
+import Hatch from '../components/ui/Hatch.astro';
+import CTA from '../components/layout/CTA.astro';
+---
+<BaseLayout title="Services" nav={{ active: '/services' }}>
+  <PageHero
+    crumb="Services"
+    title="Strategic <br/>Advisory Capabilities"
+    text="An analytical overview of our core practices engineered to extract operational efficiency and secure market alpha."
+  />
+  <section class="relative bg-white px-[154px] pb-[92px] pt-[120px]">
+    <Hatch class="absolute inset-x-0 top-0" />
+    <div class="mx-auto flex max-w-[1132px] flex-col gap-[88px]">
+      <ServiceZigzag />
+      <Process05 />
+    </div>
+  </section>
+  <ImageBanner />
+  <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />
+</BaseLayout>

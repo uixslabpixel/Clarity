@@ -1,0 +1,37 @@
+---
+/** REACH-01 — arc of tilted image tiles framing the heading + stats (About 1). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import { reachStats } from '../../data/about';
+const spokes = [15, -177.5, -152.5, 170, -140, 157.26, -127.26, 144, -114, 131, -101, 118, -88, 105];
+---
+<section class="relative h-[688px] overflow-hidden bg-white" data-section="REACH-01">
+  <div aria-hidden="true" class="absolute left-1/2 top-[722px] size-[1339px] -translate-x-1/2 -translate-y-1/2 rotate-[36.86deg]" data-parallax-rotate>
+    {
+      spokes.map((deg, i) => (
+        <div class="absolute left-1/2 top-0 flex h-full w-[93px] -translate-x-1/2 flex-col justify-between" style={`transform: translateX(-50%) rotate(${deg}deg)`}>
+          <span class={`block h-[93px] w-[93px] border border-black/10 ${i % 3 === 0 ? 'bg-zinc-600/70' : 'bg-black/10'}`} />
+          <span class={`block h-[93px] w-[93px] border border-black/10 ${i % 2 === 0 ? 'bg-zinc-600/70' : 'bg-black/10'}`} />
+        </div>
+      ))
+    }
+  </div>
+  <div class="absolute left-1/2 top-[325px] flex -translate-x-1/2 flex-col items-center gap-[72px]">
+    <div class="flex w-[710px] flex-col items-center gap-3.5 text-center">
+      <Eyebrow>Global reach</Eyebrow>
+      <h2 class="t-h2">Global Jurisdictional Reach</h2>
+    </div>
+    <div class="flex items-center gap-14">
+      {
+        reachStats.map((s, i) => (
+          <>
+            {i > 0 && <span class="h-[97px] w-px bg-line" />}
+            <div class="flex flex-col gap-[22px] text-center font-heading">
+              <p class="t-h1" data-count>{s.value}</p>
+              <p class="t-h6 text-ink-2">{s.label}</p>
+            </div>
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
