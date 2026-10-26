@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SimpleHero from '../../components/sections/SimpleHero.astro';
+import DocsLayout from '../../components/sections/DocsLayout.astro';
+import DocPanel from '../../components/ui/DocPanel.astro';
+const groups = [
+  { id: 'photography', title: 'Photography', intro: 'All graphical assets in this template are licensed for personal and commercial use. Images are sourced from:', items: [{ name: 'Lummi', url: 'https://lummi.ai/' }, { name: 'Freepik', url: 'https://freepik.com/' }] },
+  { id: 'icons', title: 'Icons', intro: 'All icons in this template are licensed for personal and commercial use. All vector icons are sourced from Font Awesome.', items: [{ name: 'Font Awesome', url: 'https://fontawesome.com/license' }] },
+  { id: 'font', title: 'Font', intro: 'All fonts in this template are licensed for personal and commercial use under the SIL Open Font License (OFL). They come from Google Fonts.', items: [{ name: 'Google Fonts', url: 'https://fonts.google.com/specimen/Inter+Tight', note: 'Inter Tight' }, { name: 'Google Fonts', url: 'https://fonts.google.com/specimen/Geist', note: 'Geist' }, { name: 'Google Fonts', url: 'https://fonts.google.com/specimen/Geist+Mono', note: 'Geist Mono' }] },
+];
+---
+<BaseLayout title="Asset License">
+  <SimpleHero title="Asset License" text="All graphical assets in this template are licensed for personal and commercial use. If you'd like to use a specific asset, please check the source licenses below." />
+  <DocsLayout toc={groups.map((g) => ({ id: g.id, label: g.title }))}>
+    {
+      groups.map((g) => (
+        <DocPanel id={g.id} title={g.title} intro={g.intro}>
+          <div class="grid grid-cols-2 gap-2">
+            {g.items.map((it) => (
+              <a href={it.url} target="_blank" rel="noopener" class="flex items-center gap-4 bg-black/5 p-4 transition-colors hover:bg-black/10">
+                <span class="grid size-[84px] place-items-center rounded bg-white font-heading text-2xl">{it.name[0]}</span>
+                <span class="flex flex-col gap-1">
+                  <span class="t-h5">{it.name}</span>
+                  <span class="t-b5 text-ink-2">{(it as any).note ?? it.url}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </DocPanel>
+      ))
+    }
+  </DocsLayout>
+</BaseLayout>

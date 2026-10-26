@@ -1,0 +1,16 @@
+---
+/** CASE-04 — filter tabs + horizontal case rows (Case Studies). */
+import Hatch from '../ui/Hatch.astro';
+import FilterTabs from '../ui/FilterTabs.astro';
+import CaseRow from '../cards/CaseRow.astro';
+import { caseStudies, industries } from '../../data/cases';
+---
+<section class="relative bg-white px-[154px] pb-[104px] pt-[120px]" data-section="CASE-04">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex max-w-[1132px] flex-col gap-10">
+    <FilterTabs items={industries} />
+    <div class="flex flex-col gap-6">
+      {caseStudies.map((c) => <CaseRow {...c} />)}
+    </div>
+  </div>
+</section>

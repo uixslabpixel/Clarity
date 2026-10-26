@@ -11,8 +11,9 @@ interface Props {
   hatch?: boolean;
 }
 const { crumb, title, text, maxWidth = 610 } = Astro.props;
+const hasMedia = Astro.slots.has('default');
 ---
-<section class="relative overflow-hidden bg-white pb-[104px] pt-[165px]" data-section="HERO-04">
+<section class={`relative overflow-hidden bg-white pt-[165px] ${hasMedia ? 'pb-[72px]' : 'pb-[104px]'}`} data-section="HERO-04">
   <GradientWash class="inset-[-419px_0_236px_0]" />
   <div class="relative mx-auto flex flex-col items-center gap-10 text-center" style={`max-width:${maxWidth}px`}>
     <div class="flex w-full flex-col items-center gap-3.5">
@@ -21,5 +22,5 @@ const { crumb, title, text, maxWidth = 610 } = Astro.props;
     </div>
     {text && <p class="t-b3 text-ink-2">{text}</p>}
   </div>
-  <slot />
+  {hasMedia && <div class="relative mx-auto mt-[104px] w-[1170px]"><slot /></div>}
 </section>

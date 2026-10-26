@@ -1,0 +1,40 @@
+---
+/** HERO-07 — case study hero: title + headline metric, image, meta row. */
+import Breadcrumb from '../ui/Breadcrumb.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+interface Props {
+  area: string;
+  title: string;
+  metric: string;
+  metricLabel: string;
+  meta: { label: string; value: string }[];
+}
+const { area, title, metric, metricLabel, meta } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white pt-[61px]" data-section="HERO-07">
+  <GradientWash class="inset-[-419px_0_675px_0]" />
+  <div class="relative flex items-end justify-between px-[154px] py-16">
+    <div class="flex max-w-[680px] flex-1 flex-col gap-4">
+      <Breadcrumb items={[{ label: 'Case Studies', href: '/case-studies' }, { label: area }]} />
+      <h1 class="t-h2">{title}</h1>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="t-h2">{metric}</p>
+      <p class="t-b3 text-ink-2">{metricLabel}</p>
+    </div>
+  </div>
+  <div class="relative px-[154px]">
+    <Media tone="duotone" class="h-[480px] w-full bg-black" loading="eager" />
+  </div>
+  <dl class="relative flex items-end justify-between px-[154px] pb-16 pt-8">
+    {
+      meta.map((m) => (
+        <div class="flex flex-col gap-1">
+          <dt class="t-label text-ink-2">{m.label}</dt>
+          <dd class="t-h6">{m.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

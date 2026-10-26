@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string;
+  value: string;
+  label: string;
+}
+const { name, value, label } = Astro.props;
+---
+<label class="t-b4 flex h-[21px] cursor-pointer items-center gap-2 text-black/70">
+  <input type="checkbox" name={name} value={value} class="peer sr-only" />
+  <span class="grid size-4 place-items-center rounded border border-zinc-200 bg-white text-transparent transition-colors peer-checked:border-black peer-checked:bg-black peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-brand-2">
+    <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" /></svg>
+  </span>
+  {label}
+</label>

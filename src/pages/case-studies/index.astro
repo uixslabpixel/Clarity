@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import CaseList from '../../components/sections/CaseList.astro';
+import Stats05 from '../../components/sections/Stats05.astro';
+import CTA from '../../components/layout/CTA.astro';
+---
+<BaseLayout title="Case Studies" nav={{ active: '/case-studies' }}>
+  <PageHero
+    crumb="Case Studies"
+    title="Validated Institutional <br/>Breakthroughs"
+    text="Highly technical case files dissecting systemic bottleneck identification, strategic realignments, and realized financial ROIs."
+  />
+  <CaseList />
+  <Stats05 />
+  <CTA title="Your Corporate Transformation Awaits" cta="Start Operational Diagnostic Review" />
+</BaseLayout>

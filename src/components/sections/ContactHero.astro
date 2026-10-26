@@ -1,0 +1,61 @@
+---
+/** HERO-10 — contact intro, office details and discovery form (light or photo variant). */
+import Breadcrumb from '../ui/Breadcrumb.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+import Icon from '../ui/Icon.astro';
+import ContactForm from '../forms/ContactForm.astro';
+interface Props {
+  variant?: 'light' | 'dark';
+}
+const { variant = 'light' } = Astro.props;
+const dark = variant === 'dark';
+---
+<section class={`relative overflow-hidden px-[135px] pb-[104px] pt-[157px] ${dark ? 'bg-black text-white' : 'bg-white'}`} data-section="HERO-10">
+  {
+    dark ? (
+      <>
+        <Media tone="dark" class="absolute inset-0 size-full" loading="eager" />
+        <div class="absolute inset-0 bg-black/50" />
+      </>
+    ) : (
+      <>
+        <GradientWash class="inset-[-419px_0_553px_0]" />
+        <div aria-hidden="true" class="pointer-events-none absolute right-[88px] top-[119px] size-[659px] [background-image:repeating-linear-gradient(90deg,rgb(0_0_0/.06)_0_1px,transparent_1px_8px)] [mask-image:radial-gradient(closest-side,black,transparent)]" />
+      </>
+    )
+  }
+  <div class="relative mx-auto flex max-w-[1170px] items-start gap-20">
+    <div class="flex w-[525px] shrink-0 flex-col justify-between self-stretch">
+      <div class="flex flex-col gap-4">
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} tone={dark ? 'light' : 'dark'} />
+        <div class="flex flex-col gap-6">
+          <h1 class="t-h2">Initiate Corporate Discovery</h1>
+          <p class={`t-b3 ${dark ? 'text-paper-2' : 'text-ink-2'}`}>Structural modernization of business operations, board-level scenario planning, and systemic mitigation of regulatory friction.</p>
+        </div>
+      </div>
+      {
+        !dark && (
+          <div class="flex items-start gap-[35px]">
+            <div class="flex h-[127px] flex-1 flex-col justify-center gap-4">
+              <span class="grid size-8 place-items-center rounded-full bg-black/5"><Icon name="building" size={14} /></span>
+              <div class="flex flex-col gap-2 text-ink-2">
+                <p class="t-label">Corporate Advisory Base</p>
+                <p class="t-b3 line-clamp-2">One Financial District Tower, Suite 4800, New York, NY 10005.</p>
+              </div>
+            </div>
+            <span class="w-px self-stretch bg-line" />
+            <div class="flex h-[127px] flex-1 flex-col justify-center gap-4">
+              <span class="grid size-8 place-items-center rounded-full bg-black/5"><Icon name="location" size={14} /></span>
+              <div class="flex flex-col gap-2 text-ink-2">
+                <p class="t-label">Regional Advisory Centers</p>
+                <p class="t-b3">London Corporate Hub (EMEA)<br />Singapore Financial Core (APAC)</p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+    <div class="text-black"><ContactForm /></div>
+  </div>
+</section>

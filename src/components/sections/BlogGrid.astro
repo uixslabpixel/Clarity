@@ -1,0 +1,63 @@
+---
+/** BLOG-03 — filter tabs, featured + stacked cards, grid and pagination (Blog). */
+import Hatch from '../ui/Hatch.astro';
+import FilterTabs from '../ui/FilterTabs.astro';
+import Icon from '../ui/Icon.astro';
+import Media from '../ui/Media.astro';
+import BlogCard from '../cards/BlogCard.astro';
+import { allPosts, categories } from '../../data/posts';
+const list = allPosts.filter((p) => !p.featured);
+const [lead, side1, side2, ...rest] = list;
+const tabs = ['All', ...categories.filter((c) => c !== 'Corporate Governance Hub')];
+---
+<section class="relative bg-white px-[154px] pb-[94px] pt-[120px]" data-section="BLOG-03">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex max-w-[1132px] flex-col gap-10">
+    <FilterTabs items={tabs} />
+    <div class="flex flex-col gap-6">
+      <div class="flex items-start gap-6">
+        <a href={`/insights/${lead.slug}`} class="group flex w-[752px] shrink-0 flex-col gap-6 overflow-hidden border border-line" data-filter-item={lead.category}>
+          <div class="relative h-[444px] overflow-hidden">
+            <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" />
+            <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{lead.category}</span>
+          </div>
+          <div class="flex flex-col gap-8 px-6 pb-6">
+            <div class="flex flex-col gap-2">
+              <h2 class="t-h4">{lead.title}</h2>
+              <p class="t-label flex items-center gap-2 text-ink-3"><span>{lead.date}</span><span class="h-3.5 w-px bg-black/20"></span><span>{lead.author}</span></p>
+            </div>
+            <p class="t-b3 text-ink-2">{lead.excerpt}</p>
+          </div>
+        </a>
+        <div class="flex min-w-0 flex-1 flex-col gap-6">
+          {[side1, side2].map((p) => (
+            <a href={`/insights/${p.slug}`} class="group flex flex-col gap-6 overflow-hidden border border-line" data-filter-item={p.category}>
+              <div class="relative h-[280px] overflow-hidden">
+                <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" />
+                <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{p.category}</span>
+              </div>
+              <div class="flex flex-col gap-2 px-6 pb-6">
+                <h3 class="t-h5">{p.title}</h3>
+                <p class="t-label flex items-center gap-2 text-ink-3"><span>{p.date}</span><span class="h-3.5 w-px bg-black/20"></span><span>{p.author}</span></p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-6">
+        {rest.slice(0, 6).map((p) => <BlogCard {...p} href={`/insights/${p.slug}`} radius="sm" data-filter-item={p.category} />)}
+      </div>
+    </div>
+    <nav aria-label="Pagination" class="flex items-center justify-between">
+      <a href="#" aria-label="Previous page" class="grid size-6 place-items-center rounded-full bg-black/5"><Icon name="chevron-left" size={10} /></a>
+      <ol class="t-b4 flex items-center gap-4 text-ink-3">
+        <li><a href="/insights" aria-current="page" class="text-black">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li aria-hidden="true">…</li>
+      </ol>
+      <a href="#" aria-label="Next page" class="grid size-6 place-items-center rounded-full bg-black text-white"><Icon name="chevron-right" size={10} /></a>
+    </nav>
+  </div>
+</section>

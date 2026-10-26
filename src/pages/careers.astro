@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import CareersList from '../components/sections/CareersList.astro';
+import CTA from '../components/layout/CTA.astro';
+---
+<BaseLayout title="Careers">
+  <PageHero
+    crumb="Careers"
+    title="Deploy Your Expertise"
+    text="We do not field junior consulting teams. Clarity recruits strictly from the highest echelon of proven corporate operators, former public board members, and specialized algorithmic engineers."
+  />
+  <CareersList />
+  <CTA title="Accelerate Your Operational Evolution" cta="Schedule an Initiative Mapping Call" />
+</BaseLayout>

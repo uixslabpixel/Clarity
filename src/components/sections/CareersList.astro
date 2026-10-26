@@ -1,0 +1,57 @@
+---
+/** CAREERS-01 — filterable job cards with hatched edge + mandate sidebar (Careers). */
+import Hatch from '../ui/Hatch.astro';
+import FilterTabs from '../ui/FilterTabs.astro';
+import Button from '../ui/Button.astro';
+import Media from '../ui/Media.astro';
+import { jobs, departments } from '../../data/careers';
+import { site } from '../../data/site';
+---
+<section class="relative bg-white px-[135px] pb-20 pt-[120px]" data-section="CAREERS-01">
+  <Hatch class="absolute inset-x-0 top-0" />
+  <div class="mx-auto flex max-w-[1170px] flex-col gap-10">
+    <FilterTabs items={['All', ...departments]} />
+    <div class="flex items-start gap-8">
+      <div class="flex min-w-0 flex-1 flex-col gap-4">
+        {
+          jobs.map((j) => (
+            <article class="flex h-[351px] items-stretch overflow-hidden border border-line" data-filter-item={j.department}>
+              <span aria-hidden="true" class="hatch w-12 shrink-0" />
+              <div class="flex min-w-0 flex-1 flex-col justify-between bg-white px-12 py-10">
+                <div class="flex flex-col gap-2">
+                  <p class="t-label text-ink-2">{j.practice}</p>
+                  <h2 class="t-h3">{j.title}</h2>
+                  <p class="t-label flex items-center gap-4">
+                    <span><span class="text-ink-2">Location</span> {j.location}</span>
+                    <span class="h-3.5 w-px bg-black/20" />
+                    <span><span class="text-ink-2">Focus</span> {j.focus}</span>
+                  </p>
+                </div>
+                <div class="flex items-end gap-8">
+                  <p class="t-b3 flex-1 text-ink-2">{j.text}</p>
+                  <Button href={`mailto:${site.talentEmail}?subject=${encodeURIComponent(j.title)}`} variant="soft" class="!h-9">Submit Portfolio</Button>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <aside class="sticky top-24 flex w-[341px] shrink-0 flex-col gap-6 border border-line">
+        <Media class="h-[128px] w-full bg-black/20" />
+        <div class="flex flex-col gap-8 px-6 pb-6">
+          <div class="flex flex-col gap-4">
+            <h3 class="t-h5">The Clarity Mandate</h3>
+            <p class="t-b3 text-ink-2">We expect our partners to operate with absolute autonomy, radical transparency, and an obsession with verifiable metric improvements. If your background lacks verifiable crisis management or M&amp;A stabilization, your portfolio will not be reviewed.</p>
+          </div>
+          <div class="flex flex-col gap-3">
+            <span class="h-px w-full bg-line" />
+            <div class="t-label flex flex-col gap-1.5">
+              <span class="text-ink-2">General Inquiries</span>
+              <a href={`mailto:${site.talentEmail}`} class="text-black hover:underline">{site.talentEmail}</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

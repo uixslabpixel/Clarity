@@ -1,0 +1,34 @@
+---
+import Field from '../ui/Field.astro';
+import Checkbox from '../ui/Checkbox.astro';
+import Icon from '../ui/Icon.astro';
+const products = ['System Strategy', 'Restructuring Execution', 'Logistical Operations', 'Quartr API'];
+const revenue = ['Under $50M', '$50M – $250M', '$250M – $1B', '$1B – $5B', 'Over $5B'];
+---
+<form class="flex w-[565px] shrink-0 flex-col gap-10 overflow-hidden rounded border border-line bg-white p-4 backdrop-blur-[5px]" data-form="contact" method="post" name="discovery">
+  <div class="t-label flex flex-col gap-1">
+    <span class="text-ink-2">Phase 01:</span>
+    <span class="text-black">Client Operational Categorization Intent</span>
+  </div>
+  <div class="flex flex-col gap-4">
+    <div class="flex gap-4">
+      <Field label="Corporate Legal Entity Name" name="company" placeholder="e.g. Acme Holdings Ltd." />
+      <Field label="Point of Contact Representative Name" name="name" placeholder="e.g. Sarah Mitchell" />
+    </div>
+    <div class="flex gap-4">
+      <Field label="Secure Executive Email Address" name="email" type="email" placeholder="e.g. sarah@acme.com" required />
+      <Field label="Current Annual Revenue Band Bracket" name="revenue" type="select" placeholder="Select revenue range..." options={revenue} />
+    </div>
+    <fieldset class="flex flex-col gap-3">
+      <legend class="t-b4 mb-3 text-ink-2">Which product(s) are you interested in?*</legend>
+      <div class="grid w-fit grid-cols-[repeat(3,auto)] gap-x-6 gap-y-2">
+        {products.map((p) => <Checkbox name="products" value={p} label={p} />)}
+      </div>
+    </fieldset>
+    <Field label="Describe Current Internal Strategic Friction Points" name="message" type="textarea" placeholder="Briefly describe the situation, challenge, or strategic need..." />
+  </div>
+  <button type="submit" class="t-b4 flex h-10 w-full items-center justify-center gap-2 rounded-full bg-black px-3.5 text-white transition-colors hover:bg-zinc-600">
+    Finalize Diagnostic Submission Request
+    <span class="grid size-4 place-items-center rounded-full bg-white/10"><Icon name="chevron-right" size={8} /></span>
+  </button>
+</form>

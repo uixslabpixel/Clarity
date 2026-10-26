@@ -1,0 +1,31 @@
+---
+/** STATS-05 — "Portfolio Performance Secured": two large metrics + logo strip (Case Studies). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import LogoStrip from '../ui/LogoStrip.astro';
+import { portfolioStats } from '../../data/cases';
+---
+<section class="bg-white px-[154px] py-20" data-section="STATS-05">
+  <div class="mx-auto flex max-w-[1132px] flex-col items-center gap-14">
+    <div class="flex w-[600px] flex-col items-center gap-3.5 text-center">
+      <Eyebrow>Number performance</Eyebrow>
+      <h2 class="t-h2">Portfolio Performance Secured</h2>
+    </div>
+    <div class="flex items-center gap-16">
+      {
+        portfolioStats.map((s, i) => (
+          <>
+            {i > 0 && <span class="h-[97px] w-px bg-line" />}
+            <div class="flex w-[400px] flex-col items-center gap-4 text-center">
+              <p class="flex items-baseline gap-2 font-heading">
+                <span class="t-h1">{s.value}</span>
+                {s.unit && <span class="t-h5 text-ink-3">{s.unit}</span>}
+              </p>
+              <p class="t-b3 max-w-[330px] text-ink-2">{s.label}</p>
+            </div>
+          </>
+        ))
+      }
+    </div>
+    <LogoStrip items={['Vexum', 'Deepstack', 'Wellnex', 'Botanic', 'Veeta', 'Owlearn']} />
+  </div>
+</section>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactHero from '../components/sections/ContactHero.astro';
+import Callout from '../components/ui/Callout.astro';
+import Button from '../components/ui/Button.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Contact" description="Initiate a corporate discovery with Clarity's senior practice partners." nav={{ theme: 'dark' }}>
+  <ContactHero variant="dark" />
+  <Callout eyebrow="24/7 Crisis Support" title="Get direct executive assistance <br/>when the situation cannot wait.">
+    <Button href={`mailto:${site.email}`}>Contact crisis team</Button>
+    <Button href={`mailto:${site.email}`} variant="soft" chevron={false} class="!bg-black/10">Email coordinator</Button>
+  </Callout>
+</BaseLayout>

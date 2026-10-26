@@ -1,0 +1,33 @@
+---
+/** QUOTE-01 — statement quote beside a faded tile collage (Team). */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Media from '../ui/Media.astro';
+import Icon from '../ui/Icon.astro';
+const tiles = [
+  { left: 97, top: -55.5 }, { left: 97, top: 121.5, photo: true }, { left: 97, top: 298.5 },
+  { left: -80, top: -143.5 }, { left: -80, top: 33.5 }, { left: -80, top: 210.5 }, { left: -80, top: 387.5 },
+  { left: 274, top: -272.5 }, { left: 274, top: -95.5 }, { left: 274, top: 81.5 }, { left: 274, top: 258.5 },
+];
+---
+<section class="bg-white px-[154px] py-[104px]" data-section="QUOTE-01">
+  <div class="mx-auto flex max-w-[1132px] items-center gap-2">
+    <div aria-hidden="true" class="relative size-[380px] shrink-0 [mask-image:radial-gradient(circle_at_50%_50%,black_30%,transparent_70%)]">
+      {
+        tiles.map((t) =>
+          t.photo ? (
+            <Media class="absolute size-[161px] rounded-lg" style={`left:${t.left}px;top:${t.top}px`} />
+          ) : (
+            <span class="absolute size-[161px] rounded-lg border border-line bg-black/[.04]" style={`left:${t.left}px;top:${t.top}px`} />
+          ),
+        )
+      }
+    </div>
+    <figure class="flex min-w-0 flex-1 flex-col gap-10">
+      <Icon name="quote" size={70} class="text-black/10" />
+      <div class="flex flex-col gap-6">
+        <blockquote class="t-b2 text-black">We do not field junior consulting teams to perform research experiments on your balance sheet. Our organization deploys proven operational veterans who have steered public corporations through severe strategic and macroeconomic volatility.</blockquote>
+        <figcaption><Eyebrow>The Sovereign Operational Standard</Eyebrow></figcaption>
+      </div>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+/** HERO-12 — simple centred title hero on the gradient wash (utility pages). */
+import GradientWash from '../ui/GradientWash.astro';
+interface Props {
+  title: string;
+  text?: string;
+  maxWidth?: number;
+}
+const { title, text, maxWidth = 540 } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white pb-20 pt-[165px]" data-section="HERO-12">
+  <GradientWash class="inset-[-419px_0_120px_0]" />
+  <div class="relative mx-auto flex flex-col items-center gap-6 text-center" style={`max-width:${maxWidth}px`}>
+    <h1 class="t-h2">{title}</h1>
+    {text && <p class="t-b4 text-ink-2">{text}</p>}
+  </div>
+</section>

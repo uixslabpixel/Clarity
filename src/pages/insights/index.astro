@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeaturedPostHero from '../../components/sections/FeaturedPostHero.astro';
+import BlogGrid from '../../components/sections/BlogGrid.astro';
+import Newsletter from '../../components/sections/Newsletter.astro';
+import { allPosts } from '../../data/posts';
+const featured = allPosts.find((p) => p.featured)!;
+---
+<BaseLayout title="Insights" nav={{ active: '/insights' }}>
+  <FeaturedPostHero post={featured} />
+  <BlogGrid />
+  <Newsletter />
+</BaseLayout>

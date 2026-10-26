@@ -104,7 +104,7 @@ export const team = [
   {
     name: 'Marcus Reed',
     role: 'Fractional Executive Partner',
-    bio: 'Deployed as interim CFO across six distressed transitions. Specialized in extreme capital reallocation.',
+    bio: 'Deployed as interim CFO across 6 major M&A transitions. Specialized in extreme-scale capital reallocation.',
   },
   {
     name: 'Helena Rousseau',

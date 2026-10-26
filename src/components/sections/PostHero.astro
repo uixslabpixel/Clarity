@@ -1,0 +1,45 @@
+---
+/** HERO-09 — article hero with author / date / read-time row (Blog Detail). */
+import Breadcrumb from '../ui/Breadcrumb.astro';
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+interface Props {
+  category: string;
+  title: string;
+  dek: string;
+  author: string;
+  date: string;
+  readTime: string;
+}
+const { category, title, dek, author, date, readTime } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white pt-[61px]" data-section="HERO-09">
+  <GradientWash class="inset-[-419px_0_683px_0]" />
+  <div class="relative flex items-end gap-8 px-[154px] py-[68px]">
+    <div class="flex max-w-[800px] flex-1 flex-col gap-4">
+      <Breadcrumb items={[{ label: 'Blog', href: '/insights' }, { label: category }]} />
+      <h1 class="t-h2 max-w-[672px]">{title}</h1>
+    </div>
+    <p class="t-b3 max-w-[500px] flex-1 text-ink-2">{dek}</p>
+  </div>
+  <div class="relative px-[154px]">
+    <Media tone="duotone" class="h-[480px] w-full bg-black" loading="eager" />
+  </div>
+  <dl class="relative flex items-end justify-between px-[154px] pb-16 pt-8">
+    <div class="flex items-center gap-4">
+      <Media class="size-10 rounded-full" alt={`Photo of ${author}`} />
+      <div class="flex flex-col gap-1">
+        <dt class="t-label text-ink-2">Author</dt>
+        <dd class="t-h6">{author}</dd>
+      </div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <dt class="t-label text-ink-2">Date</dt>
+      <dd class="t-h6">{date}</dd>
+    </div>
+    <div class="flex flex-col gap-1">
+      <dt class="t-label text-ink-2">Time to read</dt>
+      <dd class="t-h6">{readTime}</dd>
+    </div>
+  </dl>
+</section>

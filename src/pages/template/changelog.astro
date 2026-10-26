@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SimpleHero from '../../components/sections/SimpleHero.astro';
+import DocsLayout from '../../components/sections/DocsLayout.astro';
+import DocPanel from '../../components/ui/DocPanel.astro';
+import { changelog } from '../../data/changelog';
+const toc = changelog.map((c) => ({ id: `v${c.version.replaceAll('.', '-')}`, label: `V ${c.version}` }));
+---
+<BaseLayout title="Changelog">
+  <SimpleHero title="Changelog" text="Every release of the Clarity template — what changed, when, and why." />
+  <DocsLayout toc={toc}>
+    {
+      changelog.map((c, i) => (
+        <DocPanel id={toc[i].id} title={`V ${c.version}`} meta={`${c.date}  ${c.number}`}>
+          <p class="t-b4 max-w-[540px] text-ink-2">{c.notes}</p>
+        </DocPanel>
+      ))
+    }
+  </DocsLayout>
+</BaseLayout>

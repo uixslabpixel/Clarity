@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SimpleHero from '../../components/sections/SimpleHero.astro';
+import DocsLayout from '../../components/sections/DocsLayout.astro';
+import DocPanel from '../../components/ui/DocPanel.astro';
+import Button from '../../components/ui/Button.astro';
+import Field from '../../components/ui/Field.astro';
+import Checkbox from '../../components/ui/Checkbox.astro';
+import Icon from '../../components/ui/Icon.astro';
+
+const type = [
+  { label: 'Display', cls: 't-display', font: 'Inter Tight', size: 80 },
+  { label: 'Heading 1', cls: 't-h1', font: 'Inter Tight', size: 64 },
+  { label: 'Heading 2', cls: 't-h2', font: 'Inter Tight', size: 56 },
+  { label: 'Heading 3', cls: 't-h3', font: 'Inter Tight', size: 40 },
+  { label: 'Heading 4', cls: 't-h4', font: 'Inter Tight', size: 32 },
+  { label: 'Heading 5', cls: 't-h5', font: 'Inter Tight', size: 24 },
+  { label: 'Heading 6', cls: 't-h6', font: 'Inter Tight', size: 16 },
+  { label: 'Body 1', cls: 't-b1', font: 'Geist', size: 32 },
+  { label: 'Body 2', cls: 't-b2', font: 'Geist', size: 24 },
+  { label: 'Body 3', cls: 't-b3', font: 'Geist', size: 16 },
+  { label: 'Body 4', cls: 't-b4', font: 'Geist', size: 14 },
+  { label: 'Body 5', cls: 't-b5', font: 'Geist', size: 12 },
+  { label: 'Label', cls: 't-label text-ink-2', font: 'Geist Mono', size: 14, weight: 'Medium', ls: '4%' },
+];
+const colors = [
+  { group: 'Text / Dark', items: [['#000000', '100%'], ['#000000', '72%'], ['#000000', '50%'], ['#000000', '36%'], ['#000000', '20%']] },
+  { group: 'Text / Light', items: [['#FFFFFF', '100%'], ['#FFFFFF', '72%'], ['#FFFFFF', '50%'], ['#FFFFFF', '36%'], ['#FFFFFF', '20%']] },
+  { group: 'BG / Dark', items: [['#000000', '100%'], ['#FFFFFF', '10%'], ['#000000', '5%']] },
+  { group: 'BG / Light', items: [['#FFFFFF', '100%'], ['#F4F4F5', '100%'], ['#000000', '5%']] },
+  { group: 'Stroke / Dark', items: [['#FFFFFF', '20%'], ['#FFFFFF', '10%'], ['#FFFFFF', '5%']] },
+  { group: 'Stroke / Light', items: [['#D4D4D8', '100%'], ['#000000', '10%'], ['#000000', '10%']] },
+  { group: 'Fill', items: [['#000000', '70%'], ['#000000', '20%'], ['#FFFFFF', '70%'], ['#FFFFFF', '20%'], ['#FA8513', '100%'], ['#9BACD8', '100%'], ['gradient', '']] },
+];
+const swatch = (hex: string, a: string) =>
+  hex === 'gradient' ? 'background-image: var(--gradient-brand)' : `background-color: ${hex}; opacity: 1; background-image: linear-gradient(${hexA(hex, a)}, ${hexA(hex, a)}); background-color: #fff;`;
+function hexA(hex: string, a: string) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgb(${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255} / ${a})`;
+}
+const icons = ['x', 'linkedin', 'chevron-right', 'play', 'sort', 'split', 'user', 'users', 'network', 'building', 'server', 'shield', 'search', 'location', 'star', 'user-gear', 'chart', 'globe', 'mail', 'lock', 'flag', 'file'] as const;
+const toc = [
+  { id: 'typography', label: 'Typography' },
+  { id: 'color', label: 'Color' },
+  { id: 'button', label: 'Button' },
+  { id: 'form', label: 'Form Input' },
+  { id: 'icons', label: 'Icons' },
+];
+---
+<BaseLayout title="Style Guide">
+  <SimpleHero title="Style Guide" text="Control the website's style from our guide. Styles and components are documented here, with changes visible site-wide instantly." />
+  <DocsLayout toc={toc}>
+    <DocPanel id="typography" title="Typography">
+      <div class="flex flex-col">
+        {
+          type.map((t) => (
+            <div class="flex flex-col gap-2 border-b border-line py-4 first:pt-0 last:border-0">
+              <p class={t.cls}>{t.label}</p>
+              <dl class="t-b5 grid grid-cols-4 text-ink-2">
+                <div><dt class="inline">Name:</dt> <dd class="inline">{t.font}</dd></div>
+                <div><dt class="inline">Size:</dt> <dd class="inline">{t.size}px</dd></div>
+                <div><dt class="inline">Weight:</dt> <dd class="inline">{t.weight ?? 'Regular'}</dd></div>
+                <div class="text-right"><dt class="inline">Letter Spacing:</dt> <dd class="inline">{t.ls ?? '0%'}</dd></div>
+              </dl>
+            </div>
+          ))
+        }
+      </div>
+    </DocPanel>
+    <DocPanel id="color" title="Color">
+      <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+        {
+          colors.map((c) => (
+            <div class={c.items.length > 4 ? 'col-span-2' : ''}>
+              <p class="t-label mb-2 text-black">{c.group}</p>
+              <div class="flex flex-wrap gap-2">
+                {c.items.map(([hex, a]) => (
+                  <figure class="flex w-[94px] flex-col gap-1">
+                    <span class="block h-10 rounded-sm border border-line" style={swatch(hex, a)} />
+                    <figcaption class="t-b5 flex justify-between text-ink-2"><span>{hex === 'gradient' ? 'Gradient' : hex}</span><span>{a}</span></figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </DocPanel>
+    <DocPanel id="button" title="Buttons">
+      <div class="flex flex-wrap gap-2">
+        <Button variant="soft">Book a Call</Button>
+        <Button chevron={false}>Book a Call</Button>
+        <Button variant="soft" chevron={false}>Book a Call</Button>
+        <span class="rounded bg-black p-2"><Button variant="light">Book a Call</Button></span>
+      </div>
+    </DocPanel>
+    <DocPanel id="form" title="Form Input">
+      <div class="grid grid-cols-2 gap-4">
+        <Field label="Label" name="sg-text" placeholder="Text" required />
+        <Field label="Label" name="sg-select" type="select" placeholder="Select..." options={['Option A', 'Option B']} required />
+        <Field label="Label" name="sg-area" type="textarea" placeholder="Text" required />
+        <div class="flex flex-col justify-between gap-4">
+          <Field label="Email" name="sg-email" type="email" placeholder="Text" />
+          <div class="flex gap-4"><Checkbox name="sg-c" value="a" label="Checkbox" /><Checkbox name="sg-c" value="b" label="Checkbox" /></div>
+        </div>
+      </div>
+    </DocPanel>
+    <DocPanel id="icons" title="Icons">
+      <div class="flex flex-wrap gap-4">
+        {icons.map((n) => <span title={n} class="grid size-8 place-items-center rounded bg-white"><Icon name={n} size={16} /></span>)}
+      </div>
+    </DocPanel>
+  </DocsLayout>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+/** NEWSLETTER-01 — "Subscribe to Clarity Brief" on the gradient wash (Blog). */
+import GradientWash from '../ui/GradientWash.astro';
+---
+<section class="relative h-[584px] overflow-hidden bg-white px-10 pt-[184px]" data-section="NEWSLETTER-01">
+  <GradientWash from="bottom" class="inset-[291px_0_-411px_0]" />
+  <div class="relative mx-auto flex max-w-[648px] flex-col items-center gap-8 text-center">
+    <div class="flex flex-col gap-2">
+      <h2 class="t-h2">Subscribe to Clarity Brief</h2>
+      <p class="t-b4 mx-auto max-w-[560px] text-ink-2">Weekly report on institutional performance, management strategy, risks, and governance sent to select leaders.</p>
+    </div>
+    <form class="flex items-center gap-2" data-newsletter>
+      <label for="brief-email" class="sr-only">Email address</label>
+      <input id="brief-email" type="email" required placeholder="Secure Corporate Email Address" class="t-b4 h-12 w-[376px] rounded-full border border-line bg-white/60 px-4 outline-none placeholder:text-ink-4 focus:border-black/40" />
+      <button type="submit" class="t-b4 h-12 rounded-full bg-black px-4 text-white transition-colors hover:bg-zinc-600">Join Executive Roster</button>
+    </form>
+  </div>
+</section>

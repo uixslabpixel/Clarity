@@ -1,0 +1,26 @@
+---
+/** HERO-08 — featured post hero (Blog). */
+import GradientWash from '../ui/GradientWash.astro';
+import Media from '../ui/Media.astro';
+import type { Post } from '../../data/posts';
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+---
+<section class="relative overflow-hidden bg-white pb-[72px] pt-[133px]" data-section="HERO-08">
+  <GradientWash class="inset-[-419px_0_467px_0]" />
+  <a href={`/insights/${post.slug}`} class="group relative flex items-stretch gap-14 px-[148px] py-14">
+    <div class="flex max-w-[576px] flex-[400] flex-col justify-between">
+      <div class="flex flex-col gap-6">
+        <h1 class="t-h2">{post.title}</h1>
+        <p class="t-label flex items-center gap-2 text-ink-3"><span>{post.date}</span><span class="h-3.5 w-px bg-black/20"></span><span>{post.author}</span></p>
+      </div>
+      <p class="t-b3 text-ink-2">{post.excerpt}</p>
+    </div>
+    <div class="relative h-[444px] w-[736px] shrink-0 overflow-hidden bg-black/20">
+      <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" loading="eager" />
+      <span class="t-label absolute left-4 top-4 bg-white/20 p-2 text-white">{post.category}</span>
+    </div>
+  </a>
+</section>

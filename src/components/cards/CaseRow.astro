@@ -1,0 +1,32 @@
+---
+import Media from '../ui/Media.astro';
+import Button from '../ui/Button.astro';
+interface Props {
+  slug: string;
+  client: string;
+  area: string;
+  title: string;
+  metric: string;
+  metricLabel: string;
+  industry?: string;
+}
+const { slug, client, area, title, metric, metricLabel, industry } = Astro.props;
+---
+<article class="group flex items-center overflow-hidden border border-black/[.11]" data-filter-item={industry}>
+  <div class="relative h-[435px] min-w-0 flex-1 overflow-hidden">
+    <Media tone="duotone" class="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-[1.03]" />
+  </div>
+  <div class="flex h-[435px] w-[566px] shrink-0 flex-col justify-between bg-white px-12 py-10">
+    <div class="flex flex-col gap-2">
+      <p class="t-label flex items-center gap-2 text-ink-2"><span>{client}</span><span class="h-3.5 w-px bg-black/20"></span><span>{area}</span></p>
+      <h2 class="t-h5 max-w-[400px]">{title}</h2>
+    </div>
+    <div class="flex items-end justify-between">
+      <div class="flex flex-col gap-4">
+        <p class="t-h2">{metric}</p>
+        <p class="t-b3 text-ink-2">{metricLabel}</p>
+      </div>
+      <Button href={`/case-studies/${slug}`} variant="soft" class="!h-9">Read More</Button>
+    </div>
+  </div>
+</article>

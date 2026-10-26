@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import Media from '../components/ui/Media.astro';
+import TeamRoster from '../components/sections/TeamRoster.astro';
+import QuoteCollage from '../components/sections/QuoteCollage.astro';
+import Callout from '../components/ui/Callout.astro';
+import Button from '../components/ui/Button.astro';
+import CTA from '../components/layout/CTA.astro';
+---
+<BaseLayout title="Team" nav={{ active: '/team' }}>
+  <PageHero
+    crumb="Team"
+    title="The Advisory Council"
+    text="A cross-functional group of veteran C-suite practitioners, tactical asset specialists, and corporate governance architects."
+  >
+    <Media tone="duotone" class="h-[480px] w-full" loading="eager" />
+  </PageHero>
+  <TeamRoster />
+  <QuoteCollage />
+  <Callout eyebrow="The Sovereign Operational Standard" title="Senior Partners have limited emergency seats on boards, councils, or interim management during transitions." class="px-[218px] pb-14 pt-0">
+    <Button href="/contact" variant="soft" class="!bg-black/10">Initiate Crisis Protocol</Button>
+  </Callout>
+  <CTA title="Retain Elite Fractional Leadership for Your Firm" cta="Request Partner Consultation" />
+</BaseLayout>
